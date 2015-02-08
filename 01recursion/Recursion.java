@@ -23,11 +23,19 @@ public class Recursion{
 	return fib(n-2)+fib(n-1);
     }
 
-    /*
     public static double sqrt(double n){
-
+	if(n<0){
+	    throw new IllegalArgumentException();
+	}
+	return sqrtHelper(n,1);
     }
-    */
+
+    public static double sqrtHelper(double n, double guess){
+	if( abs(guess-n)/n <= 0.05 ){
+	    return guess;
+	}
+	return sqrtHelper(n , (n/guess + guess)/2 ); 
+    }
 
     public static void main(String[]args){
 	System.out.println(name());

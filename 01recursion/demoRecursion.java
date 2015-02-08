@@ -1,4 +1,4 @@
-public class demoRecursion.java{
+public class demoRecursion{
     public static void main(String[]args){
 	Recursion r = new Recursion();
 

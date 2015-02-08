@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 public class Recursion{
     public static String name(){
 	return "Burkart,Margaret";
@@ -31,7 +33,7 @@ public class Recursion{
     }
 
     public static double sqrtHelper(double n, double guess){
-	if( abs(guess-n)/n <= 0.05 ){
+	if(Math.abs( 1- ( guess*guess / n ) ) <= 0.00001 ){
 	    return guess;
 	}
 	return sqrtHelper(n , (n/guess + guess)/2 ); 
@@ -59,7 +61,19 @@ public class Recursion{
 	}
 
 	try{
-	    System.out.println(fib(-3));
+	    System.out.println(sqrt(25));
+	}catch(IllegalArgumentException e){
+	    System.out.println("Caught IllegalArgumentException");
+	}
+
+	try{
+	    System.out.println(sqrt(100));
+	}catch(IllegalArgumentException e){
+	    System.out.println("Caught IllegalArgumentException");
+	}
+
+	try{
+	    System.out.println(sqrt(-3));
 	}catch(IllegalArgumentException e){
 	    System.out.println("Caught IllegalArgumentException");
 	}

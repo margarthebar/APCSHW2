@@ -73,11 +73,11 @@ public class KnightsTour{
 	    return false;
 	}
 	//base case: if on 0 and right number of moves
-	if(board[x][y]==0 && currentMoveNumber==size*size-1){
+	if(board[x][y]==0 && currentMoveNumber==board.length*board.length-1){
 	    return true;
 	}
 	//base case: if solves
-	if(currentMoveNumber=size*size){
+	if(currentMoveNumber==board.length*board.length){
 	    return true;
 	}
 	//base case: if on a bad number

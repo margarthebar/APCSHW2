@@ -69,7 +69,7 @@ public class KnightsTour{
 	System.out.println(this);
 	wait(20);
 	//base case: if off board
-	if(x<0 || x>=board[0].length || y<0 || y>board.length){
+	if(x<0 || x>=board[0].length || y<0 || y>=board.length){
 	    return false;
 	}
 	//base case: if on 0 and right number of moves

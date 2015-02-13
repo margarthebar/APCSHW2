@@ -68,7 +68,7 @@ public class KnightsTour{
     public boolean solve(int x,int y,int currentMoveNumber){
 	System.out.println(this);
 	System.out.println("\n"+currentMoveNumber);
-	wait(150);
+	wait(5);
 	//base case: if off board
 	if(x<0 || x>=board[0].length || y<0 || y>=board.length){
 	    return false;
@@ -92,7 +92,7 @@ public class KnightsTour{
 	   solve(x+2,y-1,currentMoveNumber+1) || solve(x-2,y-1,currentMoveNumber+1)){
 	    return true;
 	}
-		
+	board[x][y]=-1;	
 	return false;
     }
 

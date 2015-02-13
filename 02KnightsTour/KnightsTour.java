@@ -42,13 +42,7 @@ public class KnightsTour{
     }
 
     public KnightsTour(int size){
-	board = new int[size][size];
-	for(int r=0; r<size; r++){
-	    for(int c=0; c<size; c++){
-		board[r][c]=-1;
-	    }
-	}
-	board[0][0]=-1;			
+	board = new int[size][size];		
     }
 
     
@@ -59,7 +53,7 @@ public class KnightsTour{
 
 
     public void solve(int startx, int starty){
-	solve(startx,starty,0);
+	solve(startx,starty,1);
     }
 
 
@@ -68,31 +62,31 @@ public class KnightsTour{
     public boolean solve(int x,int y,int currentMoveNumber){
 	System.out.println(this);
 	System.out.println("\n"+currentMoveNumber);
-	wait(5);
+	wait(1);
 	//base case: if off board
 	if(x<0 || x>=board[0].length || y<0 || y>=board.length){
 	    return false;
 	}
 	//base case: if on 0 and right number of moves
-	if(board[x][y]==0 && currentMoveNumber==board.length*board.length-1){
+	if(board[x][y]==1 && currentMoveNumber==board.length*board.length){
 	    return true;
 	}
 	//base case: if solves
-	if(currentMoveNumber==board.length*board.length){
+	if(currentMoveNumber==board.length*board.length+1){
 	    return true;
 	}
 	//base case: if on a bad number
-	if(board[x][y]!=-1){
+	if(board[x][y]!=0){
 	    return false;
 	}
 	board[x][y]=currentMoveNumber;
-	if(solve(x+1,y+2,currentMoveNumber+1) || solve(x-1,y+2,currentMoveNumber+1) ||
-	   solve(x+1,y-2,currentMoveNumber+1) || solve(x-1,y-2,currentMoveNumber+1) ||
+	if(solve(x+1,y+2,currentMoveNumber+1) || solve(x+1,y-2,currentMoveNumber+1) ||
+	   solve(x-1,y+2,currentMoveNumber+1) || solve(x-1,y-2,currentMoveNumber+1) ||
 	   solve(x+2,y+1,currentMoveNumber+1) || solve(x-2,y+1,currentMoveNumber+1) ||
 	   solve(x+2,y-1,currentMoveNumber+1) || solve(x-2,y-1,currentMoveNumber+1)){
 	    return true;
 	}
-	board[x][y]=-1;	
+	board[x][y]=0;	
 	return false;
     }
 

@@ -52,7 +52,14 @@ public class KnightsTour{
     
 
     public boolean solve(){
-	return solve(0,0);			
+	for(int r=0; r<board.length; r++){
+	    for(int c=0; c<board[0].length; c++){
+		if(solve(c,r)){
+		    return true;
+		}
+	    }
+	}
+	return false;			
     }
 
 
@@ -71,10 +78,12 @@ public class KnightsTour{
 	if(x<0 || x>=board[0].length || y<0 || y>=board.length){
 	    return false;
 	}
+	/*
 	//base case: if on 0 and right number of moves
 	if(board[x][y]==1 && currentMoveNumber==board.length*board.length){
 	    return true;
 	}
+	*/
 	//base case: if solves
 	if(currentMoveNumber==board.length*board.length+1){
 	    return true;

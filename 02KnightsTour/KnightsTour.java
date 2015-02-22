@@ -26,6 +26,10 @@ public class KnightsTour{
 	}
     }
 
+    public String name(){
+	return "burkart.margaret";
+    }
+
     public String toString(){
 	String ans = "\n";
 	//build your knights tour here...
@@ -47,22 +51,22 @@ public class KnightsTour{
 
     
 
-    public void solve(){
-	solve(0,0);			
+    public boolean solve(){
+	return solve(0,0);			
     }
 
 
-    public void solve(int startx, int starty){
-	solve(startx,starty,1);
+    public boolean solve(int x, int y){
+	return solve(x,y,1);
     }
 
 
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-	System.out.println(this);
-	System.out.println("\n"+currentMoveNumber);
-	wait(1);
+	//System.out.println(this);
+	//System.out.println("\n"+currentMoveNumber);
+	//wait(1);
 	//base case: if off board
 	if(x<0 || x>=board[0].length || y<0 || y>=board.length){
 	    return false;

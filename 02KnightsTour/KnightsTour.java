@@ -42,7 +42,7 @@ public class KnightsTour{
 	    }
 	    ans+="\n";
 	}
-	return clear+ hide + go(0,0) + ans + "\n" + show;
+	return hide + clear + go(0,0) + ans + "\n" + show;
     }
 
     public KnightsTour(int size){
@@ -78,12 +78,7 @@ public class KnightsTour{
 	if(x<0 || x>=board[0].length || y<0 || y>=board.length){
 	    return false;
 	}
-	/*
-	//base case: if on 0 and right number of moves
-	if(board[x][y]==1 && currentMoveNumber==board.length*board.length){
-	    return true;
-	}
-	*/
+
 	//base case: if solves
 	if(currentMoveNumber==board.length*board.length+1){
 	    return true;

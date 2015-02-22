@@ -70,17 +70,18 @@ public class NQueens{
 		
     public boolean solve(int x,int y,int currentMoveNumber){
 	System.out.println(this);
-	wait(1);
+	wait(150);
 
 	//base case: if off board
-	if(x<0 || x>=board[0].length || y<0 || y>=board.length){
+	if(y<0 || y>=board.length){
 	    return false;
 	}
 
 	//base case: if solves
-	if(currentMoveNumber==board.length+1){
+	if(x>=board.length){
 	    return true;
 	}
+
 	//base case: if threatened
 	//////horizontal
 	for(int c=0; c<board.length; c++){

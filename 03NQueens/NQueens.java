@@ -113,7 +113,7 @@ public class NQueens{
 		return true;
 	    }
 	}
-
+	board[x][y]=0;
 	return false;
     }
 

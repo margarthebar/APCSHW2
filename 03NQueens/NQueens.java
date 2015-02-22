@@ -70,7 +70,7 @@ public class NQueens{
 		
     public boolean solve(int x,int y,int currentMoveNumber){
 	System.out.println(this);
-	wait(20);
+	wait(150);
 
 	//base case: if off board
 	if(x<0 || x>=board[0].length || y<0 || y>=board.length){
@@ -91,34 +91,29 @@ public class NQueens{
 	//////horizontal
 	for(int c=0; c<board.length; c++){
 	    if(c!=y){
-		if(board[x][c]!=-1 && board[x][c]!=0){
-		    return false;
-		}
 		board[x][c]=-1;
 	    }
 	}
 	//////vertical
 	for(int r=0; r<board.length; r++){
 	    if(r!=x){
-		if(board[r][y]!=-1 && board[r][y]!=0){
-		    return false;
-		}
 		board[r][y]=-1;
 	    }
 	}
 	//////TL to BR diagonal
-	for(int i=-x+1; i<board.length-x; i++){
-	    if(i!=0){
-		if(board[x+i][y+i]!=-1 && board[x+i][y+i]!=0){
-		    return false;
-		}
+	for(int i=-x; i<board.length-x; i++){
+	    if(i!=0 && x+i>=0 && y+i>=0 && x+i<board.length && y+i<board.length){
 		board[x+i][y+i]=-1;
 	    }
 	}
 	//////BL to TL diagonal
-	if(solve(x,y+1,currentMoveNumber+1) || solve(x+1,0,currentMoveNumber+1)){
-	    return true;
+
+	for(int c=0; c<board.length; c++){
+	    if(solve(x+1,c,currentMoveNumber+1)){
+		return true;
+	    }
 	}
+
 	return false;
     }
 

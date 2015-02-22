@@ -70,7 +70,7 @@ public class NQueens{
 		
     public boolean solve(int x,int y,int currentMoveNumber){
 	System.out.println(this);
-	wait(150);
+	wait(1);
 
 	//base case: if off board
 	if(x<0 || x>=board[0].length || y<0 || y>=board.length){
@@ -78,36 +78,42 @@ public class NQueens{
 	}
 
 	//base case: if solves
-	if(currentMoveNumber==board.length){
+	if(currentMoveNumber==board.length+1){
 	    return true;
 	}
 	//base case: if threatened
-	if(board[x][y]==-1){
-	    return false;
-	}
-	//else
-	board[x][y]=currentMoveNumber;
-	////mark threatened spaces with a -1
 	//////horizontal
 	for(int c=0; c<board.length; c++){
-	    if(c!=y){
-		board[x][c]=-1;
+	    if(c!=y && board[x][c]!=0){
+	        return false;
 	    }
 	}
 	//////vertical
 	for(int r=0; r<board.length; r++){
-	    if(r!=x){
-		board[r][y]=-1;
+	    if(r!=x && board[r][y]!=0){
+		return false;
 	    }
 	}
 	//////TL to BR diagonal
 	for(int i=-x; i<board.length-x; i++){
-	    if(i!=0 && x+i>=0 && y+i>=0 && x+i<board.length && y+i<board.length){
-		board[x+i][y+i]=-1;
+	    if(i!=0 && x+i>=0 && y+i>=0 &&
+	       x+i<board.length && y+i<board.length &&
+	       board[x+i][y+i]!=0){
+	        return false;
 	    }
 	}
 	//////BL to TL diagonal
+        for(int i=-x; i<board.length-x; i++){
+	    if(i!=0 && x+i>=0 && y-i>=0 &&
+	       x+i<board.length && y-i<board.length &&
+	       board[x+i][y-i]!=0){
+	        return false;
+	    }
+	}
 
+
+	//else
+	board[x][y]=currentMoveNumber;
 	for(int c=0; c<board.length; c++){
 	    if(solve(x+1,c,currentMoveNumber+1)){
 		return true;

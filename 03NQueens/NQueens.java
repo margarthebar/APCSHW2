@@ -69,8 +69,6 @@ public class NQueens{
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-	System.out.println(this);
-	wait(150);
 
 	//base case: if off board
 	if(y<0 || y>=board.length){

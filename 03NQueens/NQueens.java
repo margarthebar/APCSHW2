@@ -32,7 +32,7 @@ public class KnightsTour{
 
     public String toString(){
 	String ans = "\n";
-	//build qu
+	//build NQueens board
 	for(int r=0; r<board.length; r++){
 	    for(int c=0; c<board[0].length; c++){
 		for(int i=0; i<3-(""+board[r][c]).length(); i++){
@@ -79,7 +79,51 @@ public class KnightsTour{
 	    return true;
 	}
 	//base case: if threatened
-	
+	if(board[x][y]==-1){
+	    return false;
+	}
+	//else
+	board[x][y]=currentMoveNumber;
+	////mark threatened spaces with a -1
+	//////horizontal
+	for(int c=0; c<board.length; c++){
+	    if(c!=y){
+		if(board[x][c]!=-1 && board[x][c]!=0){
+		    return false;
+		}
+		board[x][c]=-1;
+	    }
+	}
+	//////vertical
+	for(int r=0; r<board.length; r++){
+	    if(r!=x){
+		if(board[r][y]!=-1 && board[r][y]!=0){
+		    return false;
+		}
+		board[r][y]=-1;
+	    }
+	}
+	//////TL to BR diagonal
+	for(int i=-x+1; i<board.length-x-1; i++){
+	    if(i!=0){
+		if(board[x+i][y+i]!=-1 && board[x+i][y+i]!=0){
+		    return false;
+		}
+		board[x+i][y+i]=-1;
+	    }
+	}
+	//////BL to TL diagonal
+	for(int i=-x+1; i<board.length-x-1; i++){
+	    if(i!=0){
+		if(board[x+i][y+i]!=-1 && board[x+i][y+i]!=0){
+		    return false;
+		}
+		board[x+i][y+i]=-1;
+	    }
+	}
+	if(solve(x,y+1,currentMoveNumber+1) || solve(x+1,0,currentMoveNumber+1)){
+	    return true;
+	}
 	return false;
     }
 

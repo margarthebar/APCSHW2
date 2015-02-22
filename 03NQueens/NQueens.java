@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 
-public class KnightsTour{
+public class NQueens{
     //constants for the class
     //terminal specific character to clear screen , or hide/show cursor
     final static String clear =  "\033[2J";
@@ -52,7 +52,7 @@ public class KnightsTour{
     
 
     public boolean solve(){
-	for(int c=0; c<board.length; r++){
+	for(int c=0; c<board.length; c++){
 	    if(solve(0,c)){
 		return true;
 	    }
@@ -69,6 +69,9 @@ public class KnightsTour{
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
+	System.out.println(this);
+	wait(20);
+
 	//base case: if off board
 	if(x<0 || x>=board[0].length || y<0 || y>=board.length){
 	    return false;
@@ -104,7 +107,7 @@ public class KnightsTour{
 	    }
 	}
 	//////TL to BR diagonal
-	for(int i=-x+1; i<board.length-x-1; i++){
+	for(int i=-x+1; i<board.length-x; i++){
 	    if(i!=0){
 		if(board[x+i][y+i]!=-1 && board[x+i][y+i]!=0){
 		    return false;
@@ -113,14 +116,6 @@ public class KnightsTour{
 	    }
 	}
 	//////BL to TL diagonal
-	for(int i=-x+1; i<board.length-x-1; i++){
-	    if(i!=0){
-		if(board[x+i][y+i]!=-1 && board[x+i][y+i]!=0){
-		    return false;
-		}
-		board[x+i][y+i]=-1;
-	    }
-	}
 	if(solve(x,y+1,currentMoveNumber+1) || solve(x+1,0,currentMoveNumber+1)){
 	    return true;
 	}

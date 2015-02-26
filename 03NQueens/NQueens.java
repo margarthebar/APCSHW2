@@ -53,7 +53,7 @@ public class NQueens{
 
     public boolean solve(){
 	for(int c=0; c<board.length; c++){
-	    if(solve(0,c)){
+	    if(solve(c)){
 		return true;
 	    }
 	}
@@ -61,8 +61,8 @@ public class NQueens{
     }
 
 
-    public boolean solve(int x, int y){
-	return solve(x,y,1);
+    public boolean solve(int y){
+	return solve(0,y,1);
     }
 
 

@@ -26,4 +26,11 @@ public class MergeSort{
 	    merge(a,b,c,aIndex,bIndex+1,cIndex+1);
 	}
     }
+    public static void main(String[]args){
+	int[] a = {2,8,1,7,3,6,14};
+	int[] b = {1,9,0,4,5,11,7};
+	int[] c = merge(a,b);
+
+	System.out.println(c);
+    }
 }

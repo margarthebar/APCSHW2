@@ -4,6 +4,20 @@ public class MergeSort{
 	merge(a,b,c,0,0,0);
     }
     public static int[] merge(int[] a, int[] b, int[] c, int aIndex, int bIndex, int cIndex){
+	//if finished merging
+	if(cIndex==c.length){
+	    return c;
+	}
+	//if still b elements left over
+	if(aIndex==a.length){
+	    c[cIndex]=b[bIndex];
+	    merge(a,b,c,aIndex,bIndex+1,cIndex+1);
+	}
+	//if still a elements left over
+	if(bIndex==b.length){
+	    c[cIndex]=a[aIndex];
+	    merge(a,b,c,aIndex+1,bIndex,cIndex+1);
+	}
 	if(a[0]<=b[0]){
 	    c[cIndex]=a[aIndex];
 	    merge(a,b,c,aIndex+1,bIndex,cIndex+1);

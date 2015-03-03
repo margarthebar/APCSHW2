@@ -1,7 +1,4 @@
 public class MergeSort{
-    public static void mergeSort(int[] a){
-	mergeSort(int[] a, int[] b);
-    }
     public static int[] mergeSort(int[] a){
 	//base case: one element
 	if(a.length==1){
@@ -21,8 +18,36 @@ public class MergeSort{
 
     public static int[] merge(int[] a, int[] b){
 	int[] c = new int[a.length+b.length];
-	return merge(a,b,c,0,0,0);
+        int aIndex = 0;
+	int bIndex = 0;
+	int cIndex = 0;
+	while(aIndex<a.length && bIndex<b.length){
+	    if(a[aIndex]<=b[bIndex]){
+		c[cIndex] = a[aIndex];
+		aIndex+=1;
+	    }else{
+		c[cIndex] = b[bIndex];
+		bIndex+=1;
+	    }
+	    cIndex+=1;
+	}
+	if(aIndex<a.length){
+	    while(aIndex<a.length){
+		c[cIndex] = a[aIndex];
+		aIndex+=1;
+		cIndex+=1;
+	    }
+	}
+	if(bIndex<b.length){
+	    while(bIndex<b.length){
+		c[cIndex] = b[bIndex];
+		bIndex+=1;
+		cIndex+=1;
+	    }
+	}
+	return c;
     }
+    /*
     public static int[] merge(int[] a, int[] b, int[] c, int aIndex, int bIndex, int cIndex){
 	//if finished merging
 	if(cIndex==c.length){
@@ -52,9 +77,10 @@ public class MergeSort{
 	    return merge(a,b,c,aIndex,bIndex+1,cIndex+1);
 	}
     }
+*/
     public static void main(String[]args){
-	int[] a = {2,8,1,7,3,6,14};
-	int[] b = {1,9,0,4,5,11,7};
+	int[] a = {3,27,109,202,222};
+	int[] b = {4,25,108,205,300};
 	int[] c = merge(a,b);
 
 	String ans="[";

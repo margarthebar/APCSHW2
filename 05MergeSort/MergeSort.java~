@@ -31,14 +31,6 @@ public class MergeSort{
 	int[] b = {1,9,0,4,5,11,7};
 	int[] c = merge(a,b);
 
-	String ans="[";
-	for(int i=0; i<c.length; i++){
-	    ans+=c[i];
-	    if(i<c.length-1){
-		ans+=",";
-	    }
-	}
-	ans+="]";
-	System.out.println(ans);
+	System.out.println(c);
     }
 }

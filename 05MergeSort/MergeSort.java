@@ -4,14 +4,14 @@ public class MergeSort{
 	if(a.length==1){
 	    return a;
 	}
-	//if more than two elements
+	//if more than one element
 	int[] x = new int[a.length/2];
 	int[] y = new int[a.length/2];
 	for(int i=0; i<a.length/2; i++){
 	    x[i] = a[i];
 	}
-	for(int j=a.length/2; j<a.length; j++){
-	    y[j-a.length/2] = a[j];
+	for(int j=0; j<a.length/2; j++){
+	    y[j] = a[a.length/2+j];
 	}
 	return merge(mergeSort(x),mergeSort(y));
     }
@@ -47,41 +47,10 @@ public class MergeSort{
 	}
 	return c;
     }
-    /*
-    public static int[] merge(int[] a, int[] b, int[] c, int aIndex, int bIndex, int cIndex){
-	//if finished merging
-	if(cIndex==c.length){
-	    System.out.println("Done");
-	    return c;
-	}
-	//if still b elements left over
-	if(aIndex==a.length){
-	    c[cIndex]=b[bIndex];
-	    System.out.println("if still b elements left over");
-	    return merge(a,b,c,aIndex,bIndex+1,cIndex+1);
-	}
-	//if still a elements left over
-	if(bIndex==b.length){
-	    c[cIndex]=a[aIndex];
-	    System.out.println("if still a elements left over");
-	    return merge(a,b,c,aIndex+1,bIndex,cIndex+1);
-	}
-	System.out.println("a[aIndex]: "+a[aIndex]+" b[bIndex]: "+b[bIndex]);
-	if(a[aIndex]<=b[bIndex]){
-	    c[cIndex]=a[aIndex];
-	    System.out.println("if(a[aIndex]<=b[bIndex])");
-	    return merge(a,b,c,aIndex+1,bIndex,cIndex+1);
-	}else{
-	    c[cIndex]=b[bIndex];
-	    System.out.println("else");
-	    return merge(a,b,c,aIndex,bIndex+1,cIndex+1);
-	}
-    }
-*/
+
     public static void main(String[]args){
-	int[] a = {3,27,109,202,222};
-	int[] b = {4,25,108,205,300};
-	int[] c = merge(a,b);
+	int[] a = {5,2,8,4,77,23,8,3,6,1245,987,3,3,1,22,76,23,13412,0,2,9};
+	    int[] c = mergeSort(a);
 
 	String ans="[";
 	for(int i=0; i<c.length; i++){

@@ -19,7 +19,7 @@ public class ctravel{
 	}
     }
     public int pathFind(){
-	pathFind(Integer.parseInt(coordinates[0]),Integer.parseInt(coordinates[1]),Integer.parseInt(coordinates[2]),Integer.parseInt(coordinates[3]),seconds);
+	pathFind(Integer.parseInt(coordinates[0])-1,Integer.parseInt(coordinates[1])-1,Integer.parseInt(coordinates[2])-1,Integer.parseInt(coordinates[3])-1,seconds);
 	return paths;
     }
     public boolean pathFind(int r1, int c1, int r2, int c2, int sec){
@@ -30,24 +30,36 @@ public class ctravel{
 	//base case: if moves gone
 	if(sec==0){
 	    if(r1==r2 && c1==c2){
-		paths+=1;
-		return false;
+		return true;
 	    }
 	    return false;
 	}
 	//base case: if solution not possible
 	if(Math.abs(r1-r2)+Math.abs(c1-c2)>sec){
+	    land[r1][r2]="!";
 	    return false;
 	}
-	//base case: if *
-	if(land[r1][r2].equals("*")){
+	//base case: if * or # or !
+	if(!land[r1][c1].equals(".")){
 	    return false;
 	}
 	//else
-	pathFind(r1,c1+1,r2,c2,sec-1);
-	pathFind(r1,c1-1,r2,c2,sec-1);
-	pathFind(r1+1,c1,r2,c2,sec-1);
-	pathFind(r1-1,c1,r2,c2,sec-1);
+	land[r1][c1]="#";
+
+	if(pathFind(r1,c1+1,r2,c2,sec-1)){
+	    paths+=1;
+	}
+	if(pathFind(r1,c1-1,r2,c2,sec-1)){
+	    paths+=1;
+	}
+	if(pathFind(r1+1,c1,r2,c2,sec-1)){
+	    paths+=1;
+	}
+	if(pathFind(r1-1,c1,r2,c2,sec-1)){
+	    paths+=1;
+	}
+
+	land[r1][c1]=".";
 	return false;
     }
 

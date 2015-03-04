@@ -1,7 +1,6 @@
 public class makelake{
     public int[][] land;
     public int waterElev;
-    public String[] in;
     public String[] original;
     public int[][] stomps;
     

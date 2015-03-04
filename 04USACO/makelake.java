@@ -44,6 +44,15 @@ public class makelake{
 	}
 	
     }
+    public int calculate(){
+       int depth = 0;
+       for(int r = 0; r < land.length; r++){
+	    for(int c =0; c <land[0].length; c++){
+		depth+=land[r][c];
+	    }
+	}
+       return depth*(6*12)*(6*12);
+    }
 
     public String toString(){
 	String res = "";
@@ -66,7 +75,7 @@ public class makelake{
 	System.out.println(lake);
 	lake.fill();
 	System.out.println(lake);
-
+	System.out.println(lake.calculate());
     }
 
     

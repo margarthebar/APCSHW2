@@ -1,14 +1,38 @@
 public class makelake{
     public int[][] land;
-    public int waterElev, numMoves;
+    public int waterElev;
+    public String[] in;
+    public String[] original;
+    public int[][] stomps;
+    
 
-    public makelake(int rows, int cols, int elevation, int moves){
-	land= new int[][]{ {28, 25, 20, 32, 34, 36},
-		{27, 25, 20, 20, 30, 34},
-		{24, 20, 20, 20, 20, 30},
-		{20, 20, 14, 14, 20, 20} };
-	waterElev = elevation;
-	numMoves = moves;
+    public makelake(String input){
+	in = input.split("\n");
+	original = in[0].split(" ");
+	land = new int[Integer.parseInt(original[0])][Integer.parseInt(original[1])];
+	stomps = new int[Integer.parseInt(original[3])][3];
+
+	for(int i=1; i<stomps.length; i++){
+	    String[] line = in[i].split(" ");
+	    for(int j=0; j<line.length; j++){
+		land[i-1][j] = Integer.parseInt(line[j]);
+	    }
+	}
+	for(int i=in.length-stomps.length; i<in.length; i++){
+	    String[] line = in[i].split(" ");
+	    stomps[i-(in.length-stomps.length)][0] = Integer.parseInt(line[0]);
+	    stomps[i-(in.length-stomps.length)][1] = Integer.parseInt(line[1]);
+	    stomps[i-(in.length-stomps.length)][2] = Integer.parseInt(line[2]);
+	}
+	waterElev = Integer.parseInt(original[2]);
+    }
+
+    public int make(){
+	for(int i=0; i<stomps.length; i++){
+	    stomp(stomps[i][0],stomps[i][1],stomps[i][2]);
+	}
+	fill();
+	return calculate();
     }
 
     public void stomp(int row, int col, int inches){
@@ -64,20 +88,5 @@ public class makelake{
 	}
 	return res;
 
-    }
-
-    public static void main(String[] args){
-	makelake lake = new makelake(4,6,22,2);
-	System.out.println(lake);
-	lake.stomp(1, 4, 4);
-	System.out.println(lake);
-	lake.stomp(1,1,10);
-	System.out.println(lake);
-	lake.fill();
-	System.out.println(lake);
-	System.out.println(lake.calculate());
-    }
-
-    
-
+    }    
 }

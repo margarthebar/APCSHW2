@@ -17,6 +17,13 @@ public class ctravel{
 	    }
 	}
     }
+    public int pathFind(){
+	return pathFind(coordinates[0],coordinates[1],coordinates[2],coordinates[3]);
+    }
+    public int pathfind(int r1, int c1, int r2, int c2){
+
+    }
+
     public String toString(){
 	String res = "";
 	for(int i=0; i<land.length; i++){

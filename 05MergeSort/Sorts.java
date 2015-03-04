@@ -165,9 +165,6 @@ public class Sorts{
 	int[] ans = new int[1000000];
 	for(int i=0;i<1000000;i++){
 	    ans[i] = rand.nextInt(high-low)+low;
-	    if(ans[i]<0){
-		ans[i]*=-1;
-	    }
 	}
 	return ans;
     }

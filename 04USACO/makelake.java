@@ -12,7 +12,7 @@ public class makelake{
 	land = new int[Integer.parseInt(original[0])][Integer.parseInt(original[1])];
 	stomps = new int[Integer.parseInt(original[3])][3];
 
-	for(int i=1; i<stomps.length; i++){
+	for(int i=1; i<in.length-stomps.length; i++){
 	    String[] line = in[i].split(" ");
 	    for(int j=0; j<line.length; j++){
 		land[i-1][j] = Integer.parseInt(line[j]);
@@ -28,10 +28,13 @@ public class makelake{
     }
 
     public int make(){
+	//System.out.println(this);
 	for(int i=0; i<stomps.length; i++){
 	    stomp(stomps[i][0],stomps[i][1],stomps[i][2]);
+	    //System.out.println(this);
 	}
 	fill();
+	//System.out.println(this);
 	return calculate();
     }
 

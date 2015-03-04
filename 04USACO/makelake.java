@@ -33,7 +33,16 @@ public class makelake{
     }
 
     public void fill(){
-
+	for(int r = 0; r < land.length; r++){
+	    for(int c =0; c <land[0].length; c++){
+		if(land[r][c]>waterElev){
+		    land[r][c]=0;
+		}else{
+		    land[r][c] = waterElev - land[r][c];
+		}
+	    }
+	}
+	
     }
 
     public String toString(){
@@ -52,6 +61,10 @@ public class makelake{
 	makelake lake = new makelake(4,6,22,2);
 	System.out.println(lake);
 	lake.stomp(1, 4, 4);
+	System.out.println(lake);
+	lake.stomp(1,1,10);
+	System.out.println(lake);
+	lake.fill();
 	System.out.println(lake);
 
     }

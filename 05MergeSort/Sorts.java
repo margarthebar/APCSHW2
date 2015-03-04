@@ -149,10 +149,21 @@ public class Sorts{
 	}
 	return ans;
     }
+    public static int[] randomArray(int low, int high){
+	Random rand = new Random();
+	int[] ans = new int[1000];
+	for(int i=0;i<1000;i++){
+	    ans[i] = rand.nextInt(high-low)+low;
+	    if(ans[i]<0){
+		ans[i]*=-1;
+	    }
+	}
+	return ans;
+    }
 
     public static void main(String[]args){
 	long startTime,endTime;
-	int[] a = randomArray();
+	/*int[] a = randomArray();
 	startTime = System.currentTimeMillis();
 	bubbleSort(a);
 	endTime = System.currentTimeMillis();
@@ -174,6 +185,30 @@ public class Sorts{
 	startTime = System.currentTimeMillis();
 	radixSort(d);
 	endTime = System.currentTimeMillis();
-	System.out.println("radixSort: "+(endTime-startTime));
+	System.out.println("radixSort: "+(endTime-startTime));*/
+
+	int[] e = {1,2,2,3,4,5,6,6,7,8,8,9};
+	startTime = System.currentTimeMillis();
+	mergeSort(e);
+	endTime = System.currentTimeMillis();
+	System.out.println("mergeSort: "+(endTime-startTime));
+
+	int[] f = {9,8,8,7,6,6,5,4,3,2,2,1};
+	startTime = System.currentTimeMillis();
+	mergeSort(f);
+	endTime = System.currentTimeMillis();
+	System.out.println("mergeSort: "+(endTime-startTime));
+
+	int[] g = randomArray(1,4);
+	startTime = System.currentTimeMillis();
+	mergeSort(g);
+	endTime = System.currentTimeMillis();
+	System.out.println("mergeSort: "+(endTime-startTime));
+
+	int[] h = randomArray(1000000,1000001);
+	startTime = System.currentTimeMillis();
+	mergeSort(h);
+	endTime = System.currentTimeMillis();
+	System.out.println("mergeSort: "+(endTime-startTime));
     }
 }

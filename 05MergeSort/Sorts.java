@@ -90,6 +90,17 @@ public class Sorts{
 	}
     }
      public static int[] mergeSort(int[] a){
+	//base case: already sorted
+	 boolean sorted = true;
+	 for(int i=0; i<a.length-1; i++){
+	     if(sorted && a[i]>a[i+1]){
+		 sorted = false;
+	     } 
+	 }
+	 if(sorted){
+	     return a;
+	 }
+
 	//base case: one element
 	if(a.length==1){
 	    return a;
@@ -151,8 +162,8 @@ public class Sorts{
     }
     public static int[] randomArray(int low, int high){
 	Random rand = new Random();
-	int[] ans = new int[1000];
-	for(int i=0;i<1000;i++){
+	int[] ans = new int[1000000];
+	for(int i=0;i<1000000;i++){
 	    ans[i] = rand.nextInt(high-low)+low;
 	    if(ans[i]<0){
 		ans[i]*=-1;
@@ -205,7 +216,7 @@ public class Sorts{
 	endTime = System.currentTimeMillis();
 	System.out.println("mergeSort: "+(endTime-startTime));
 
-	int[] h = randomArray(1000000,1000001);
+	int[] h = randomArray(-1000000,1000001);
 	startTime = System.currentTimeMillis();
 	mergeSort(h);
 	endTime = System.currentTimeMillis();

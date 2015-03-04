@@ -36,16 +36,13 @@ public class ctravel{
 	}
 	//base case: if solution not possible
 	if(Math.abs(r1-r2)+Math.abs(c1-c2)>sec){
-	    land[r1][r2]="!";
 	    return false;
 	}
-	//base case: if * or # or !
+	//base case: if *
 	if(!land[r1][c1].equals(".")){
 	    return false;
 	}
 	//else
-	land[r1][c1]="#";
-
 	if(pathFind(r1,c1+1,r2,c2,sec-1)){
 	    paths+=1;
 	}
@@ -58,8 +55,6 @@ public class ctravel{
 	if(pathFind(r1-1,c1,r2,c2,sec-1)){
 	    paths+=1;
 	}
-
-	land[r1][c1]=".";
 	return false;
     }
 

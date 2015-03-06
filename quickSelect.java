@@ -8,7 +8,7 @@ public class quickSelect{
 	    d[i]=ary[si];
 	}
 	int pivot = ary[si];
-	for(int i=si; i<ei+1; i+=){
+	for(int i=si; i<ei+1; i++){
 	    if(ary[i]<pivot){
 		d[si] = ary[i];
 		si++;
@@ -19,5 +19,11 @@ public class quickSelect{
 	    }
 	}
 	ary[si] = pivot;
+    }
+    public static void main(String[] args){
+	int[] a = {71,29,36,8,14,1,9,7,91,83,20};
+	System.out.println(a.toString());
+	partition(a,0,10);
+	System.out.println(a.toString());
     }
 }

@@ -22,25 +22,48 @@ public class quickSelect{
 	d[si] = pivot;
 	System.out.println(toString(d));
     }
-    public static void partitionInPlace(int[] ary, int si, int ei){
-	int pivot = si+(int)(Math.random()*(ei-si+1));
+    public static int[] partitionInPlace(int[] ary, int si, int ei){
+	int pi = si+(int)(Math.random()*(ei-si+1));
+	int pivot = ary[pi];
+	System.out.println("pivot: "+pivot);
 	int end = ei;
-	for(int i=si+1; i<=end; i++){
+	int i = si;
+	while(i<=end && si!=ei){
 	    if(ary[i]<pivot){
+		System.out.println(ary[i]+"<"+pivot+" index: "+i);
 		int x = ary[i];
 		ary[i] = ary[si];
 		ary[si] = x;
 		si++;
-	    }
-	    if(ary[i]>pivot){
+		if(x==pivot){
+		    pi = si;
+		}else if(ary[i]==pivot){
+		    pi = i;
+		}
+		i++;
+		System.out.println("si:"+si+" ei:"+ei+" "+toString(ary));
+	    }else if(ary[i]>pivot){
+		System.out.println(ary[i]+">"+pivot+" index: "+i);
 		int x = ary[i];
 		ary[i] = ary[ei];
-		ary[ei] = ary[si];
+		ary[ei] = x;
 		ei--;
+		if(x==pivot){
+		    pi = ei;
+		}else if(ary[i]==pivot){
+		    pi = i;
+		}
+	        System.out.println("si:"+si+" ei:"+ei+" "+toString(ary));
+	    }else{
+		i++;
 	    }
 	}
+	int x = ary[si];
 	ary[si] = pivot;
-	System.out.println(toString(ary));
+	ary[pi] = x;
+	
+	return ary;
+	//System.out.println(toString(ary));
     }
     public static String toString(int[] a){
 	String ans = "{";
@@ -56,7 +79,7 @@ public class quickSelect{
     public static void main(String[] args){
 	int[] a = {71,29,36,8,14,1,9,7,91,83,20};
 	System.out.println(toString(a));
-	partition(a,0,10);
+	/*partition(a,0,10);
 	int[] b = {29,36,8,14,1,9,7,20,71,83,91};
 	partition(b,0,7);
 	int[] c = {8,14,1,9,7,20,29,36,71,83,91};
@@ -64,6 +87,7 @@ public class quickSelect{
 	int[] d = {8,14,1,9,7,20,36,29,71,83,91};
 	partition(d,6,7);
 	int[] e = {8,14,1,9,7,20,29,36,71,83,91};
-	partition(e,7,7);
+	partition(e,7,7);*/
+	System.out.println(toString(partitionInPlace(a,0,a.length-1)));
     }
 }

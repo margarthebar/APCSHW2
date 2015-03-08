@@ -85,17 +85,8 @@ public class quickSelect{
     public static void main(String[] args){
 	int[] a = {71,29,36,8,14,1,9,7,91,83,20};
 	System.out.println(toString(a));
-	/*partition(a,0,10);
-	int[] b = {29,36,8,14,1,9,7,20,71,83,91};
-	partition(b,0,7);
-	int[] c = {8,14,1,9,7,20,29,36,71,83,91};
-	partition(c,5,7);
-	int[] d = {8,14,1,9,7,20,36,29,71,83,91};
-	partition(d,6,7);
-	int[] e = {8,14,1,9,7,20,29,36,71,83,91};
-	partition(e,7,7);*/
-	//partitionInPlace(a,0,a.length-1);
-	//System.out.println(toString(a));
 	System.out.println(select(a,7));
+	System.out.println(select(a,4));
+	System.out.println(select(a,2));
     }
 }

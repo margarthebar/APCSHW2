@@ -190,11 +190,12 @@ public class Sorts{
         int x = ary[si];
         ary[si] = pivot;
         ary[pi] = x;
-        System.out.println("pivot: "+pivot+" "+ary.toString());
+        System.out.println("pivot: "+pivot+" "+toString(ary));
         quickSort(ary,startsi,pi-1);
         quickSort(ary,pi+1,startei);
 	}
     }
+
     public static int[] randomArray(){
 	Random rand = new Random();
 	int[] ans = new int[1000];

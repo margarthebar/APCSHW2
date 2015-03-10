@@ -196,13 +196,32 @@ public class Sorts{
 	}
     }
     public static int[] randomArray(){
-	Random rand = new Random();
+	Random rand = new Random(1000);
 	int[] ans = new int[1000];
 	for(int i=0;i<1000;i++){
 	    ans[i] = rand.nextInt();
 	    if(ans[i]<0){
 		ans[i]*=-1;
 	    }
+	}
+	return ans;
+    }
+     public static int[] randomArray(int size){
+	Random rand = new Random(size);
+	int[] ans = new int[size];
+	for(int i=0;i<size;i++){
+	    ans[i] = rand.nextInt();
+	    if(ans[i]<0){
+		ans[i]*=-1;
+	    }
+	}
+	return ans;
+    }
+    public static int[] randomArray(int low, int high, int size){
+	Random rand = new Random();
+	int[] ans = new int[size];
+	for(int i=0;i<size;i++){
+	    ans[i] = rand.nextInt(high-low)+low;
 	}
 	return ans;
     }
@@ -217,6 +236,13 @@ public class Sorts{
 
     public static void main(String[]args){
 	long startTime,endTime;
+
+	int[] test0 = {0,0,0,0,0,0,0,0,0,0,0};
+	int[] test01 = {0,0,0,0,0,0,0,0,0,0};
+	int[] testSmall = {2,7,1,6,6,8,2,5,1,7,8,3,5,9,0,4};
+	int[] testBig =  randomArray(-20,20,40);
+	int[] testBigger = randomArray();
+	int[] testBiggest = randomArray(1000000);
 	/*int[] a = randomArray();
 	startTime = System.currentTimeMillis();
 	bubbleSort(a);
@@ -239,7 +265,7 @@ public class Sorts{
 	startTime = System.currentTimeMillis();
 	radixSort(d);
 	endTime = System.currentTimeMillis();
-	System.out.println("radixSort: "+(endTime-startTime));*/
+	System.out.println("radixSort: "+(endTime-startTime));
 
 	int[] e = {1,2,2,3,4,5,6,6,7,8,8,9};
 	startTime = System.currentTimeMillis();
@@ -263,6 +289,6 @@ public class Sorts{
 	startTime = System.currentTimeMillis();
 	mergeSort(h);
 	endTime = System.currentTimeMillis();
-	System.out.println("mergeSort: "+(endTime-startTime));
+	System.out.println("mergeSort: "+(endTime-startTime));*/
     }
 }

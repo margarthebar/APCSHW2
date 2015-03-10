@@ -164,31 +164,31 @@ public class Sorts{
 	    int i = si;
 	    while(i<=end && equalsi<=ei){
 		if(ary[i]<pivot){
-		    System.out.println(i+" "+equalsi+" "+ary[i]+"<"+pivot);
+		    //System.out.println(i+" "+equalsi+" "+ary[i]+"<"+pivot);
 		    int x = ary[i];
 		    ary[i] = ary[si];
 		    ary[si] = x;
 		    si++;
 		    equalsi++;
 		    i++;
-		    System.out.println(Arrays.toString(ary));
+		    //System.out.println(Arrays.toString(ary));
 		}else if(ary[i]==pivot){
-		    System.out.println(i+" "+equalsi+" "+ary[i]+"=="+pivot);
+		    //System.out.println(i+" "+equalsi+" "+ary[i]+"=="+pivot);
 		    equalsi++;
 		    i++;
-		    System.out.println(Arrays.toString(ary));
+		    //System.out.println(Arrays.toString(ary));
 		}else if(ary[i]>pivot){
-		    System.out.println(i+" "+equalsi+" "+ary[i]+">"+pivot);
+		    //System.out.println(i+" "+equalsi+" "+ary[i]+">"+pivot);
 		    int x = ary[i];
 		    ary[i] = ary[ei];
 		    ary[ei] = x;
 		    ei--;
-		    System.out.println(Arrays.toString(ary));
+		    //System.out.println(Arrays.toString(ary));
 		}
 	    }
-        System.out.println("pivot: "+pivot+" "+Arrays.toString(ary));
+	    //System.out.println("pivot: "+pivot+" "+Arrays.toString(ary));
         quickSort(ary,startsi,si-1);
-        quickSort(ary,equalsi+1,startei);
+        quickSort(ary,equalsi,startei);
 	}
     }
     public static int[] randomArray(){
@@ -232,10 +232,8 @@ public class Sorts{
 
     public static void main(String[]args){
 	long startTime,endTime;
+
 	int[] test = {11,7,8,9,6,1,8,2,5,8,52};
-	quickSort(test);
-	System.out.println(Arrays.toString(test));
-	
 	int[] test0 = {0,0,0,0,0,0,0,0,0,0,0};
 	int[] test01 = {0,0,0,0,0,0,0,0,0,0};
 	int[] testSmall = {2,7,1,6,6,8,2,5,1,7,8,3,5,9,0,4};
@@ -243,7 +241,9 @@ public class Sorts{
 	int[] testBigger = randomArray();
 	int[] testBiggest = randomArray(1000000);
 
-	/*
+	
+	quickSort(test);
+	System.out.println(Arrays.toString(test));
 	quickSort(test0);
 	System.out.println(Arrays.toString(test0));
 	quickSort(test01);
@@ -253,7 +253,7 @@ public class Sorts{
 	quickSort(testBig);
 	System.out.println(Arrays.toString(testBig));
 	quickSort(testBigger);
-	quickSort(testBiggest);*/
+	quickSort(testBiggest);
 
 	
 	/*int[] a = randomArray();

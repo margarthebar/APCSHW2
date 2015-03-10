@@ -153,7 +153,7 @@ public class Sorts{
     quickSort(ary,0,ary.length-1);
     }
     public static void quickSort(int[] ary, int si, int ei){
-	System.out.println("si:"+si+" ei:"+ei);
+	//System.out.println("si:"+si+" ei:"+ei);
 	if(si<ei){
 	    int startsi = si;
 	    int startei = ei;
@@ -190,7 +190,7 @@ public class Sorts{
         int x = ary[si];
         ary[si] = pivot;
         ary[pi] = x;
-        System.out.println("pivot: "+pivot+" "+ary.toString());
+        //System.out.println("pivot: "+pivot+" "+ary.toString());
         quickSort(ary,startsi,pi-1);
         quickSort(ary,pi+1,startei);
 	}
@@ -243,6 +243,19 @@ public class Sorts{
 	int[] testBig =  randomArray(-20,20,40);
 	int[] testBigger = randomArray();
 	int[] testBiggest = randomArray(1000000);
+
+	quickSort(test0);
+	System.out.println(Arrays.toString(test0));
+	quickSort(test01);
+	System.out.println(Arrays.toString(test01));
+	quickSort(testSmall);
+	System.out.println(Arrays.toString(testSmall));
+	quickSort(testBig);
+	System.out.println(Arrays.toString(testBig));
+	quickSort(testBigger);
+	quickSort(testBiggest);
+
+	
 	/*int[] a = randomArray();
 	startTime = System.currentTimeMillis();
 	bubbleSort(a);

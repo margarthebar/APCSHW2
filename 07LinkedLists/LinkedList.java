@@ -34,13 +34,14 @@ public class LinkedList{
 	}
     }
     public int indexOf(int value){
-	int index = 0;
 	LNode current = start;
-	while(current.getValue()!=value){
-	    index++;
+	for(int i=0; i<size(); i++){
+	    if(current.getValue()==value){
+		return i;
+	    }
 	    current = current.getNext();
 	}
-	return index;
+	return -1;
     }
     public void remove(int index){
     }

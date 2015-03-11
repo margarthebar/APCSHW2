@@ -8,5 +8,8 @@ public class LinkedListDriver{
 	s.add(9);
 	s.add(0);
 	System.out.println(s.toString());
+	
+	System.out.println(s.indexOf(9));
+	
     }
 }

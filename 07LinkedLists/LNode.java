@@ -11,10 +11,10 @@ public class LNode{
     public void setNext(LNode nxt){
 	next = nxt;
     }
-    public int setValue(int n;){
+    public void setValue(int n){
 	value = n;
     }
     public String toString(){
-	return value;
+	return ""+value;
     }
 }

@@ -7,7 +7,18 @@ public class LinkedList{
     public void set(int index, int n){
     }
     public int size(){
-	return 42;
+	int count = 0;
+	if(start==null){
+	    return count;
+	}else{
+	    count = 1;
+	    LNode current = start;
+	    while(current.getNext()!=null){
+		count++;
+		current = current.getNext();
+	    }
+	    return count;
+	}
     }
     public int indexOf(int value){
 	return 42;

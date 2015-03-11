@@ -9,7 +9,7 @@ public class LinkedList{
 	return 42;
     }
     public int indexOf(int value){
-	return int;
+
     }
     public void remove(int index){
 

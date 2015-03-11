@@ -58,6 +58,11 @@ public class LinkedList{
     public void add(int value, int index){
     }
     public String toString(){
-	return "42";
+	String ans = "[";
+	LNode current = start;
+	for(int i=0; i<size(); i++){
+	    ans+=" "+current.toString();
+	}
+	return ans+" ]";
     }
 }

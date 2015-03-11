@@ -1,9 +1,7 @@
 public class LNode{
     private int value;
     private LNode next;
-
-    public LNode(int n, LNode nxt){
-	setNext(next);
+    public LNode(int n){
 	setValue(n);
     }
     public LNode getNext(){

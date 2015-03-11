@@ -11,6 +11,13 @@ public class LinkedList{
 	return current.getValue();
     }
     public void set(int index, int n){
+	int count = 0;
+	LNode current = start;
+	while(count!=index){
+	    count++;
+	    current = current.getNext();
+	}
+	current.setValue(n);
     }
     public int size(){
 	int count = 0;
@@ -27,7 +34,13 @@ public class LinkedList{
 	}
     }
     public int indexOf(int value){
-	return 42;
+	int index = 0;
+	LNode current = start;
+	while(current.getValue()!=value){
+	    index++;
+	    current = current.getNext();
+	}
+	return index;
     }
     public void remove(int index){
     }

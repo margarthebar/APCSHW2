@@ -2,6 +2,10 @@ public class LNode{
     private int value;
     private LNode next;
 
+    public LNode(int n, LNode nxt){
+	setNext(next);
+	setValue(n);
+    }
     public LNode getNext(){
 	return next;
     }

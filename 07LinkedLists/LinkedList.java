@@ -62,6 +62,9 @@ public class LinkedList{
 	LNode current = start;
 	for(int i=0; i<size(); i++){
 	    ans+=" "+current.toString();
+	    if(current.getNext()!=null){
+		current = current.getNext();
+	    }
 	}
 	return ans+" ]";
     }

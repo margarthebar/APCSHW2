@@ -1,6 +1,6 @@
 public class LinkedList{
     public int get(int index){
-
+	return 42;
     }
     public void set(int index, int n){
 
@@ -9,7 +9,7 @@ public class LinkedList{
 	return 42;
     }
     public int indexOf(int value){
-
+	return 42;
     }
     public void remove(int index){
 
@@ -21,6 +21,6 @@ public class LinkedList{
 
     }
     public String toString(){
-
+	return "42";
     }
 }

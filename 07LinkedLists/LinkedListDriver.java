@@ -10,6 +10,7 @@ public class LinkedListDriver{
 	System.out.println(s.toString());
 	
 	System.out.println(s.indexOf(9));
+	System.out.println(s.size());
 	
     }
 }

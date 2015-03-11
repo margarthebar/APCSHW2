@@ -11,6 +11,9 @@ public class LinkedListDriver{
 	
 	System.out.println(s.indexOf(9));
 	System.out.println(s.size());
+	System.out.println(s.get(2));
+	s.set(3,6);
+	System.out.println(s);
 	
     }
 }

@@ -2,7 +2,13 @@ public class LinkedList{
     LNode start;
 
     public int get(int index){
-	return 42;
+	int count = 0;
+	LNode current = start;
+	while(count<index){
+	    count++;
+	    current = current.getNext();
+	}
+	return current.getValue();
     }
     public void set(int index, int n){
     }

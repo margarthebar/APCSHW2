@@ -63,15 +63,19 @@ public class LinkedList{
 	LNode addition = new LNode(value);
 	LNode after = current;
 	if(index==0){
-	    addition.setNext(addition);
+	    addition.setNext(current);
 	}
-	while(current!=null){
+	boolean done = false;
+	while(current!=null && !done){
 	    if(count+1==index){
 		after = current.getNext();
 		current.setNext(addition);
 		addition.setNext(after);
+		done=true;
+	    }else{
+		count++;
+		current = current.getNext();
 	    }
-	    count++;
 	}
     }
     public String toString(){

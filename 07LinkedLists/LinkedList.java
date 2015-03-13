@@ -45,7 +45,7 @@ public class LinkedList{
     }
     public void remove(int index){
     }
-    public void add(int value){
+    public boolean add(int value){
 	if(size()==0){
 	    start = new LNode(value);
 	}else{
@@ -55,17 +55,31 @@ public class LinkedList{
 	    }
 	    current.setNext(new LNode(value));
 	}
+	return true;
     }
-    public void add(int value, int index){
+    public void add(int index, int value){
+	LNode current = start;
+	int count = 0;
+	LNode addition = new LNode(value);
+	LNode after = current;
+	if(index==0){
+	    addition.setNext(addition);
+	}
+	while(current!=null){
+	    if(count+1==index){
+		after = current.getNext();
+		current.setNext(addition);
+		addition.setNext(after);
+	    }
+	    count++;
+	}
     }
     public String toString(){
-	String ans = "[";
+	String ans = "[ ";
 	LNode current = start;
-	for(int i=0; i<size(); i++){
-	    ans+=" "+current.toString();
-	    if(current.getNext()!=null){
-		current = current.getNext();
-	    }
+	while(current!=null){
+	    ans+=current.toString()+",";
+	    current = current.getNext();
 	}
 	return ans+" ]";
     }

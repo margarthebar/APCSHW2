@@ -49,6 +49,8 @@ public class LinkedList{
 		    current.setNext(current.getNext().getNext());
 		    done = true;
 		}
+		current = current.getNext();
+		count++;
 	    }
 	}
     }

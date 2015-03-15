@@ -1,5 +1,7 @@
 public class LinkedList{
-    LNode start;
+    private LNode start;
+    private LNode end = start;
+    private int size = 0;
 
     public int get(int index){
 	int count = 0;
@@ -20,18 +22,7 @@ public class LinkedList{
 	current.setValue(n);
     }
     public int size(){
-	int count = 0;
-	if(start==null){
-	    return count;
-	}else{
-	    count = 1;
-	    LNode current = start;
-	    while(current.getNext()!=null){
-		count++;
-		current = current.getNext();
-	    }
-	    return count;
-	}
+	return size;
     }
     public int indexOf(int value){
 	LNode current = start;
@@ -44,16 +35,37 @@ public class LinkedList{
 	return -1;
     }
     public void remove(int index){
+	if(index==0){
+	    start = start.getNext();
+	}else{
+	    LNode current = start;
+	    int count = 0;
+	    boolean done = false;
+	    while(current.getNext()!=null && !done){
+		if(count+1==index){
+		    if(index==size()-1){
+			end = current;
+		    }
+		    current.setNext(current.getNext().getNext());
+		    done = true;
+		}
+	    }
+	}
     }
     public boolean add(int value){
 	if(size()==0){
 	    start = new LNode(value);
+	    end = start;
+	    size++;
 	}else{
 	    LNode current = start;
 	    while(current.getNext()!=null){
 		current = current.getNext();
 	    }
-	    current.setNext(new LNode(value));
+	    LNode addition = new LNode(value);
+	    current.setNext(addition);
+	    end = addition;
+	    size++;
 	}
 	return true;
     }
@@ -64,18 +76,24 @@ public class LinkedList{
 	LNode after = current;
 	if(index==0){
 	    addition.setNext(current);
-	}
-	boolean done = false;
-	while(current!=null && !done){
-	    if(count+1==index){
-		after = current.getNext();
-		current.setNext(addition);
-		addition.setNext(after);
-		done=true;
-	    }else{
-		count++;
-		current = current.getNext();
+	    size++;
+	}else if(index==size-1){
+	    add(value);
+	    size++;
+	}else{
+	    boolean done = false;
+	    while(current!=null && !done){
+		if(count+1==index){
+		    after = current.getNext();
+		    current.setNext(addition);
+		    addition.setNext(after);
+		    done=true;
+		}else{
+		    count++;
+		    current = current.getNext();
+		}
 	    }
+	    size++;
 	}
     }
     public String toString(){

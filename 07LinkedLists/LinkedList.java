@@ -105,6 +105,6 @@ public class LinkedList{
 	    ans+=current.toString()+",";
 	    current = current.getNext();
 	}
-	return ans+" ]";
+	return ans.substring(0,ans.length()-1)+" ]";
     }
 }

@@ -3,18 +3,24 @@ public class LinkedList{
     private LNode end = start;
     private int size = 0;
 
-    public int get(int index){
+    public int get(int index) throws IndexOutOfBoundsException{
 	int count = 0;
 	LNode current = start;
+	if(index>=size()){
+	    throw new IndexOutOfBoundsException();
+	}
 	while(count<index){
 	    count++;
 	    current = current.getNext();
 	}
 	return current.getValue();
     }
-    public void set(int index, int n){
+    public void set(int index, int n) throws IndexOutOfBoundsException{
 	int count = 0;
 	LNode current = start;
+	if(index>=size()){
+	    throw new IndexOutOfBoundsException();
+	}
 	while(count!=index){
 	    count++;
 	    current = current.getNext();
@@ -34,7 +40,10 @@ public class LinkedList{
 	}
 	return -1;
     }
-    public void remove(int index){
+    public void remove(int index) throws IndexOutOfBoundsException{
+	if(index>=size()){
+	    throw new IndexOutOfBoundsException();
+	}
 	if(index==0){
 	    start = start.getNext();
 	    size--;
@@ -75,11 +84,14 @@ public class LinkedList{
 	}
 	return true;
     }
-    public void add(int index, int value){
+    public void add(int index, int value) throws IndexOutOfBoundsException{
 	LNode current = start;
 	int count = 0;
 	LNode addition = new LNode(value);
 	LNode after = current;
+	if(index>=size()){
+	    throw new IndexOutOfBoundsException();
+	}
 	if(index==0){
 	    addition.setNext(current);
 	    size++;

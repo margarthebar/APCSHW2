@@ -18,13 +18,35 @@ public class LinkedListDriver{
 	System.out.println(s+" "+s.size());
 	s.add(4,11);
 	System.out.println(s+" "+s.size());
-	s.add(6,6);
-	System.out.println(s+" "+s.size());
 	s.remove(2);
 	System.out.println(s+" "+s.size());
 	s.remove(0);
 	System.out.println(s+" "+s.size());
-	s.remove(4);
+	s.remove(s.size()-1);
+	System.out.println(s+" "+s.size());
+	try{
+	    s.get(30);
+	}catch(IndexOutOfBoundsException e){
+	    System.out.println(e);
+	}
+	System.out.println(s+" "+s.size());
+	try{
+	    s.set(30,4);
+        }catch(IndexOutOfBoundsException e){
+	     System.out.println(e);
+	}
+	System.out.println(s+" "+s.size());
+	try{
+	    s.remove(30);
+        }catch(IndexOutOfBoundsException e){
+	     System.out.println(e);
+	}
+	System.out.println(s+" "+s.size());
+	try{
+	    s.add(30,2);
+        }catch(IndexOutOfBoundsException e){
+	     System.out.println(e);
+	}
 	System.out.println(s+" "+s.size());
 	
     }

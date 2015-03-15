@@ -13,11 +13,19 @@ public class LinkedListDriver{
 	System.out.println(s.size());
 	System.out.println(s.get(2));
 	s.set(3,6);
-	System.out.println(s);
+	System.out.println(s+" "+s.size());
 	s.add(2,16);
-	System.out.println(s);
+	System.out.println(s+" "+s.size());
+	s.add(4,11);
+	System.out.println(s+" "+s.size());
+	s.add(6,6);
+	System.out.println(s+" "+s.size());
 	s.remove(2);
-	System.out.println(s);
+	System.out.println(s+" "+s.size());
+	s.remove(0);
+	System.out.println(s+" "+s.size());
+	s.remove(4);
+	System.out.println(s+" "+s.size());
 	
     }
 }

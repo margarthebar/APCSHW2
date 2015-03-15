@@ -37,17 +37,21 @@ public class LinkedList{
     public void remove(int index){
 	if(index==0){
 	    start = start.getNext();
+	    size--;
 	}else{
 	    LNode current = start;
 	    int count = 0;
 	    boolean done = false;
-	    while(current.getNext()!=null && !done){
+	    while(!done && current.getNext()!=null){
 		if(count+1==index){
 		    if(index==size()-1){
+			current.setNext(null);
 			end = current;
+		    }else{
+			current.setNext(current.getNext().getNext());
 		    }
-		    current.setNext(current.getNext().getNext());
 		    done = true;
+		    size--;
 		}
 		current = current.getNext();
 		count++;
@@ -81,7 +85,6 @@ public class LinkedList{
 	    size++;
 	}else if(index==size-1){
 	    add(value);
-	    size++;
 	}else{
 	    boolean done = false;
 	    while(current!=null && !done){

@@ -54,7 +54,7 @@ public class LinkedListDriver{
 	System.out.println(s);
 	System.out.println();
 
-	System.out.println("set(index)");
+	System.out.println("set(index,value)");
 	i.set(0,42);
 	i.set(3,66);
 	i.set(5,101);
@@ -69,6 +69,34 @@ public class LinkedListDriver{
 	s.set(6,"me");
 	try{
 	    s.set(7,"hooray!");
+	}catch(IndexOutOfBoundsException e){
+	    System.out.println(e.toString());
+	}
+	System.out.println(s);
+	System.out.println();
+
+	System.out.println("indexOf(value)");
+	System.out.println(i.indexOf(42));
+	System.out.println(i.indexOf(0));
+	System.out.println(i.indexOf(9));
+	System.out.println(i.indexOf(66));
+	System.out.println(i.indexOf(2));
+	System.out.println(i.indexOf(101));
+	try{
+	    System.out.println(i.indexOf(3));
+	}catch(IndexOutOfBoundsException e){
+	    System.out.println(e.toString());
+	}
+	System.out.println(i);
+	System.out.println(s.indexOf("Sending"));
+	System.out.println(s.indexOf("a"));
+	System.out.println(s.indexOf("very"));
+	System.out.println(s.indexOf("marvelous"));
+	System.out.println(s.indexOf("birthday"));
+	System.out.println(s.indexOf("to"));
+	System.out.println(s.indexOf("me"));
+	try{
+	    System.out.println(s.indexOf("what"));
 	}catch(IndexOutOfBoundsException e){
 	    System.out.println(e.toString());
 	}

@@ -98,6 +98,7 @@ public class LinkedList<T>{
 	}
 	if(index==0){
 	    addition.setNext(current);
+	    start=addition;
 	    size++;
 	}else if(index==size-1){
 	    add(value);

@@ -3,6 +3,10 @@ public class LinkedList<T>{
     private LNode<T> end = start;
     private int size = 0;
 
+    public String name(){
+	return "Burkart.Margaret";
+    }
+
     public T get(int index) throws IndexOutOfBoundsException{
 	int count = 0;
 	LNode<T> current = start;

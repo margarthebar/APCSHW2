@@ -69,7 +69,7 @@ public class LinkedList<T>{
     }
     public boolean add(T value){
 	if(size()==0){
-	    start = new LNode(value);
+	    start = new LNode<T>(value);
 	    end = start;
 	    size++;
 	}else{
@@ -77,7 +77,7 @@ public class LinkedList<T>{
 	    while(current.getNext()!=null){
 		current = current.getNext();
 	    }
-	    LNode<T> addition = new LNode(value);
+	    LNode<T> addition = new LNode<T>(value);
 	    current.setNext(addition);
 	    end = addition;
 	    size++;
@@ -87,7 +87,7 @@ public class LinkedList<T>{
     public void add(int index, T value) throws IndexOutOfBoundsException{
 	LNode<T> current = start;
 	int count = 0;
-	LNode<T> addition = new LNode(value);
+	LNode<T> addition = new LNode<T>(value);
 	LNode<T> after = current;
 	if(index>=size()){
 	    throw new IndexOutOfBoundsException();

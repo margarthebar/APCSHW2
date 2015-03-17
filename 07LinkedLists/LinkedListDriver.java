@@ -54,5 +54,26 @@ public class LinkedListDriver{
 	System.out.println(s);
 	System.out.println();
 
+	System.out.println("set(index)");
+	i.set(0,42);
+	i.set(3,66);
+	i.set(5,101);
+	try{
+	    i.set(6,404);
+	}catch(IndexOutOfBoundsException e){
+	    System.out.println(e.toString());
+	}
+	System.out.println(i);
+	s.set(2,"very");
+	s.set(0,"Sending");
+	s.set(6,"me");
+	try{
+	    s.set(7,"hooray!");
+	}catch(IndexOutOfBoundsException e){
+	    System.out.println(e.toString());
+	}
+	System.out.println(s);
+	System.out.println();
+
     }
 }

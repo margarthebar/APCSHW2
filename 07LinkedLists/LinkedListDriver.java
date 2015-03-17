@@ -103,5 +103,26 @@ public class LinkedListDriver{
 	System.out.println(s);
 	System.out.println();
 
+	System.out.println("remove(index)");
+	i.remove(0);
+	i.remove(4);
+	i.remove(2);
+	try{
+	    i.remove(3);
+	}catch(IndexOutOfBoundsException e){
+	    System.out.println(e.toString());
+	}
+	System.out.println(i);
+	s.remove(1);
+	s.remove(5);
+	s.remove(0);
+	try{
+	    s.remove(4);
+	}catch(IndexOutOfBoundsException e){
+	    System.out.println(e.toString());
+	}
+	System.out.println(s);
+	System.out.println();
+
     }
 }

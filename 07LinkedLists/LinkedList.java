@@ -1,11 +1,11 @@
-public class LinkedList{
-    private LNode start;
-    private LNode end = start;
+public class LinkedList<T>{
+    private LNode<T> start;
+    private LNode<T> end = start;
     private int size = 0;
 
-    public int get(int index) throws IndexOutOfBoundsException{
+    public T get(int index) throws IndexOutOfBoundsException{
 	int count = 0;
-	LNode current = start;
+	LNode<T> current = start;
 	if(index>=size()){
 	    throw new IndexOutOfBoundsException();
 	}
@@ -15,9 +15,9 @@ public class LinkedList{
 	}
 	return current.getValue();
     }
-    public void set(int index, int n) throws IndexOutOfBoundsException{
+    public void set(int index, T n) throws IndexOutOfBoundsException{
 	int count = 0;
-	LNode current = start;
+	LNode<T> current = start;
 	if(index>=size()){
 	    throw new IndexOutOfBoundsException();
 	}
@@ -30,8 +30,8 @@ public class LinkedList{
     public int size(){
 	return size;
     }
-    public int indexOf(int value){
-	LNode current = start;
+    public int indexOf(T value){
+	LNode<T> current = start;
 	for(int i=0; i<size(); i++){
 	    if(current.getValue()==value){
 		return i;
@@ -48,7 +48,7 @@ public class LinkedList{
 	    start = start.getNext();
 	    size--;
 	}else{
-	    LNode current = start;
+	    LNode<T> current = start;
 	    int count = 0;
 	    boolean done = false;
 	    while(!done && current.getNext()!=null){
@@ -67,28 +67,28 @@ public class LinkedList{
 	    }
 	}
     }
-    public boolean add(int value){
+    public boolean add(T value){
 	if(size()==0){
 	    start = new LNode(value);
 	    end = start;
 	    size++;
 	}else{
-	    LNode current = start;
+	    LNode<T> current = start;
 	    while(current.getNext()!=null){
 		current = current.getNext();
 	    }
-	    LNode addition = new LNode(value);
+	    LNode<T> addition = new LNode(value);
 	    current.setNext(addition);
 	    end = addition;
 	    size++;
 	}
 	return true;
     }
-    public void add(int index, int value) throws IndexOutOfBoundsException{
-	LNode current = start;
+    public void add(int index, T value) throws IndexOutOfBoundsException{
+	LNode<T> current = start;
 	int count = 0;
-	LNode addition = new LNode(value);
-	LNode after = current;
+	LNode<T> addition = new LNode(value);
+	LNode<T> after = current;
 	if(index>=size()){
 	    throw new IndexOutOfBoundsException();
 	}
@@ -115,7 +115,7 @@ public class LinkedList{
     }
     public String toString(){
 	String ans = "[ ";
-	LNode current = start;
+	LNode<T> current = start;
 	while(current!=null){
 	    ans+=current.toString()+",";
 	    current = current.getNext();

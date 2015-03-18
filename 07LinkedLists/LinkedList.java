@@ -1,4 +1,20 @@
-public class LinkedList<T>{
+public class LinkedList<T> implements Iterable{
+    public class LinkedListIterator<T> implements Iterator<T>{
+	LNode<T> place = new LNode<T>();
+	public T next(){
+
+	}
+	public boolean hasNext(){
+
+	}
+	public void remove(){
+
+	}
+	public LinkedListIterator(LNode<T> point){
+	    place = point;
+	}
+    }
+
     private LNode<T> start;
     private LNode<T> end = start;
     private int size = 0;
@@ -126,5 +142,9 @@ public class LinkedList<T>{
 	    current = current.getNext();
 	}
 	return ans.substring(0,ans.length()-1)+" ]";
+    }
+
+    public Iterator<T> iterator(){
+
     }
 }

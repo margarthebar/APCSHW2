@@ -1,6 +1,8 @@
-public class LinkedList<T> implements Iterable{
+import java.util.*;
+
+public class LinkedList<T> implements Iterable<T>{
     public class LinkedListIterator<T> implements Iterator<T>{
-	LNode<T> place = new LNode<T>();
+	LNode<T> place;
 	public T next(){
 
 	}
@@ -145,6 +147,6 @@ public class LinkedList<T> implements Iterable{
     }
 
     public Iterator<T> iterator(){
-
+	return new LinkedListIterator<T>(start);
     }
 }

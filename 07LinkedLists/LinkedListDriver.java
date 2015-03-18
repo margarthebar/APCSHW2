@@ -124,5 +124,9 @@ public class LinkedListDriver{
 	System.out.println(s);
 	System.out.println();
 
+	for(Integer n:i){
+	    System.out.println(n+"printing");
+	}
+
     }
 }

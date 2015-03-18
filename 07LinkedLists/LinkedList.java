@@ -4,13 +4,14 @@ public class LinkedList<T> implements Iterable<T>{
     public class LinkedListIterator<T> implements Iterator<T>{
 	LNode<T> place;
 	public T next(){
-
+	    place = place.getNext();
+	    return place.getValue();
 	}
 	public boolean hasNext(){
-
+	    return place.getNext()!=null;
 	}
 	public void remove(){
-
+	    throw new UnsupportedOperationException();
 	}
 	public LinkedListIterator(LNode<T> point){
 	    place = point;

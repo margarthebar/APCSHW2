@@ -7,15 +7,18 @@ public class MyStack<T>{
     }
 
     public T push(T item){
+        stack.add(0,item);
 	return item;
     }
 
     public T pop(){
-	return stack.remove();
+	T removed = stack.get(0);
+        stack.remove(0);
+	return removed;
     }
 
     public T peek(){
-	return stack.;
+	return stack.get(0);
     }
 
     public boolean empty(){

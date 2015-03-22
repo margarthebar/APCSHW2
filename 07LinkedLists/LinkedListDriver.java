@@ -1,7 +1,7 @@
 public class LinkedListDriver{
     public static void main(String[]args){
-	LinkedList<Integer> i = new LinkedList<Integer>();
-	LinkedList<String> s = new LinkedList<String>();
+	MyLinkedList<Integer> i = new MyLinkedList<Integer>();
+	MyLinkedList<String> s = new MyLinkedList<String>();
 	//tests add(value)
 	System.out.println("add(value)");
 	i.add(0);

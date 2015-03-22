@@ -7,7 +7,11 @@ public class MyStack<T>{
     }
 
     public T push(T item){
-        stack.add(0,item);
+	if(empty()){
+	    stack.add(item);
+	}else{
+	    stack.add(0,item);
+	}
 	return item;
     }
 

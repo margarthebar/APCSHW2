@@ -16,5 +16,29 @@ public class MyStackDriver{
 	}else{
 	    System.out.println("false");
 	}
+
+	System.out.println(s.peek());
+	System.out.println(s.pop());
+	if(s.empty()){
+	    System.out.println("true");
+	}else{
+	    System.out.println("false");
+	}
+
+	System.out.println(s.peek());
+	System.out.println(s.pop());
+	if(s.empty()){
+	    System.out.println("true");
+	}else{
+	    System.out.println("false");
+	}
+
+	System.out.println(s.peek());
+	System.out.println(s.pop());
+	if(s.empty()){
+	    System.out.println("true");
+	}else{
+	    System.out.println("false");
+	}
     }
 }

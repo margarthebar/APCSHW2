@@ -8,7 +8,7 @@ public class MyDeque<T>{
 	head++;
     }
     public void addLast(T value){
-	storage[tail]=value;
+	storage[tail] = value;
 	tail--;
     }
     /*

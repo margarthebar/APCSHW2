@@ -1,15 +1,15 @@
 import java.util.*;
-public class MyDeque{
-    T[] storage = new T[5];
+public class MyDeque<T>{
+    Object[] storage = new Object[5];
     int head = 0;
     int tail = 4;
     public void addFirst(T value){
-	storage.add(head,T);
+	storage[head] = value;
 	head++;
     }
     public void addLast(T value){
-	storage.add(tail,T);
-	tail++;
+	storage[tail]=value;
+	tail--;
     }
     /*
     public T removeFirst(){

@@ -3,6 +3,9 @@ public class MyDeque<T>{
     Object[] storage = new Object[5];
     int head = 0;
     int tail = 4;
+    public String toString(){
+	return storage.toString();
+    }
     public void addFirst(T value){
 	storage[head] = value;
 	head++;

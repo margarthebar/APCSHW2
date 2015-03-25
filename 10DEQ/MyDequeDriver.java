@@ -3,5 +3,6 @@ public class MyDequeDriver{
 	MyDeque<Integer> dq = new MyDeque<Integer>();
 	dq.addFirst(2);
 	dq.addLast(1);
+	System.out.println(dq.toString());
     }
 }

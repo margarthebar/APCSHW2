@@ -1,16 +1,24 @@
+import java.util.*;
 public class MyDeque{
+    T[] storage = new T[5];
+    int head = 0;
+    int tail = 4;
     public void addFirst(T value){
-
+	storage.add(head,T);
+	head++;
     }
     public void addLast(T value){
-
+	storage.add(tail,T);
+	tail++;
     }
+    /*
     public T removeFirst(){
 
     }
     public T removeLast(){
 
     }
+    */
 }
 /*
 There are 6 public methods:

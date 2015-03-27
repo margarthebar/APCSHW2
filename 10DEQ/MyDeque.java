@@ -2,7 +2,7 @@ import java.util.*;
 public class MyDeque<T>{
     Object[] storage = new Object[5];
     int head = 0;
-    int tail = 4;
+    int tail = 0;
     public String toString(){
 	String ans = "[ ";
 	for(int i=0; i<storage.length; i++){
@@ -12,11 +12,14 @@ public class MyDeque<T>{
     }
     public void addFirst(T value){
 	storage[head] = value;
-	head++;
+	head--;
     }
     public void addLast(T value){
 	storage[tail] = value;
-	tail--;
+	tail++;
+    }
+    public void resize(){
+	Object[] enlarged = new Object[storage.length*2];	
     }
     /*
       public T removeFirst(){

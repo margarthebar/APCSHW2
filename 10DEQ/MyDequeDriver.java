@@ -10,5 +10,11 @@ public class MyDequeDriver{
 	dq.addLast(5);
 	dq.addLast(6);
 	System.out.println(dq.toString());
+	dq.addFirst(7);
+	dq.addFirst(8);
+	dq.addFirst(9);
+	dq.addFirst(10);
+	dq.addFirst(11);
+        System.out.println(dq.toString());
     }
 }

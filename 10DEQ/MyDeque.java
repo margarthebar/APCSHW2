@@ -4,7 +4,11 @@ public class MyDeque<T>{
     int head = 0;
     int tail = 4;
     public String toString(){
-	return storage.toString();
+	String ans = "[ ";
+	for(int i=0; i<storage.length; i++){
+	    ans+=storage[i]+" ";
+	}
+	return ans+"]";
     }
     public void addFirst(T value){
 	storage[head] = value;

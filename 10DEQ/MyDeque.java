@@ -12,7 +12,7 @@ public class MyDeque<T>{
     }
     public void addFirst(T value){
 	if(head==0){
-	    if(storage.length-1<tail){
+	    if(storage.length-1>tail){
 		head = storage.length-1;
 	    }else{
 		resize();
@@ -23,11 +23,22 @@ public class MyDeque<T>{
 	head--;
     }
     public void addLast(T value){
+	if(tail>=storage.length || tail==head+1){
+	    resize();
+	}
 	storage[tail] = value;
 	tail++;
     }
     public void resize(){
-	Object[] enlarged = new Object[storage.length*2];	
+	Object[] enlarged = new Object[storage.length*2];
+	for(int i=0; i<tail; i++){
+	    enlarged[i] = storage[i];
+	}
+	for(int j=storage.length-1; j>=tail; j--){
+	    int index = enlarged.length-1-(storage.length-1-j);
+	    enlarged[index] = storage[j];
+	}
+	storage = enlarged;
     }
     /*
       public T removeFirst(){

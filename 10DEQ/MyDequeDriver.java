@@ -5,4 +5,8 @@ public class MyDequeDriver{
 	dq.addLast(1);
 	System.out.println(dq.toString());
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master

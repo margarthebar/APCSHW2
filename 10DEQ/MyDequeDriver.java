@@ -4,8 +4,8 @@ public class MyDequeDriver{
 	dq.addLast(1);
 	dq.addLast(2);
 	System.out.println(dq.toString());
-	dq.addLast(3);
-	dq.addLast(4);
+	dq.addFirst(3);
+	dq.addFirst(4);
 	System.out.println(dq.toString());
     }
 }

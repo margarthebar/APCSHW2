@@ -11,6 +11,14 @@ public class MyDeque<T>{
 	return ans+"]";
     }
     public void addFirst(T value){
+	if(head==0){
+	    if(storage.length-1<tail){
+		head = storage.length-1;
+	    }else{
+		resize();
+		head = storage.length-1;
+	    }
+	}
 	storage[head] = value;
 	head--;
     }

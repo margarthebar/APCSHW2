@@ -8,16 +8,20 @@ public class MyDeque<T>{
 	for(int i=0; i<storage.length; i++){
 	    ans+=storage[i]+" ";
 	}
+	System.out.println("\n"+head+" "+tail);
 	return ans+"]";
     }
     public void addFirst(T value){
 	if(head==0){
 	    if(storage.length-1>tail){
+		System.out.println("here");
 		head = storage.length-1;
 	    }else{
 		resize();
 		head = storage.length-1;
 	    }
+	}else if(head<tail){
+	    resize();
 	}
 	storage[head] = value;
 	head--;
@@ -30,6 +34,7 @@ public class MyDeque<T>{
 	tail++;
     }
     public void resize(){
+	System.out.println("resizing...");
 	Object[] enlarged = new Object[storage.length*2];
 	for(int i=0; i<tail; i++){
 	    enlarged[i] = storage[i];

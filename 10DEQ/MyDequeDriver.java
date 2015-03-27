@@ -23,5 +23,25 @@ public class MyDequeDriver{
 	System.out.println(dq.toString());
 	dq.addFirst(11);
         System.out.println(dq.toString());
+	dq.addLast(12);
+	System.out.println(dq.toString());
+	dq.addLast(13);
+	System.out.println(dq.toString());
+	dq.addLast(14);
+	System.out.println(dq.toString());
+	dq.addLast(15);
+	System.out.println(dq.toString());
+	dq.addLast(16);
+	System.out.println(dq.toString());
+	dq.addLast(17);
+	System.out.println(dq.toString());
+	dq.addLast(18);
+	System.out.println(dq.toString());
+	dq.addLast(19);
+	System.out.println(dq.toString());
+	dq.addLast(20);
+	System.out.println(dq.toString());
+	dq.addLast(21);
+	System.out.println(dq.toString());
     }
 }

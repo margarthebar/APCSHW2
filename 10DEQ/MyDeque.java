@@ -23,6 +23,10 @@ public class MyDeque<T>{
 	    }
 	    head = storage.length;
 	}
+	if(head==-1){
+	    head = 1;
+	    tail = 0;
+	}
 	head--;
 	storage[head] = value;
     }
@@ -64,8 +68,12 @@ public class MyDeque<T>{
 	T removed = (T)storage[head];
 	storage[head]=null;
 	head++;
-	if(size<=storage.length/4){
+	if(storage.length>10 && size<=storage.length/4){
 	    shrink();
+	}
+	if(size==0){
+	    head = -1;
+	    tail = -1;
 	}
 	return removed;	
     }
@@ -77,8 +85,12 @@ public class MyDeque<T>{
 	T removed = (T)storage[tail];
 	storage[tail]=null;
 	tail--;
-	if(size<=storage.length/4){
+	if(storage.length>10 && size<=storage.length/4){
 	    shrink();
+	}
+	if(size==0){
+	    head = -1;
+	    tail = -1;
 	}
 	return removed;
     }

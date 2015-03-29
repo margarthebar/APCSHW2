@@ -1,8 +1,8 @@
 import java.util.*;
 public class MyDeque<T>{
     Object[] storage = new Object[5];
-    int head = 0;
-    int tail = 0;
+    int head = -1;
+    int tail = -1;
     public String toString(){
 	String ans = "[ ";
 	for(int i=0; i<storage.length; i++){
@@ -27,24 +27,31 @@ public class MyDeque<T>{
 	head--;
     }
     public void addLast(T value){
-	if(tail>=storage.length || (head!=0 && tail==head+1)){
+	if(tail==storage.length-1 || (head!=0 && tail==head-1)){
 	    resize();
 	}
-	storage[tail] = value;
+	storage[tail+1] = value;
 	tail++;
+	if(head==-1){
+	    head = 0;
+	}
     }
     public void resize(){
 	System.out.println("resizing...");
 	Object[] enlarged = new Object[storage.length*2];
-	for(int i=0; i<tail; i++){
-	    enlarged[i] = storage[i];
-	}
 	if(head!=0){
-	    head =  enlarged.length-(storage.length-head);
-	}
-	for(int j=storage.length-1; j>=tail; j--){
-	    int index = enlarged.length-1-(storage.length-1-j);
-	    enlarged[index] = storage[j];
+	    for(int i=head; i<storage.length; i++){
+		enlarged[i-head]=storage[i];
+	    }
+	    head=0;
+	    for(int i=0; i<tail; i++){
+		enlarged[i%storage.length]=storage[i];
+	    }
+	    tail = tail%storage.length;
+	}else{
+	    for(int i=0; i<tail; i++){
+		enlarged[i] = storage[i];
+	    }
 	}
 	storage = enlarged;
     }

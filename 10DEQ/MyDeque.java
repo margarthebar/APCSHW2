@@ -9,7 +9,6 @@ public class MyDeque<T>{
 	for(int i=0; i<storage.length; i++){
 	    ans+=storage[i]+" ";
 	}
-	System.out.println("\n"+head+" "+tail);
 	return ans+"]";
     }
     public void addFirst(T value){
@@ -42,7 +41,6 @@ public class MyDeque<T>{
 	}
     }
     public void resize(){
-	System.out.println("resizing...");
 	Object[] enlarged = new Object[storage.length*2];
 	if(head!=0){
 	    for(int i=head; i<storage.length; i++){
@@ -107,7 +105,6 @@ public class MyDeque<T>{
 	return (T)storage[tail];
     }
     public void shrink(){
-	System.out.println("shrinking...");
 	Object[] shrunk = new Object[storage.length/2];
 	for(int i=head; i<=tail; i++){
 	    shrunk[i-head]=storage[i];
@@ -117,17 +114,3 @@ public class MyDeque<T>{
 	storage=shrunk;
     }
 }
-/*
-  There are 6 public methods:
-  1. void addFirst(T value)
-  2. void addLast(T value)
-  -When the array is full, resize, then add. 
-  -No exceptions are required since you will resize.
-  3. T removeFirst()  *warning*
-  4. T removeLast()  *warning*
-  -NoSuchElementException is thrown when there are no elements. 
-  5. T getFirst()  *warning*
-  6. T getLast()  *warning*
-  -NoSuchElementException is thrown when there are no elements. 
-  7. You need a method to resize and copy over the values to .
-*/

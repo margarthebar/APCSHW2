@@ -56,9 +56,13 @@ public class MyDeque<T>{
     /*
       public T removeFirst(){
       }
-      public T removeLast(){
-      }
     */
+    public T removeLast(){
+	T removed = (T)storage[tail];
+	storage[tail]=null;
+	tail--;
+	return removed;
+    }
 }
 /*
   There are 6 public methods:

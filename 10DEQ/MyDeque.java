@@ -13,18 +13,15 @@ public class MyDeque<T>{
     }
     public void addFirst(T value){
 	if(head==0){
-	    if(storage.length-1>tail){
-		System.out.println("here");
-		head = storage.length-1;
-	    }else{
+	    if(storage.length-1<=tail){
 		resize();
-		head = storage.length-1;
 	    }
+	    head = storage.length;
 	}else if(head<tail){
 	    resize();
 	}
-	storage[head] = value;
 	head--;
+	storage[head] = value;
     }
     public void addLast(T value){
 	if(tail==storage.length-1 || (head!=0 && tail==head-1)){

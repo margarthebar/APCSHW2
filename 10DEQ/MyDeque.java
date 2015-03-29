@@ -1,6 +1,6 @@
 import java.util.*;
 public class MyDeque<T>{
-    Object[] storage = new Object[5];
+    Object[] storage = new Object[10];
     int head = -1;
     int tail = -1;
     int size = 0;

@@ -95,5 +95,25 @@ public class MyDequeDriver{
 	System.out.println(dq.toString());
 	dq.removeFirst();
 	System.out.println(dq.toString());
+	try{
+	    dq.removeLast();
+	}catch(NoSuchElementException e){
+	    System.out.println("caught exception");
+	}
+	try{
+	    dq.removeFirst();
+	}catch(NoSuchElementException e){
+	    System.out.println("caught exception");
+	}
+	try{
+	    System.out.println(dq.getFirst());
+	}catch(NoSuchElementException e){
+	    System.out.println("caught exception");
+	}
+	try{
+	    System.out.println(dq.getLast());
+	}catch(NoSuchElementException e){
+	    System.out.println("caught exception");
+	}
     }
 }

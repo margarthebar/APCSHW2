@@ -54,22 +54,33 @@ public class MyDeque<T>{
 	storage = enlarged;
     }
     public T removeFirst(){
+	if(storage[head]==null){
+	    throw new NoSuchElementException();
+	}
 	T removed = (T)storage[head];
 	storage[head]=null;
 	head++;
-	return removed;
-	
+	return removed;	
     }
     public T removeLast(){
+	if(storage[head]==null){
+	    throw new NoSuchElementException();
+	}
 	T removed = (T)storage[tail];
 	storage[tail]=null;
 	tail--;
 	return removed;
     }
     public T getFirst(){
+	if(storage[head]==null){
+	    throw new NoSuchElementException();
+	}
 	return (T)storage[head];
     }
     public T getLast(){
+	if(storage[head]==null){
+	    throw new NoSuchElementException();
+	}
 	return (T)storage[tail];
     }
 }

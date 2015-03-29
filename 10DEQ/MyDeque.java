@@ -40,13 +40,13 @@ public class MyDeque<T>{
 	    for(int i=head; i<storage.length; i++){
 		enlarged[i-head]=storage[i];
 	    }
-	    head=0;
-	    for(int i=0; i<tail; i++){
-		enlarged[i%storage.length]=storage[i];
+	    for(int i=0; i<=tail; i++){
+		enlarged[i+(storage.length-head)]=storage[i];
 	    }
-	    tail = tail%storage.length;
+	    tail = storage.length - head + tail;
+	    head = 0;
 	}else{
-	    for(int i=0; i<tail; i++){
+	    for(int i=0; i<=tail; i++){
 		enlarged[i] = storage[i];
 	    }
 	}

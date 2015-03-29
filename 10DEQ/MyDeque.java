@@ -3,6 +3,7 @@ public class MyDeque<T>{
     Object[] storage = new Object[5];
     int head = -1;
     int tail = -1;
+    int size = 0;
     public String toString(){
 	String ans = "[ ";
 	for(int i=0; i<storage.length; i++){
@@ -12,6 +13,7 @@ public class MyDeque<T>{
 	return ans+"]";
     }
     public void addFirst(T value){
+	size++;
 	if(head==tail+1){
 	    resize();
 	}
@@ -25,6 +27,7 @@ public class MyDeque<T>{
 	storage[head] = value;
     }
     public void addLast(T value){
+	size++;
 	if(tail==storage.length-1 || (head!=0 && tail==head-1)){
 	    resize();
 	}
@@ -54,34 +57,43 @@ public class MyDeque<T>{
 	storage = enlarged;
     }
     public T removeFirst(){
-	if(storage[head]==null){
+	if(size==0){
 	    throw new NoSuchElementException();
 	}
+	size--;
 	T removed = (T)storage[head];
 	storage[head]=null;
 	head++;
 	return removed;	
     }
     public T removeLast(){
-	if(storage[head]==null){
+	if(size==0){
 	    throw new NoSuchElementException();
 	}
+	size--;
 	T removed = (T)storage[tail];
 	storage[tail]=null;
 	tail--;
 	return removed;
     }
     public T getFirst(){
-	if(storage[head]==null){
+	if(size==0){
 	    throw new NoSuchElementException();
 	}
 	return (T)storage[head];
     }
     public T getLast(){
-	if(storage[head]==null){
+	if(size==0){
 	    throw new NoSuchElementException();
 	}
 	return (T)storage[tail];
+    }
+    public void shrink(){
+	Object[] shrunk = new Object[storage.length/2];
+	for(int i=0; i<=tail; i++){
+	    shrunk[i]=storage[i];
+	}
+	storage=shrunk;
     }
 }
 /*

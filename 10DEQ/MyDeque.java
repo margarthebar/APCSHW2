@@ -64,6 +64,9 @@ public class MyDeque<T>{
 	T removed = (T)storage[head];
 	storage[head]=null;
 	head++;
+	if(size<=storage.length/4){
+	    shrink();
+	}
 	return removed;	
     }
     public T removeLast(){
@@ -74,6 +77,9 @@ public class MyDeque<T>{
 	T removed = (T)storage[tail];
 	storage[tail]=null;
 	tail--;
+	if(size<=storage.length/4){
+	    shrink();
+	}
 	return removed;
     }
     public T getFirst(){
@@ -89,10 +95,13 @@ public class MyDeque<T>{
 	return (T)storage[tail];
     }
     public void shrink(){
+	System.out.println("shrinking...");
 	Object[] shrunk = new Object[storage.length/2];
-	for(int i=0; i<=tail; i++){
-	    shrunk[i]=storage[i];
+	for(int i=head; i<=tail; i++){
+	    shrunk[i-head]=storage[i];
 	}
+	tail = tail-head;
+	head = 0;
 	storage=shrunk;
     }
 }

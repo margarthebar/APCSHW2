@@ -53,10 +53,13 @@ public class MyDeque<T>{
 	}
 	storage = enlarged;
     }
-    /*
-      public T removeFirst(){
-      }
-    */
+    public T removeFirst(){
+	T removed = (T)storage[head];
+	storage[head]=null;
+	head++;
+	return removed;
+	
+    }
     public T removeLast(){
 	T removed = (T)storage[tail];
 	storage[tail]=null;

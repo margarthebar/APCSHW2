@@ -47,5 +47,7 @@ public class MyDequeDriver{
 	System.out.println(dq.toString());
 	dq.removeFirst();
 	System.out.println(dq.toString());
+	System.out.println(dq.getFirst());
+	System.out.println(dq.getLast());
     }
 }

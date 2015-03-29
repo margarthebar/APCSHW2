@@ -66,6 +66,12 @@ public class MyDeque<T>{
 	tail--;
 	return removed;
     }
+    public T getFirst(){
+	return (T)storage[head];
+    }
+    public T getLast(){
+	return (T)storage[tail];
+    }
 }
 /*
   There are 6 public methods:

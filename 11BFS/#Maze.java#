@@ -15,6 +15,7 @@ public class Maze{
 	Scanner sc = new Scanner(filename);
 	while (sc.hasNextLine()) {
 	    r++;
+	    
         }
         sc.close();
     }

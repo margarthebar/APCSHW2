@@ -13,7 +13,7 @@ public class Maze{
     /** Same constructor as before...*/
     public Maze(String filename){
 	int r=0;
-	String input;
+	String input = "";
 	Scanner sc = new Scanner(filename);
 	while (sc.hasNextLine()) {
 	    r++;
@@ -43,7 +43,13 @@ public class Maze{
 	return ans;
     }
 
-    public String toString(boolean animate); //do the funky character codes when animate is true
+    public String toString(boolean animate){
+	if(animate){
+	    return clear+hide+toString()+show;
+	}else{
+	    return toString();
+	}
+    }
 
     /**Solve the maze using a frontier in a BFS manner. 
      * When animate is true, print the board at each step of the algorithm.

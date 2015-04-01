@@ -55,20 +55,21 @@ public class Maze{
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
      */
-    public boolean solveBFS(boolean animate){    }
+    //public boolean solveBFS(boolean animate){    }
 
     /**Solve the maze using a frontier in a DFS manner. 
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
      */
-    public boolean solveDFS(boolean animate){    }
-
+    //public boolean solveDFS(boolean animate){    }
+    /*
     public boolean solveBFS(){
 	return solveBFS(false);
     }
     public boolean solveDFS(){
 	return solveDFS(false);
     }
+    */
 }
 
 /*

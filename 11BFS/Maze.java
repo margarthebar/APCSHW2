@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class Maze{
     private static final String clear =  "\033[2J";
@@ -13,22 +14,35 @@ public class Maze{
     /** Same constructor as before...*/
     public Maze(String filename){
 	int r=0;
+	int c=0;
 	String input = "";
-	Scanner sc = new Scanner(filename);
-	while (sc.hasNextLine()) {
-	    r++;
-	    input += sc.next();
-        }
-        sc.close();
-	for(int i=0; i<input.length()-1; i++){
+	try{
+	    File file = new File(filename);
+	    Scanner sc = new Scanner(file);
+	    while (sc.hasNext()) {
+		input += sc.next();
+		if(input.substring(input.length()-2,input.length()).equals("\n")){
+		    r++;
+		    c = input.length()-2;
+		}
+	    }
+	    board = new char[r][c];
+	    System.out.println("input "+input);
+	    sc.close();
+	    
 	    int row = 0;
 	    int col = 0;
-	    if(input.substring(i,i+2).equals("\n")){
-		row++;
-	    }else{
-		board[row][col]=input.charAt(i);
-		col++;
+	    for(int i=0; i<input.length()-1; i++){
+		if(input.substring(i,i+2).equals("\n")){
+		    row++;
+		}else{
+		    System.out.println(input.charAt(i));
+		    board[row][col]=input.charAt(i);
+		    col++;
+		}
 	    }
+	}catch(FileNotFoundException e){
+
 	}
     }
 

@@ -32,7 +32,16 @@ public class Maze{
 	}
     }
 
-    public String toString();//do not do the funky character codes
+    public String toString(){
+	String ans = "";
+	for(int r=0; r<board.length; r++){
+	    for(int c=0; c<board[0].length; c++){
+		ans+=board[r][c];
+	    }
+	    ans+="\n";
+	}
+	return ans;
+    }
 
     public String toString(boolean animate); //do the funky character codes when animate is true
 

@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 import java.util.*;
 import java.io.*;
 
->>>>>>> 8179e5f1021bcb7e213cb4704bd4bbe568a9330a
 public class Maze{
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
@@ -16,20 +13,6 @@ public class Maze{
 
     /** Same constructor as before...*/
     public Maze(String filename){
-<<<<<<< HEAD
-	int r=1;
-	int c=1;
-	Scanner sc = new Scanner(filename);
-	while (sc.hasNextLine()) {
-	    r++;
-        }
-        sc.close();
-    }
-
-    public String toString();//do not do the funky character codes
-
-    public String toString(boolean animate); //do the funky character codes when animate is true
-=======
 	int r=0;
 	int c=0;
 	String input = "";
@@ -52,6 +35,7 @@ public class Maze{
 	    for(int i=0; i<input.length()-1; i++){
 		if(input.substring(i,i+2).equals("\n")){
 		    row++;
+		    System.out.println("detected");
 		}else{
 		    System.out.println(input.charAt(i));
 		    board[row][col]=input.charAt(i);
@@ -81,91 +65,22 @@ public class Maze{
 	    return toString();
 	}
     }
->>>>>>> 8179e5f1021bcb7e213cb4704bd4bbe568a9330a
+
 
     /**Solve the maze using a frontier in a BFS manner. 
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
      */
-<<<<<<< HEAD
-    public boolean solveBFS(boolean animate){    }
-=======
+
     //public boolean solveBFS(boolean animate){    }
->>>>>>> 8179e5f1021bcb7e213cb4704bd4bbe568a9330a
+
 
     /**Solve the maze using a frontier in a DFS manner. 
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
      */
-<<<<<<< HEAD
-    public boolean solveDFS(boolean animate){    }
 
-=======
     //public boolean solveDFS(boolean animate){    }
-    /*
->>>>>>> 8179e5f1021bcb7e213cb4704bd4bbe568a9330a
-    public boolean solveBFS(){
-	return solveBFS(false);
-    }
-    public boolean solveDFS(){
-	return solveDFS(false);
-    }
-<<<<<<< HEAD
-=======
-    */
->>>>>>> 8179e5f1021bcb7e213cb4704bd4bbe568a9330a
+
 }
 
-/*
-public class MazeSolver{
-    public static char[][] mazeSolve(char[][] maze){
-	int x = 0;
-	int y = 0;
-	char[][] copy = new char[maze.length][maze[0].length];
-	for(int r=0; r<maze.length ; r++){
-	    for(int c=0; c<maze[r].length ; c++){
-		copy[r][c] = maze[r][c];
-		if(maze[r][c]=='S'){
-		    x = r;
-		    y = c;
-		}
-	    }
-	}
-	System.out.println(toString(copy));
-	System.out.println(x);
-	System.out.println(y);
-	return mazeHelp(copy,x,y);
-    }
-    public static char[][] mazeHelp(char[][] maze, int x, int y){
-	return maze;
-    }
-    public static String toString(char[][] maze){
-	String ans = "";
-	for(int r=0; r<maze.length ; r++){
-	    for(int c=0; c<maze[r].length ; c++){
-		ans+=maze[r][c];
-	    }
-	    ans+="\n";
-	}
-	return ans;
-    }
-    public static void main(String[]args){
-	char[][] maze = {
-	    {'x','x','x','x','x','x'},
-	    {'x','S','x',' ',' ','x'},
-	    {'x',' ','x','x',' ','x'},
-	    {'x',' ',' ',' ',' ','x'},
-	    {'x',' ','x','x',' ','x'},
-	    {'x',' ','x','E',' ','x'},
-	    {'x',' ',' ','x',' ','x'},
-	    {'x','x','x','x','x','x'}
-	};
-	System.out.println(toString(maze));
-	System.out.println(toString(mazeSolve(maze)));
-    }
-}
-<<<<<<< HEAD
-*/
-=======
-*/
->>>>>>> 8179e5f1021bcb7e213cb4704bd4bbe568a9330a

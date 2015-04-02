@@ -12,6 +12,16 @@ public class Maze{
     }
 
     /** Same constructor as before...*/
+    public Maze(){
+	char[][] board = {
+	    {'S','-','-','-','-'},
+	    {'-','#','#','#','-'},
+	    {'-','-','-','#','-'},
+	    {'-','#','-','#','-'},
+	    {'-','-','-','#','E'}
+	};
+    }
+    /*
     public Maze(String filename){
 	int r=0;
 	int c=0;
@@ -19,17 +29,21 @@ public class Maze{
 	try{
 	    File file = new File(filename);
 	    Scanner sc = new Scanner(file);
+	    input = sc.toString();
+	    System.out.println(input);
 	    while (sc.hasNext()) {
 		input += sc.next();
 		if(input.substring(input.length()-2,input.length()).equals("\n")){
 		    r++;
+		    input += sc.next();
 		    c = input.length()-2;
 		}
 	    }
+	    System.out.println("c "+c);
 	    board = new char[r][c];
 	    System.out.println("input "+input);
 	    sc.close();
-	    
+	    board = new char[5][5];
 	    int row = 0;
 	    int col = 0;
 	    for(int i=0; i<input.length()-1; i++){
@@ -38,6 +52,7 @@ public class Maze{
 		    System.out.println("detected");
 		}else{
 		    System.out.println(input.charAt(i));
+		    System.out.println(board[row][col]);
 		    board[row][col]=input.charAt(i);
 		    col++;
 		}
@@ -46,6 +61,7 @@ public class Maze{
 
 	}
     }
+*/
 
     public String toString(){
 	String ans = "";

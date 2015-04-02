@@ -6,22 +6,40 @@ public class Maze{
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
     
-    private char[][] board;
+    public char[][] maze = {
+	    {'x','x','x','x','x','x'},
+	    {'x','S','x',' ',' ','x'},
+	    {'x',' ','x','x',' ','x'},
+	    {'x',' ',' ',' ',' ','x'},
+	    {'x',' ','x','x',' ','x'},
+	    {'x',' ','x','E',' ','x'},
+	    {'x',' ',' ','x',' ','x'},
+	    {'x','x','x','x','x','x'}
+	};
     private String go(int x,int y){
 	return ("\033[" + x + ";" + y + "H");
     }
 
     /** Same constructor as before...*/
-    public Maze(){
-	char[][] board = {
-	    {'S','-','-','-','-'},
-	    {'-','#','#','#','-'},
-	    {'-','-','-','#','-'},
-	    {'-','#','-','#','-'},
-	    {'-','-','-','#','E'}
-	};
+    public String toString(){
+	String ans = "";
+	for(int r=0; r<maze.length ; r++){
+	    for(int c=0; c<maze[r].length ; c++){
+	        ans+=maze[r][c];
+	    }
+	    ans+="\n";
+	}
+	return ans;
     }
+
     /*
+    public Maze(){
+	board[0] = {'S','-','-','-','-'};
+	board[1] = {'-','#','#','#','-'};
+	board[2] = {'-','-','-','#','-'};
+	board[3] = {'-','#','-','#','-'};
+	board[4] = {'-','-','-','#','E'};
+    }
     public Maze(String filename){
 	int r=0;
 	int c=0;
@@ -61,7 +79,6 @@ public class Maze{
 
 	}
     }
-*/
 
     public String toString(){
 	String ans = "";
@@ -81,6 +98,7 @@ public class Maze{
 	    return toString();
 	}
     }
+*/
 
 
     /**Solve the maze using a frontier in a BFS manner. 

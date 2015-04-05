@@ -80,36 +80,40 @@ public class Maze{
 	    LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
 	    move.setPrev(current);
 	    front.addMove(move);
-	    System.out.println(front.printPath());
+	    //System.out.println(front.printPath());
 	}
 	if(cor.getR()!=board.length-1 && board[cor.getR()+1][cor.getC()]!='#'){
 	    Coordinate moveCor = new Coordinate(cor.getR()+1,cor.getC());
 	    LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
 	    move.setPrev(current);
 	    front.addMove(move);
-	    System.out.println(front.printPath());
+	    //System.out.println(front.printPath());
 	}
 	if(cor.getC()!=0 && board[cor.getR()][cor.getC()-1]!='#'){
 	    Coordinate moveCor = new Coordinate(cor.getR(),cor.getC()-1);
 	    LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
 	    move.setPrev(current);
 	    front.addMove(move);
-	    System.out.println(front.printPath());
+	    //System.out.println(front.printPath());
 	}
 	if(cor.getC()!=board[0].length-1 && board[cor.getR()][cor.getC()+1]!='#'){
 	    Coordinate moveCor = new Coordinate(cor.getR(),cor.getC()+1);
 	    LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
 	    move.setPrev(current);
 	    front.addMove(move);
-	    System.out.println(front.printPath());
+	    //System.out.println(front.printPath());
 	}
 	System.out.println(front.removeMove());
-	System.out.println(front.toString());
+	//System.out.println(front.toString());
     }
     public boolean solveBFS(boolean animate){
+        System.out.println(front.toString());
 	branch(front.getFirst());
+	System.out.println(front.toString());
 	branch(front.getFirst());
+	System.out.println(front.toString());
 	branch(front.getFirst());
+	System.out.println(front.toString());
 	return false;
     }
 

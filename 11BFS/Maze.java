@@ -13,34 +13,31 @@ public class Maze{
 
     /** Same constructor as before...*/
     public Maze(String filename){
-	int r=0;
-	int c=0;
-	String input = "";
+	int lines=0;
+	int characters=0;
+	String input="";
 	try{
 	    File file = new File(filename);
 	    Scanner sc = new Scanner(file);
-	    while (sc.hasNext()) {
-		input += sc.next();
-		if(input.substring(input.length()-2,input.length()).equals("\n")){
-		    r++;
-		    c = input.length()-2;
+	    //goes through scanner and reads for lines
+	    while (sc.hasNextLine()) {
+		lines++;
+		String line = sc.nextLine();
+		for(int i=0; i<line.length(); i++){
+		    input+=line.charAt(i);
 		}
+		input+="/n";
 	    }
-	    board = new char[r][c];
-	    System.out.println("input "+input);
+	    String[] test = input.split("/n");
+	    board = new char[lines][test[0].length()];
+	    int index = 0;
+	    for(String s: test){
+		for(int i=0; i<s.length(); i++){
+		    board[index][i] = s.charAt(i);
+		}
+		index++;
+	    }
 	    sc.close();
-	    
-	    int row = 0;
-	    int col = 0;
-	    for(int i=0; i<input.length()-1; i++){
-		if(input.substring(i,i+2).equals("\n")){
-		    row++;
-		}else{
-		    System.out.println(input.charAt(i));
-		    board[row][col]=input.charAt(i);
-		    col++;
-		}
-	    }
 	}catch(FileNotFoundException e){
 
 	}

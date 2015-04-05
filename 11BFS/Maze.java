@@ -14,7 +14,6 @@ public class Maze{
     /** Same constructor as before...*/
     public Maze(String filename){
 	int lines=0;
-	int characters=0;
 	String input="";
 	try{
 	    File file = new File(filename);
@@ -28,10 +27,11 @@ public class Maze{
 		}
 		input+="/n";
 	    }
-	    String[] test = input.split("/n");
-	    board = new char[lines][test[0].length()];
+	    String[] temp = input.split("/n");
+	    board = new char[lines][temp[0].length()];
 	    int index = 0;
-	    for(String s: test){
+	    //copies input from scanner into lines
+	    for(String s: temp){
 		for(int i=0; i<s.length(); i++){
 		    board[index][i] = s.charAt(i);
 		}

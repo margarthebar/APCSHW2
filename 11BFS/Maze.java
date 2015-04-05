@@ -64,9 +64,16 @@ public class Maze{
 
     public String toString(boolean animate){
 	if(animate){
-	    return clear+hide+toString()+show;
+	    return hide+clear+toString()+show;
 	}else{
 	    return toString();
+	}
+    }
+    public void wait(int millis){
+	try {
+	    Thread.sleep(millis);
+	}
+	catch (InterruptedException e) {
 	}
     }
 
@@ -104,13 +111,14 @@ public class Maze{
 	    front.addMove(move);
 	    //System.out.println(front.printPath());
 	}
-	System.out.println(front.removeMove());
-	System.out.println(front.toString());
+	front.removeMove();
+	//System.out.println(front.toString());
 	board[cor.getR()][cor.getC()]='x';
     }
     public boolean solveBFS(boolean animate){
 	while(!solved){
-	    solveBFSHelper(true);
+	    wait(750);
+	    solveBFSHelper(animate);
 	}
 	return true;
     }
@@ -125,11 +133,11 @@ public class Maze{
 		board[corPath.getR()][corPath.getC()]='@';
 	    }
 	    System.out.println(front.printPath());
-	    System.out.println(toString());
 	    solved = true;
 	}else{
 	    branch(current);
 	}
+	System.out.println(toString(animate));
     }
 
     /**Solve the maze using a frontier in a DFS manner. 

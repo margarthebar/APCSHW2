@@ -117,8 +117,11 @@ public class Maze{
     }
     public boolean solveBFS(boolean animate){
 	while(!solved){
-	    wait(200);
+	    if(animate){
+		wait(200);
+	    }
 	    solveBFSHelper(animate);
+	    System.out.println(toString(animate));
 	}
 	return true;
     }
@@ -136,8 +139,6 @@ public class Maze{
 	}else{
 	    branch(current);
 	}
-	System.out.println(toString(animate));
-	System.out.println(current.printPath());
     }
 
     /**Solve the maze using a frontier in a DFS manner. 
@@ -145,10 +146,11 @@ public class Maze{
      * Replace spaces with x's as you traverse the maze. 
      */
     //public boolean solveDFS(boolean animate){    }
-    /*
+    
     public boolean solveBFS(){
 	return solveBFS(false);
     }
+    /*
     public boolean solveDFS(){
 	return solveDFS(false);
     }

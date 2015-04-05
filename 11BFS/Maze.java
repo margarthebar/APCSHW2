@@ -73,36 +73,45 @@ public class Maze{
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
      */
-    public void branch(){
-	LNodeBack<Coordinate> current = front.getLast();
+    public void branch(LNodeBack<Coordinate> current){
 	Coordinate cor = current.getValue(); 
 	if(cor.getR()!=0 && board[cor.getR()-1][cor.getC()]!='#'){
 	    Coordinate moveCor = new Coordinate(cor.getR()-1,cor.getC());
 	    LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
 	    move.setPrev(current);
 	    front.addMove(move);
+	    System.out.println(front.printPath());
 	}
 	if(cor.getR()!=board.length-1 && board[cor.getR()+1][cor.getC()]!='#'){
 	    Coordinate moveCor = new Coordinate(cor.getR()+1,cor.getC());
 	    LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
 	    move.setPrev(current);
 	    front.addMove(move);
+	    System.out.println(front.printPath());
 	}
 	if(cor.getC()!=0 && board[cor.getR()][cor.getC()-1]!='#'){
 	    Coordinate moveCor = new Coordinate(cor.getR(),cor.getC()-1);
 	    LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
 	    move.setPrev(current);
 	    front.addMove(move);
+	    System.out.println(front.printPath());
 	}
 	if(cor.getC()!=board[0].length-1 && board[cor.getR()][cor.getC()+1]!='#'){
 	    Coordinate moveCor = new Coordinate(cor.getR(),cor.getC()+1);
 	    LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
 	    move.setPrev(current);
-	    front.addMove(move);	    
+	    front.addMove(move);
+	    System.out.println(front.printPath());
 	}
+	System.out.println(front.removeMove());
 	System.out.println(front.toString());
     }
-    //public boolean solveBFS(boolean animate){}
+    public boolean solveBFS(boolean animate){
+	branch(front.getFirst());
+	branch(front.getFirst());
+	branch(front.getFirst());
+	return false;
+    }
 
     /**Solve the maze using a frontier in a DFS manner. 
      * When animate is true, print the board at each step of the algorithm.

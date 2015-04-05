@@ -117,7 +117,7 @@ public class Maze{
     }
     public boolean solveBFS(boolean animate){
 	while(!solved){
-	    wait(750);
+	    wait(200);
 	    solveBFSHelper(animate);
 	}
 	return true;
@@ -127,17 +127,17 @@ public class Maze{
 	LNodeBack<Coordinate> current = front.getFirst();
 	Coordinate cor = current.getValue();
 	if(board[cor.getR()][cor.getC()]=='E'){
-	    MyStack<Coordinate> path = front.pathFind();
+	    MyStack<Coordinate> path = current.pathFind();
 	    while(!path.empty()){
 		Coordinate corPath = path.pop();
 		board[corPath.getR()][corPath.getC()]='@';
 	    }
-	    System.out.println(front.printPath());
 	    solved = true;
 	}else{
 	    branch(current);
 	}
 	System.out.println(toString(animate));
+	System.out.println(current.printPath());
     }
 
     /**Solve the maze using a frontier in a DFS manner. 

@@ -29,19 +29,9 @@ public class Frontier{
     public LNodeBack<Coordinate> getLast(){
 	return moves.getLast();
     }
-    public MyStack<Coordinate> pathFind(){
-	MyStack<Coordinate> path = new MyStack<Coordinate>();
-	LNodeBack<Coordinate> current = getLast();
-	while(current.getPrev()!=null){
-	    path.push(current.getValue());
-	    current = current.getPrev();
-	}
-	path.push(current.getValue());
-        return path;
-    }
     public String printPath(){
 	String ans = "[";
-	MyStack<Coordinate> path = pathFind();
+	MyStack<Coordinate> path = getLast().pathFind();
 	while(!path.empty()){
 	    Coordinate cor = path.pop();
 	    ans+=cor.toString()+",";

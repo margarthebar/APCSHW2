@@ -27,6 +27,16 @@ public class LNodeBack<T>{
 	return ""+value;
     }
     
+    public MyStack<T> pathFind(){
+	MyStack<T> path = new MyStack<T>();
+	LNodeBack<T> current = this;
+	while(current.getPrev()!=null){
+	    path.push(current.getValue());
+	    current = current.getPrev();
+	}
+	path.push(current.getValue());
+        return path;
+    }
 
    public String printPath(){
 	String ans = "[";

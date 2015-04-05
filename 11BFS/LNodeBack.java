@@ -17,16 +17,16 @@ public class LNodeBack<T>{
     public void setValue(T n){
 	value = n;
     }
-    
+    /*
     public String toString(){
 	return ""+value+printPath();
     }
+    */
     
-    /*
     public String toString(){
 	return ""+value;
     }
-    */
+    
 
    public String printPath(){
 	String ans = "[";

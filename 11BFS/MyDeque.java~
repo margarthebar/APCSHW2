@@ -46,14 +46,10 @@ public class MyDeque<T>{
 	    for(int i=head; i<storage.length; i++){
 		enlarged[i-head]=storage[i];
 	    }
-	    if(head>tail){
-		for(int i=0; i<=tail; i++){
-		    enlarged[i+(storage.length-head)]=storage[i];
-		}
-		tail = storage.length - head + tail;
-	    }else{
-		tail = tail-head;
+	    for(int i=0; i<=tail; i++){
+		enlarged[i+(storage.length-head)]=storage[i];
 	    }
+	    tail = storage.length - head + tail;
 	    head = 0;
 	}else{
 	    for(int i=0; i<=tail; i++){
@@ -111,6 +107,7 @@ public class MyDeque<T>{
     public void shrink(){
 	Object[] shrunk = new Object[storage.length/2];
 	for(int i=head; i<=tail; i++){
+	    System.out.println("i "+i);
 	    shrunk[i-head]=storage[i];
 	}
 	tail = tail-head;

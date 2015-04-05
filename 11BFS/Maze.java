@@ -5,6 +5,7 @@ public class Maze{
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
+    private Frontier front;
     
     private char[][] board;
     private String go(int x,int y){
@@ -33,10 +34,14 @@ public class Maze{
 	    //copies input from scanner into lines
 	    for(String s: temp){
 		for(int i=0; i<s.length(); i++){
+		    if(s.charAt(i)=='S'){
+			front = new Frontier(new LNodeBack<Coordinate>(new Coordinate(index,i)));
+		    }
 		    board[index][i] = s.charAt(i);
 		}
 		index++;
 	    }
+
 	    sc.close();
 	}catch(FileNotFoundException e){
 
@@ -66,6 +71,9 @@ public class Maze{
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
      */
+    public void branch(){
+	
+    }
     //public boolean solveBFS(boolean animate){}
 
     /**Solve the maze using a frontier in a DFS manner. 

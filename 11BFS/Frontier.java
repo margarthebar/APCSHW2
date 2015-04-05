@@ -4,7 +4,7 @@ public class Frontier{
 	return start;
     }
     public void setStart(LNodeBack<Coordinate> st){
-	start = str;
+	start = st;
     }
 
     private MyDeque<LNodeBack<Coordinate>> moves = new MyDeque<LNodeBack<Coordinate>>();

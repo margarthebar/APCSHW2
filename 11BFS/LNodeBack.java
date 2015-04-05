@@ -11,7 +11,7 @@ public class LNodeBack<T>{
     public T getValue(){
 	return value;
     }
-    public void setNext(LNode<T> prv){
+    public void setNext(LNodeBack<T> prv){
 	prev = prv;
     }
     public void setValue(T n){

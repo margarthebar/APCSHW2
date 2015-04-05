@@ -20,4 +20,7 @@ public class Frontier{
     public void addMove(LNodeBack<Coordinate> cor){
 	moves.addLast(cor);
     }
+    public LNodeBack<Coordinate> getLast(){
+	return moves.getLast();
+    }
 }

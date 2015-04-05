@@ -1,23 +1,23 @@
 public class Coordinate{
-    private int x = 0;
-    private int y = 0;
-    public int getX(){
-	return x;
+    private int r = 0;
+    private int c = 0;
+    public int getR(){
+	return r;
     }
-    public int getY(){
-	return y;
+    public int getC(){
+	return c;
     }
-    public void setX(int ex){
-	x = ex;
+    public void setR(int row){
+	r = row;
     }
-    public void setY(int why){
-	y = why;
+    public void setC(int col){
+	c = col;
     }
-    public Coordinate(int ex, int why){
-	setX(ex);
-	setY(why);
+    public Coordinate(int row, int col){
+	setR(row);
+	setC(col);
     }
     public String toString(){
-	return "("+getX()+","+getY()+")";
+	return "("+getR()+","+getC()+")";
     }
 }

@@ -7,6 +7,7 @@ public class Maze{
     private static final String show =  "\033[?25h";
     private Frontier front;
     private Coordinate start;
+    private boolean solved = false;
     
     private char[][] board;
     private String go(int x,int y){
@@ -74,29 +75,29 @@ public class Maze{
      * Replace spaces with x's as you traverse the maze. 
      */
     public void branch(LNodeBack<Coordinate> current){
-	Coordinate cor = current.getValue(); 
-	if(cor.getR()!=0 && board[cor.getR()-1][cor.getC()]!='#'){
+	Coordinate cor = current.getValue();
+	if(cor.getR()!=0 && board[cor.getR()-1][cor.getC()]!='#' && board[cor.getR()-1][cor.getC()]!='x'){
 	    Coordinate moveCor = new Coordinate(cor.getR()-1,cor.getC());
 	    LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
 	    move.setPrev(current);
 	    front.addMove(move);
 	    //System.out.println(front.printPath());
 	}
-	if(cor.getR()!=board.length-1 && board[cor.getR()+1][cor.getC()]!='#'){
+	if(cor.getR()!=board.length-1 && board[cor.getR()+1][cor.getC()]!='#' && board[cor.getR()+1][cor.getC()]!='x'){
 	    Coordinate moveCor = new Coordinate(cor.getR()+1,cor.getC());
 	    LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
 	    move.setPrev(current);
 	    front.addMove(move);
 	    //System.out.println(front.printPath());
 	}
-	if(cor.getC()!=0 && board[cor.getR()][cor.getC()-1]!='#'){
+	if(cor.getC()!=0 && board[cor.getR()][cor.getC()-1]!='#' && board[cor.getR()][cor.getC()-1]!='x'){
 	    Coordinate moveCor = new Coordinate(cor.getR(),cor.getC()-1);
 	    LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
 	    move.setPrev(current);
 	    front.addMove(move);
 	    //System.out.println(front.printPath());
 	}
-	if(cor.getC()!=board[0].length-1 && board[cor.getR()][cor.getC()+1]!='#'){
+	if(cor.getC()!=board[0].length-1 && board[cor.getR()][cor.getC()+1]!='#' && board[cor.getR()][cor.getC()+1]!='x'){
 	    Coordinate moveCor = new Coordinate(cor.getR(),cor.getC()+1);
 	    LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
 	    move.setPrev(current);
@@ -104,17 +105,31 @@ public class Maze{
 	    //System.out.println(front.printPath());
 	}
 	System.out.println(front.removeMove());
-	//System.out.println(front.toString());
+	System.out.println(front.toString());
+	board[cor.getR()][cor.getC()]='x';
     }
     public boolean solveBFS(boolean animate){
-        System.out.println(front.toString());
-	branch(front.getFirst());
-	System.out.println(front.toString());
-	branch(front.getFirst());
-	System.out.println(front.toString());
-	branch(front.getFirst());
-	System.out.println(front.toString());
-	return false;
+	while(!solved){
+	    solveBFSHelper(true);
+	}
+	return true;
+    }
+
+    public void solveBFSHelper(boolean animate){
+	LNodeBack<Coordinate> current = front.getFirst();
+	Coordinate cor = current.getValue();
+	if(board[cor.getR()][cor.getC()]=='E'){
+	    MyStack<Coordinate> path = front.pathFind();
+	    while(!path.empty()){
+		Coordinate corPath = path.pop();
+		board[corPath.getR()][corPath.getC()]='@';
+	    }
+	    System.out.println(front.printPath());
+	    System.out.println(toString());
+	    solved = true;
+	}else{
+	    branch(current);
+	}
     }
 
     /**Solve the maze using a frontier in a DFS manner. 

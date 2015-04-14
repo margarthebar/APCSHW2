@@ -47,13 +47,16 @@ public class MyDeque<T>{
     }
     public void resize(){
 	Object[] enlarged = new Object[storage.length*2];
+	int[] enlargedP = new int[priorities.length*2];
 	if(head!=0){
 	    for(int i=head; i<storage.length; i++){
 		enlarged[i-head]=storage[i];
+		enlargedP[i-head]=priorities[i];
 	    }
 	    if(head>tail){
 		for(int i=0; i<=tail; i++){
 		    enlarged[i+(storage.length-head)]=storage[i];
+		    enlargedP[i+(priorities.length-head)]=priorities[i];
 		}
 		tail = storage.length - head + tail;
 	    }else{
@@ -63,9 +66,11 @@ public class MyDeque<T>{
 	}else{
 	    for(int i=0; i<=tail; i++){
 		enlarged[i] = storage[i];
+		enlargedP[i] = priorities[i];
 	    }
 	}
 	storage = enlarged;
+	priorities = enlargedP;
     }
     public T removeFirst(){
 	if(size==0){

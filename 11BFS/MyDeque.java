@@ -72,6 +72,54 @@ public class MyDeque<T>{
 	storage = enlarged;
 	priorities = enlargedP;
     }
+    public T removeSmallest(){
+	if(size==0){
+	    throw new NoSuchElementException();
+	}
+	size--;
+	int smIndex = priorities[0];
+	for(int i=0; i<priorities.length; i++){
+	    if(priorities[i]<smIndex){
+		smIndex=priorities[i];
+	    }
+	}
+	T removed = (T)storage[smIndex];
+	storage[smIndex]=storage[tail];
+	storage[tail]=null;
+	tail--;
+	if(storage.length>10 && size<=storage.length/4){
+	    shrink();
+	}
+	if(size==0){
+	    head = -1;
+	    tail = -1;
+	}
+	return removed;	
+    }
+    public T removeLargest(){
+	if(size==0){
+	    throw new NoSuchElementException();
+	}
+	size--;
+	int lgIndex = priorities[0];
+	for(int i=0; i<priorities.length; i++){
+	    if(priorities[i]>lgIndex){
+		lgIndex=priorities[i];
+	    }
+	}
+	T removed = (T)storage[lgIndex];
+	storage[lgIndex]=storage[tail];
+	storage[tail]=null;
+	tail--;
+	if(storage.length>10 && size<=storage.length/4){
+	    shrink();
+	}
+	if(size==0){
+	    head = -1;
+	    tail = -1;
+	}
+	return removed;	
+    }
     public T removeFirst(){
 	if(size==0){
 	    throw new NoSuchElementException();

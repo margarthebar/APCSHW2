@@ -47,17 +47,4 @@ public class Frontier{
     public Coordinate getLast(){
 	return moves.getLast();
     }
-    //////////////////////
-    /*
-    public String printPath(){
-	String ans = "[";
-	MyStack<Coordinate> path = getLast().pathFind();
-	while(!path.empty()){
-	    Coordinate cor = path.pop();
-	    ans+=cor.toString()+",";
-	}
-	ans+="]";
-	return ans;
-    }
-    */
 }

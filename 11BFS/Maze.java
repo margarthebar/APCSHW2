@@ -109,6 +109,7 @@ public class Maze{
 		//solved!
 		solved = true;
 		addCoordinatesToSolutionArray(next);
+		tracePath();
 		//my point class has a reference to previous points, so the solution will be determined from the final point
 	    }else{
 		//not solved, so add neighbors to Frontier and mark the floor with x.
@@ -122,6 +123,12 @@ public class Maze{
 	    }
 	}
 	return solved;
+    }
+    public void tracePath(){
+        for(int i=0; i<solution.length; i+=2){
+	    board[solution[i]][solution[i+1]]='@';
+	}
+	System.out.println(toString(true));
     }
     public void addCoordinatesToSolutionArray(Coordinate cor){
 	String[] sol = new String[solution.length+1];
@@ -145,9 +152,6 @@ public class Maze{
 	    move = new Coordinate(cor.getR()-1,cor.getC());
 	    move.setPrev(cor);
 	    neighbors[0] = move;
-	    // Coordinate[] neighs = new Coordinate[neighbors.length+1];
-	    //neighs[neighbors.length] = move;
-	    //neighbors = neighs;
 	}
 	if(cor.getR()!=board.length-1 && board[cor.getR()+1][cor.getC()]!='#' && board[cor.getR()+1][cor.getC()]!='x'){
 	    move = new Coordinate(cor.getR()+1,cor.getC());

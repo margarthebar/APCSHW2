@@ -1,43 +1,49 @@
 public class Frontier{
-
-    private LNodeBack<Coordinate> start;
-    public LNodeBack<Coordinate> getStart(){
-	return start;
-    }
-    public void setStart(LNodeBack<Coordinate> st){
-	start = st;
-    }
-
-    private MyDeque<LNodeBack<Coordinate>> moves = new MyDeque<LNodeBack<Coordinate>>();
-    
-    public Frontier(LNodeBack<Coordinate> st){
-	setStart(st);
-	moves.addLast(st);
-    }
-    
+    private Coordinate start;
+    private int mode = -1;
+    private MyDeque<Coordinate> moves = new MyDeque<Coordinate>();
+    //mode 0 is BFS, mode 1 is DFS
     public String toString(){
 	return moves.toString();
     }
-    public void addMove(LNodeBack<Coordinate> cor){
-	moves.addLast(cor);
+    public Frontier(){
+	this(-1);
     }
-    public LNodeBack<Coordinate> removeMove(){
-	return moves.removeFirst();
+    public Frontier(int mode){
+	this.mode = mode;
     }
-    public LNodeBack<Coordinate> getFirst(){
+    public Coordinate getStart(){
+	return start;
+    }
+    public void setStart(Coordinate st){
+	start = st;
+    }
+    public void add(Coordinate cor){
+	if(moves.size()==0){
+	    setStart(cor);
+	}
+	if(mode==0){
+	    moves.addLast(cor);
+	}else if(mode==1){
+	    moves.addLast(cor);
+	}
+    }
+    public Coordinate remove(){
+	Coordinate removed = new Coordinate(0,0);
+	if(mode==0){
+	    removed = moves.removeFirst();
+	}else if(mode==1){
+	    removed = moves.removeLast();
+	}
+	return removed;
+    }
+    public boolean hasNext(){
+	return moves.size()!=0;
+    }
+    public Coordinate getFirst(){
 	return moves.getFirst();
     }
-    public LNodeBack<Coordinate> getLast(){
+    public Coordinate getLast(){
 	return moves.getLast();
-    }
-    public String printPath(){
-	String ans = "[";
-	MyStack<Coordinate> path = getLast().pathFind();
-	while(!path.empty()){
-	    Coordinate cor = path.pop();
-	    ans+=cor.toString()+",";
-	}
-	ans+="]";
-	return ans;
     }
 }

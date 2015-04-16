@@ -5,6 +5,9 @@ public class MyDeque<T>{
     int head = -1;
     int tail = -1;
     int size = 0;
+    public int size(){
+	return size;
+    }
     public String toString(){
 	String ans = "[ ";
 	for(int i=0; i<storage.length; i++){
@@ -94,7 +97,7 @@ public class MyDeque<T>{
 	    head = -1;
 	    tail = -1;
 	}
-	return removed;	
+	return removed;
     }
     public T removeLargest(){
 	if(size==0){
@@ -118,7 +121,7 @@ public class MyDeque<T>{
 	    head = -1;
 	    tail = -1;
 	}
-	return removed;	
+	return removed;
     }
     public T removeFirst(){
 	if(size==0){
@@ -135,7 +138,7 @@ public class MyDeque<T>{
 	    head = -1;
 	    tail = -1;
 	}
-	return removed;	
+	return removed;
     }
     public T removeLast(){
 	if(size==0){

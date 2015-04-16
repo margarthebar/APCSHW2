@@ -1,6 +1,30 @@
 public class Frontier{
-
     private LNodeBack<Coordinate> start;
+    private int mode = -1;
+    //mode 0 is BFS, mode 1 is DFS
+    public Frontier(){
+	this(-1);
+    }
+    public Frontier(int mode){
+        this.mode = mode;
+    }
+    public Frontier(LNodeBack<Coordinate> st){
+	setStart(st);
+	moves.addLast(st);
+    }
+
+    public void add(Coordinate cor){
+	if(moves.size()==0){
+	    setStart(st);
+	}
+	if(mode==0){
+	    addMove(cor);
+	}else if(mode==1){
+	    addMove(cor);
+
+	}
+    }
+
     public LNodeBack<Coordinate> getStart(){
 	return start;
     }
@@ -9,11 +33,6 @@ public class Frontier{
     }
 
     private MyDeque<LNodeBack<Coordinate>> moves = new MyDeque<LNodeBack<Coordinate>>();
-    
-    public Frontier(LNodeBack<Coordinate> st){
-	setStart(st);
-	moves.addLast(st);
-    }
     
     public String toString(){
 	return moves.toString();

@@ -2,13 +2,19 @@ public class Maze{
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
+<<<<<<< HEAD
+=======
     
     private char[][] board;
+>>>>>>> 8179e5f1021bcb7e213cb4704bd4bbe568a9330a
     private String go(int x,int y){
 	return ("\033[" + x + ";" + y + "H");
     }
 
     /** Same constructor as before...*/
+<<<<<<< HEAD
+    public Maze(String filename){     }
+=======
     public Maze(String filename){
 	int r=1;
 	int c=1;
@@ -18,6 +24,7 @@ public class Maze{
         }
         sc.close();
     }
+>>>>>>> 8179e5f1021bcb7e213cb4704bd4bbe568a9330a
 
     public String toString();//do not do the funky character codes
 
@@ -43,6 +50,8 @@ public class Maze{
     }
 }
 
+<<<<<<< HEAD
+=======
 /*
 public class MazeSolver{
     public static char[][] mazeSolve(char[][] maze){
@@ -92,3 +101,4 @@ public class MazeSolver{
     }
 }
 */
+>>>>>>> 8179e5f1021bcb7e213cb4704bd4bbe568a9330a

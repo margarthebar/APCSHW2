@@ -1,4 +1,5 @@
 public class Frontier{
+
     private LNodeBack<Coordinate> start;
     public LNodeBack<Coordinate> getStart(){
 	return start;

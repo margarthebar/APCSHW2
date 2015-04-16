@@ -14,15 +14,28 @@ public class Frontier{
     }
 
     public void add(Coordinate cor){
+	LNodeBack<Coordinate> node = new LNodeBack<Coordinate>(cor);
 	if(moves.size()==0){
-	    setStart(st);
+	    setStart(node);
 	}
 	if(mode==0){
-	    addMove(cor);
+	    moves.addLast(node);
 	}else if(mode==1){
-	    addMove(cor);
+	    moves.addLast(node);
 
 	}
+    }
+    public Coordinate remove(){
+	Coordinate removed = new Coordinate(0,0);
+	if(mode==0){
+	    removed = moves.removeFirst().getValue();
+	}else if(mode==1){
+	    removed = moves.removeLast().getValue();
+	}
+	return removed;
+    }
+    public boolean hasNext(){
+	return moves.size()!=0;
     }
 
     public LNodeBack<Coordinate> getStart(){

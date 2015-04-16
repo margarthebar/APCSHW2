@@ -8,7 +8,7 @@ public class Maze{
     private Frontier front;
     private Coordinate start;
     private boolean solved = false;
-    
+    private int startx, starty;
     private char[][] board;
     private String go(int x,int y){
 	return ("\033[" + x + ";" + y + "H");
@@ -38,6 +38,8 @@ public class Maze{
 		for(int i=0; i<s.length(); i++){
 		    if(s.charAt(i)=='S'){
 			start = new Coordinate(index,i);
+			startx = index;
+			starty = i;
 			front = new Frontier(new LNodeBack<Coordinate>(start));
 		    }
 		    board[index][i] = s.charAt(i);
@@ -215,5 +217,46 @@ public class Maze{
     public boolean solveDFS(){
 	return solveDFS(false);
     }
-    
+    ////////////////////////////////////////beginning of new code
+    private boolean solve(boolean animate, int mode){
+
+	Frontier rest = new Frontier(mode);
+	Coordinate start = new Coordinate(startx,starty);//startx and starty are instance variables in my maze class
+
+	rest.add(start);//put the start into the Frontier 
+		
+	boolean solved = false;
+	while(!solved && rest.hasNext()){
+	    if(animate && !solved){
+		System.out.println(toString(true));
+	    }
+	    //get the top
+	    Coordinate next = rest.remove();
+	    //check if solved
+	    if(board[next.getR()][next.getC()]=='E'){
+		//solved!
+		solved = true;
+		addCoordinatesToSolutionArray(next);
+		//my point class has a reference to previous points, so the solution will be determined from the final point
+	    }else{
+		//not solved, so add neighbors to Frontier and mark the floor with x.
+		board[next.getR()][next.getC()]='x';
+		for(Coordinate p : getNeighbors(next)){
+		    rest.add(p);
+		}
+
+	    }
+	}
+	return solved;
+    }
+    //Frontier must have hasNext()
+    public void addCoordinatesToSolutionArray(Coordinate cor){
+
+    }
+    public Coordinate[] getNeighbors(Coordinate cor){
+	Coordinate[] neighbors = new Coordinate[2];
+	neighbors[0] = new Coordinate(0,0);
+	neighbors[1] = new Coordinate(1,1);
+	return neighbors;
+    }
 }

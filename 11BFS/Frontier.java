@@ -26,6 +26,14 @@ public class Frontier{
 	    moves.addLast(cor);
 	}else if(mode==1){
 	    moves.addLast(cor);
+	}else if(mode==2){
+	    int priority = 0;//distance to the end
+	    moves.addLast(cor);
+	    moves.add(cor,priority);
+	}else if(mode==3){
+	    int priority = 1;//distance to the end + steps taken so far
+	    moves.addLast(cor);
+	    moves.add(cor,priority);
 	}
     }
     public Coordinate remove(){

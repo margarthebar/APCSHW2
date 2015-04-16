@@ -1,6 +1,8 @@
 public class Coordinate{
     private int r = 0;
     private int c = 0;
+    private Coordinate prev = this;
+
     public int getR(){
 	return r;
     }
@@ -12,6 +14,9 @@ public class Coordinate{
     }
     public void setC(int col){
 	c = col;
+    }
+    public void setPrev(Coordinate prv){
+	prev = prv;
     }
     public Coordinate(int row, int col){
 	setR(row);

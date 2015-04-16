@@ -10,6 +10,8 @@ public class Maze{
     private boolean solved = false;
     private int startx, starty;
     private char[][] board;
+    private int[] solution = new int[0];
+
     private String go(int x,int y){
 	return ("\033[" + x + ";" + y + "H");
     }
@@ -251,12 +253,30 @@ public class Maze{
     }
     //Frontier must have hasNext()
     public void addCoordinatesToSolutionArray(Coordinate cor){
-
+	int[] sol = new int[solution.length+2];
+	sol[solution.length] = cor.getR();
+	sol[solution.length+1] = cor.getC();
+	solution = sol;
     }
     public Coordinate[] getNeighbors(Coordinate cor){
-	Coordinate[] neighbors = new Coordinate[2];
-	neighbors[0] = new Coordinate(0,0);
-	neighbors[1] = new Coordinate(1,1);
+	Coordinate[] neighbors = new Coordinate[0];
+	Coordinate move = new Coordinate(0,0);
+	if(cor.getR()!=0 && board[cor.getR()-1][cor.getC()]!='#' && board[cor.getR()-1][cor.getC()]!='x'){
+	    move = new Coordinate(cor.getR()-1,cor.getC());
+	}
+	if(cor.getR()!=board.length-1 && board[cor.getR()+1][cor.getC()]!='#' && board[cor.getR()+1][cor.getC()]!='x'){
+	    move = new Coordinate(cor.getR()+1,cor.getC());
+	}
+	if(cor.getC()!=0 && board[cor.getR()][cor.getC()-1]!='#' && board[cor.getR()][cor.getC()-1]!='x'){
+	    move = new Coordinate(cor.getR(),cor.getC()-1);
+	}
+	if(cor.getC()!=board[0].length-1 && board[cor.getR()][cor.getC()+1]!='#' && board[cor.getR()][cor.getC()+1]!='x'){
+	    move = new Coordinate(cor.getR(),cor.getC()+1);
+	}
+	move.setPrev(cor);
+	Coordinate[] neighs = new Coordinate[neighbors.length+1];
+	neighs[neighbors.length] = move;
+	neighbors = neighs;
 	return neighbors;
     }
 }

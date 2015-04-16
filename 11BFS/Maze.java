@@ -148,25 +148,37 @@ public class Maze{
     public Coordinate[] getNeighbors(Coordinate cor){
 	Coordinate[] neighbors = new Coordinate[4];
 	Coordinate move = new Coordinate(0,0);
-	if(cor.getR()!=0 && board[cor.getR()-1][cor.getC()]!='#' && board[cor.getR()-1][cor.getC()]!='x'){
+	if(cor.getR()!=0 && board[cor.getR()-1][cor.getC()]!='#' && board[cor.getR()-1][cor.getC()]!='x' && board[cor.getR()-1][cor.getC()]!='?'){
 	    move = new Coordinate(cor.getR()-1,cor.getC());
 	    move.setPrev(cor);
 	    neighbors[0] = move;
+	    if(board[move.getR()][move.getC()]!='E'){
+		board[move.getR()][move.getC()]='?';
+	    }
 	}
-	if(cor.getR()!=board.length-1 && board[cor.getR()+1][cor.getC()]!='#' && board[cor.getR()+1][cor.getC()]!='x'){
+	if(cor.getR()!=board.length-1 && board[cor.getR()+1][cor.getC()]!='#' && board[cor.getR()+1][cor.getC()]!='x' && board[cor.getR()+1][cor.getC()]!='?'){
 	    move = new Coordinate(cor.getR()+1,cor.getC());
 	    move.setPrev(cor);
 	    neighbors[1] = move;
+	    if(board[move.getR()][move.getC()]!='E'){
+		board[move.getR()][move.getC()]='?';
+	    }
 	}
-	if(cor.getC()!=0 && board[cor.getR()][cor.getC()-1]!='#' && board[cor.getR()][cor.getC()-1]!='x'){
+	if(cor.getC()!=0 && board[cor.getR()][cor.getC()-1]!='#' && board[cor.getR()][cor.getC()-1]!='x' && board[cor.getR()][cor.getC()-1]!='?'){
 	    move = new Coordinate(cor.getR(),cor.getC()-1);
 	    move.setPrev(cor);
 	    neighbors[2] = move;
+	    if(board[move.getR()][move.getC()]!='E'){
+		board[move.getR()][move.getC()]='?';
+	    }
 	}
-	if(cor.getC()!=board[0].length-1 && board[cor.getR()][cor.getC()+1]!='#' && board[cor.getR()][cor.getC()+1]!='x'){
+	if(cor.getC()!=board[0].length-1 && board[cor.getR()][cor.getC()+1]!='#' && board[cor.getR()][cor.getC()+1]!='x' && board[cor.getR()][cor.getC()+1]!='?'){
 	    move = new Coordinate(cor.getR(),cor.getC()+1);
 	    move.setPrev(cor);
 	    neighbors[3] = move;
+	    if(board[move.getR()][move.getC()]!='E'){
+		board[move.getR()][move.getC()]='?';
+	    }
 	}
 	return neighbors;
     }

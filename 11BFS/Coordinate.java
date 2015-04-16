@@ -1,13 +1,16 @@
 public class Coordinate{
     private int r = 0;
     private int c = 0;
-    private Coordinate prev = this;
+    private Coordinate prev;
 
     public int getR(){
 	return r;
     }
     public int getC(){
 	return c;
+    }
+    public Coordinate getPrev(){
+	return prev;
     }
     public void setR(int row){
 	r = row;

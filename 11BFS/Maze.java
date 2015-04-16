@@ -5,7 +5,6 @@ public class Maze{
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
-    private boolean solved = false;
     private int startx, starty;
     private char[][] board;
     private int[] solution = new int[0];
@@ -64,6 +63,7 @@ public class Maze{
 
     public String toString(boolean animate){
 	if(animate){
+	    wait(200);
 	    return hide+clear+toString()+show;
 	}else{
 	    return toString();
@@ -100,7 +100,7 @@ public class Maze{
 	boolean solved = false;
 	while(!solved && rest.hasNext()){
 	    if(animate && !solved){
-		System.out.println(toString(true));
+		System.out.println(toString(true)+rest.toString());
 	    }
 	    //get the top
 	    Coordinate next = rest.remove();
@@ -114,39 +114,56 @@ public class Maze{
 		//not solved, so add neighbors to Frontier and mark the floor with x.
 		board[next.getR()][next.getC()]='x';
 		for(Coordinate p : getNeighbors(next)){
-		    rest.add(p);
+		    if(p!=null){
+			rest.add(p);
+		    }
 		}
 
 	    }
 	}
 	return solved;
     }
-    //Frontier must have hasNext()
     public void addCoordinatesToSolutionArray(Coordinate cor){
-	int[] sol = new int[solution.length+2];
-	sol[solution.length] = cor.getR();
-	sol[solution.length+1] = cor.getC();
-	solution = sol;
+	String[] sol = new String[solution.length+1];
+	String ans = "";
+	Coordinate current = cor;
+	while(current!=null){
+	    ans = ""+current.getR()+","+current.getC()+","+ans;
+	    current = current.getPrev();
+	}
+	sol = ans.split(",");
+	int[] finished = new int[sol.length];
+	for(int i=0; i<sol.length; i++){
+	    finished[i] = Integer.parseInt(sol[i]);
+	}
+	solution = finished;
     }
     public Coordinate[] getNeighbors(Coordinate cor){
-	Coordinate[] neighbors = new Coordinate[0];
+	Coordinate[] neighbors = new Coordinate[4];
 	Coordinate move = new Coordinate(0,0);
 	if(cor.getR()!=0 && board[cor.getR()-1][cor.getC()]!='#' && board[cor.getR()-1][cor.getC()]!='x'){
 	    move = new Coordinate(cor.getR()-1,cor.getC());
+	    move.setPrev(cor);
+	    neighbors[0] = move;
+	    // Coordinate[] neighs = new Coordinate[neighbors.length+1];
+	    //neighs[neighbors.length] = move;
+	    //neighbors = neighs;
 	}
 	if(cor.getR()!=board.length-1 && board[cor.getR()+1][cor.getC()]!='#' && board[cor.getR()+1][cor.getC()]!='x'){
 	    move = new Coordinate(cor.getR()+1,cor.getC());
+	    move.setPrev(cor);
+	    neighbors[1] = move;
 	}
 	if(cor.getC()!=0 && board[cor.getR()][cor.getC()-1]!='#' && board[cor.getR()][cor.getC()-1]!='x'){
 	    move = new Coordinate(cor.getR(),cor.getC()-1);
+	    move.setPrev(cor);
+	    neighbors[2] = move;
 	}
 	if(cor.getC()!=board[0].length-1 && board[cor.getR()][cor.getC()+1]!='#' && board[cor.getR()][cor.getC()+1]!='x'){
 	    move = new Coordinate(cor.getR(),cor.getC()+1);
+	    move.setPrev(cor);
+	    neighbors[3] = move;
 	}
-	move.setPrev(cor);
-	Coordinate[] neighs = new Coordinate[neighbors.length+1];
-	neighs[neighbors.length] = move;
-	neighbors = neighs;
 	return neighbors;
     }
 }

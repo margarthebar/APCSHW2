@@ -1,15 +1,23 @@
 import java.util.*;
 public class MyDeque<T>{
     Object[] storage = new Object[10];
+    int[] priorities = new int[10];
     int head = -1;
     int tail = -1;
     int size = 0;
+    public int size(){
+	return size;
+    }
     public String toString(){
 	String ans = "[ ";
 	for(int i=0; i<storage.length; i++){
 	    ans+=storage[i]+" ";
 	}
 	return ans+"]";
+    }
+    public void add(T value, int priority){
+	addLast(value);
+	priorities[tail]=priority;
     }
     public void addFirst(T value){
 	size++;
@@ -42,13 +50,16 @@ public class MyDeque<T>{
     }
     public void resize(){
 	Object[] enlarged = new Object[storage.length*2];
+	int[] enlargedP = new int[priorities.length*2];
 	if(head!=0){
 	    for(int i=head; i<storage.length; i++){
 		enlarged[i-head]=storage[i];
+		enlargedP[i-head]=priorities[i];
 	    }
 	    if(head>tail){
 		for(int i=0; i<=tail; i++){
 		    enlarged[i+(storage.length-head)]=storage[i];
+		    enlargedP[i+(priorities.length-head)]=priorities[i];
 		}
 		tail = storage.length - head + tail;
 	    }else{
@@ -58,9 +69,59 @@ public class MyDeque<T>{
 	}else{
 	    for(int i=0; i<=tail; i++){
 		enlarged[i] = storage[i];
+		enlargedP[i] = priorities[i];
 	    }
 	}
 	storage = enlarged;
+	priorities = enlargedP;
+    }
+    public T removeSmallest(){
+	if(size==0){
+	    throw new NoSuchElementException();
+	}
+	size--;
+	int smIndex = priorities[0];
+	for(int i=0; i<priorities.length; i++){
+	    if(priorities[i]<smIndex){
+		smIndex=priorities[i];
+	    }
+	}
+	T removed = (T)storage[smIndex];
+	storage[smIndex]=storage[tail];
+	storage[tail]=null;
+	tail--;
+	if(storage.length>10 && size<=storage.length/4){
+	    shrink();
+	}
+	if(size==0){
+	    head = -1;
+	    tail = -1;
+	}
+	return removed;
+    }
+    public T removeLargest(){
+	if(size==0){
+	    throw new NoSuchElementException();
+	}
+	size--;
+	int lgIndex = priorities[0];
+	for(int i=0; i<priorities.length; i++){
+	    if(priorities[i]>lgIndex){
+		lgIndex=priorities[i];
+	    }
+	}
+	T removed = (T)storage[lgIndex];
+	storage[lgIndex]=storage[tail];
+	storage[tail]=null;
+	tail--;
+	if(storage.length>10 && size<=storage.length/4){
+	    shrink();
+	}
+	if(size==0){
+	    head = -1;
+	    tail = -1;
+	}
+	return removed;
     }
     public T removeFirst(){
 	if(size==0){
@@ -77,7 +138,7 @@ public class MyDeque<T>{
 	    head = -1;
 	    tail = -1;
 	}
-	return removed;	
+	return removed;
     }
     public T removeLast(){
 	if(size==0){

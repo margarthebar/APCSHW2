@@ -23,6 +23,9 @@ public class Frontier{
     public LNodeBack<Coordinate> removeMove(){
 	return moves.removeFirst();
     }
+    public LNodeBack<Coordinate> removeLast(){
+	return moves.removeLast();
+    }
     public LNodeBack<Coordinate> getFirst(){
 	return moves.getFirst();
     }

@@ -115,60 +115,63 @@ public class Maze{
 	//System.out.println(front.toString());
 	board[cor.getR()][cor.getC()]='x';
     }
-    public void dive(LNodeBack<Coordinate> current){
+    public boolean dive(LNodeBack<Coordinate> current){
 	Coordinate cor = current.getValue();
-	System.out.println(toString(true));
-	if(board[cor.getR()][cor.getC()]!='E'){
-	    if(cor.getR()!=0 && board[cor.getR()-1][cor.getC()]!='#' && board[cor.getR()-1][cor.getC()]!='x'){
-		Coordinate moveCor = new Coordinate(cor.getR()-1,cor.getC());
-		LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
-		move.setPrev(current);
-		front.addMove(move);
-		board[cor.getR()][cor.getC()]='x';
-		dive(move);
-		board[cor.getR()][cor.getC()]=' ';
-		//System.out.println(front.printPath());
-	    }
-	    if(cor.getR()!=board.length-1 && board[cor.getR()+1][cor.getC()]!='#' && board[cor.getR()+1][cor.getC()]!='x'){
-		Coordinate moveCor = new Coordinate(cor.getR()+1,cor.getC());
-		LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
-		move.setPrev(current);
-		front.addMove(move);
-		board[cor.getR()][cor.getC()]='x';
-		dive(move);
-		board[cor.getR()][cor.getC()]=' ';
-		//System.out.println(front.printPath());
-	    }
-	    if(cor.getC()!=0 && board[cor.getR()][cor.getC()-1]!='#' && board[cor.getR()][cor.getC()-1]!='x'){
-		Coordinate moveCor = new Coordinate(cor.getR(),cor.getC()-1);
-		LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
-		move.setPrev(current);
-		front.addMove(move);
-		board[cor.getR()][cor.getC()]='x';
-		dive(move);
-		board[cor.getR()][cor.getC()]=' ';
-		//System.out.println(front.printPath());
-	    }
-	    if(cor.getC()!=board[0].length-1 && board[cor.getR()][cor.getC()+1]!='#' && board[cor.getR()][cor.getC()+1]!='x'){
-		Coordinate moveCor = new Coordinate(cor.getR(),cor.getC()+1);
-		LNodeBack<Coordinate> move = new LNodeBack<Coordinate>(moveCor);
-		move.setPrev(current);
-		front.addMove(move);
-		board[cor.getR()][cor.getC()]='x';
-		dive(move);
-		board[cor.getR()][cor.getC()]=' ';
-		//System.out.println(front.printPath());
-	    }
-	    front.removeMove();
-	    //System.out.println(front.toString());
-	    board[cor.getR()][cor.getC()]='x';
+	System.out.println(toString());
+	if(board[cor.getR()][cor.getC()]=='#'){
+	    current=current.getPrev();
+	    System.out.println("current "+current.getValue().toString());
+	    front.removeLast();
+	    return false;
 	}
+	if(board[cor.getR()][cor.getC()]=='E'){
+	    MyStack<Coordinate> path = current.pathFind();
+	    while(!path.empty()){
+		Coordinate corPath = path.pop();
+		board[corPath.getR()][corPath.getC()]='@';
+	    }
+	    solved = true;
+	    return true;
+	}
+	if(board[cor.getR()][cor.getC()]=='x'){
+	    current = current.getPrev();
+	    front.removeLast();
+	    System.out.println("current "+current.getValue().toString());
+	    return false;
+	}
+	board[cor.getR()][cor.getC()]='@';
+	front.addMove(current);
+	if(dive(new LNodeBack<Coordinate>(new Coordinate(cor.getR()-1,cor.getC()))) ||
+	   dive(new LNodeBack<Coordinate>(new Coordinate(cor.getR()+1,cor.getC()))) ||
+	   dive(new LNodeBack<Coordinate>(new Coordinate(cor.getR(),cor.getC()-1))) ||
+	   dive(new LNodeBack<Coordinate>(new Coordinate(cor.getR(),cor.getC()+1)))){
+	    solved = true;
+	    return true;
+	}
+	if(board[cor.getR()-1][cor.getC()]==' '){
+	    board[cor.getR()][cor.getC()]='@';
+	    dive(new LNodeBack<Coordinate>(new Coordinate(cor.getR()-1,cor.getC())));
+	}
+	if(board[cor.getR()+1][cor.getC()]==' '){
+	    board[cor.getR()][cor.getC()]='@';
+	    dive(new LNodeBack<Coordinate>(new Coordinate(cor.getR()+1,cor.getC())));
+	}
+	if(board[cor.getR()][cor.getC()-1]==' '){
+	    board[cor.getR()][cor.getC()-1]='@';
+	    dive(new LNodeBack<Coordinate>(new Coordinate(cor.getR(),cor.getC()-1)));
+	}
+	if(board[cor.getR()][cor.getC()+1]==' '){
+	    board[cor.getR()][cor.getC()]='@';
+	    dive(new LNodeBack<Coordinate>(new Coordinate(cor.getR(),cor.getC()+1)));
+	}
+	board[cor.getR()][cor.getC()]='x';
+	return false;
     }
 
     public boolean solveBFS(boolean animate){
 	while(!solved){
 	    if(animate){
-		wait(200);
+		wait(1000);
 	    }
 	    solveBFSHelper(animate);
 	    System.out.println(toString(animate));
@@ -197,18 +200,12 @@ public class Maze{
      */
     public boolean solveDFS(boolean animate){ 
 	LNodeBack<Coordinate> current = front.getFirst();
-	Coordinate cor = current.getValue();
-	dive(current);
-	current = front.getFirst();
-	if(board[cor.getR()][cor.getC()]=='E'){
-	    MyStack<Coordinate> path = current.pathFind();
-	    while(!path.empty()){
-		Coordinate corPath = path.pop();
-		board[corPath.getR()][corPath.getC()]='@';
-	    }
-	    solved = true;
-	}
-	return solved;
+	System.out.println(toString(true));
+	return dive(current);
+    }
+
+    public void solveDFSHelper(boolean animate){
+
     }
     
     public boolean solveBFS(){

@@ -61,7 +61,7 @@ public class Maze{
     }
     public String toString(boolean animate){
 	if(animate){
-	    wait(200);
+	    wait(500);
 	    return hide+clear+toString()+show;
 	}else{
 	    return toString();
@@ -88,13 +88,13 @@ public class Maze{
 	return solveDFS(false);
     }
     public boolean solveBest(boolean animate){
-	return solve(animate,1);
+	return solve(animate,2);
     }
     public boolean solveBest(){
 	return solveBest(false);
     }
     public boolean solveAStar(boolean animate){
-	return solve(animate,1);
+	return solve(animate,3);
     }
     public boolean solveAStar(){
 	return solveAStar(false);
@@ -107,7 +107,7 @@ public class Maze{
 	boolean solved = false;
 	while(!solved && rest.hasNext()){
 	    if(animate && !solved){
-		System.out.println(toString(true)+rest.toString());
+		System.out.println(toString(true));
 	    }
 	    //get the top
 	    Coordinate next = rest.remove();

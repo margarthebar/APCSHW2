@@ -26,7 +26,11 @@ public class Frontier{
 	end = nd;
     }
     public int distance(Coordinate cor){
-	return Math.abs(cor.getR()-end.getR()) + Math.abs(cor.getC()-end.getC());
+	if(cor!=null){
+	    return Math.abs(cor.getR()-end.getR()) + Math.abs(cor.getC()-end.getC());
+	}else{
+	    return -1;
+	}
     }
     public void add(Coordinate cor){
 	if(mode==0){
@@ -35,11 +39,9 @@ public class Frontier{
 	    moves.addLast(cor);
 	}else if(mode==2){
 	    int priority = distance(cor);//distance to the end
-	    moves.addLast(cor);
 	    moves.add(cor,priority);
 	}else if(mode==3){
 	    int priority = distance(cor)+cor.getSteps();//distance to the end + steps taken so far
-	    moves.addLast(cor);
 	    moves.add(cor,priority);
 	}
     }
@@ -51,10 +53,14 @@ public class Frontier{
 	    removed = moves.removeLast();
 	}else if(mode==2){
 	    removed = moves.removeSmallest();
+	    System.out.println("2 "+moves.toString()+" removed: "+removed);
+	    //System.out.println(moves.toString());
 	}else if(mode==3){
 	    removed = moves.removeSmallest();
+	    System.out.println("3 "+moves.toString()+" removed: "+removed);
+	    //System.out.println(moves.toString());
 	}else{
-	    removed = moves.removeFirst();
+	    removed = new Coordinate(0,0,null);
 	}
 	return removed;
     }

@@ -61,7 +61,7 @@ public class Maze{
     }
     public String toString(boolean animate){
 	if(animate){
-	    wait(500);
+	    wait(200);
 	    return hide+clear+toString()+show;
 	}else{
 	    return toString();

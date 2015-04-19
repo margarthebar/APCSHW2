@@ -52,12 +52,16 @@ public class Frontier{
 	}else if(mode==1){
 	    removed = moves.removeLast();
 	}else if(mode==2){
+	    String ans = moves.toString();
 	    removed = moves.removeSmallest();
-	    System.out.println("2 "+moves.toString()+" removed: "+removed);
+	    ans+="\n"+moves.toString()+" removed: "+removed;
+	    System.out.println(ans);
 	    //System.out.println(moves.toString());
 	}else if(mode==3){
+	    String ans = moves.toString();
 	    removed = moves.removeSmallest();
-	    System.out.println("3 "+moves.toString()+" removed: "+removed);
+	    ans+="\n"+moves.toString()+" removed: "+removed;
+	    System.out.println(ans);
 	    //System.out.println(moves.toString());
 	}else{
 	    removed = new Coordinate(0,0,null);

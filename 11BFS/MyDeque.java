@@ -87,10 +87,16 @@ public class MyDeque<T>{
 	    throw new NoSuchElementException();
 	}else if(size==1){
 	    size--;
-	    return (T)storage[head];
+	    T removed = (T)storage[head];
+	    storage[head] = null;
+	    priorities[head] = -1;
+	    head = -1;
+	    tail = -1;
+	    return removed;
 	}else{
 	    int location = head;
 	    int priority = priorities[head];
+	    System.out.println(storage[location]+" "+priority);
 	    int i=head;
 	    int end;
 	    if(head<tail){

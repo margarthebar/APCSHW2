@@ -78,26 +78,43 @@ public class MyDeque<T>{
     public T removeSmallest(){
 	if(size==0){
 	    throw new NoSuchElementException();
-	}
-	size--;
-	int smIndex = priorities[0];
-	for(int i=0; i<priorities.length; i++){
-	    if(priorities[i]<smIndex){
-		smIndex=priorities[i];
+	}else if(size==1){
+	    size--;
+	    return (T)storage[head];
+	}else{
+	    int location = head;
+	    int priority = priorities[head];
+	    int i=head;
+	    int end;
+	    if(head<tail){
+		end = tail;
+	    }else{
+		end = priorities.length+tail;
 	    }
+	    while(i<=end){
+		int index = i%priorities.length;
+		if(priorities[index]<priority){
+		    priority = priorities[index];
+		    location = index;
+		}
+		i++;
+	    }
+	    T removed = (T)storage[location];
+	    storage[location] = storage[head];
+	    priorities[location]=priorities[head];
+	    storage[head]=null;
+	    priorities[head]=-1;
+	    head=(head+1)%storage.length;
+	    size--;
+	    if(storage.length>10 && size<=storage.length/4){
+		shrink();
+	    }
+	    if(size==0){
+		head = -1;
+		tail = -1;
+	    }
+	    return removed;
 	}
-	T removed = (T)storage[smIndex];
-	storage[smIndex]=storage[tail];
-	storage[tail]=null;
-	tail--;
-	if(storage.length>10 && size<=storage.length/4){
-	    shrink();
-	}
-	if(size==0){
-	    head = -1;
-	    tail = -1;
-	}
-	return removed;
     }
     public T removeLargest(){
 	if(size==0){

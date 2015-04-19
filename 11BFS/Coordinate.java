@@ -28,8 +28,11 @@ public class Coordinate{
 	setR(row);
 	setC(col);
 	setPrev(c);
-	steps = c.getSteps()+1;
-	
+	if(c!=null){
+	    steps = c.getSteps()+1;
+	}else{
+	    steps = 0;
+	}
     }
     public String toString(){
 	return "("+getR()+","+getC()+")";

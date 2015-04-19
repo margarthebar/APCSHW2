@@ -37,11 +37,17 @@ public class Frontier{
 	}
     }
     public Coordinate remove(){
-	Coordinate removed = new Coordinate(0,0);
+	Coordinate removed;
 	if(mode==0){
 	    removed = moves.removeFirst();
 	}else if(mode==1){
 	    removed = moves.removeLast();
+	}else if(mode==2){
+	    removed = moves.removeSmallest();
+	}else if(mode==3){
+	    removed = moves.removeSmallest();
+	}else{
+	    removed = moves.removeFirst();
 	}
 	return removed;
     }

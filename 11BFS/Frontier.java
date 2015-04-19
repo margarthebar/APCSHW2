@@ -1,15 +1,16 @@
+import java.lang.Math;
 public class Frontier{
     private Coordinate start;
+    private Coordinate end;
     private int mode = -1;
     private MyDeque<Coordinate> moves = new MyDeque<Coordinate>();
-    //mode 0 is BFS, mode 1 is DFS
+    //mode 0 is BFS, mode 1 is DFS, mode 2 is Best, mode 3 is AStar
     public String toString(){
 	return moves.toString();
     }
-    public Frontier(){
-	this(-1);
-    }
-    public Frontier(int mode){
+    public Frontier(Coordinate st, Coordinate nd, int mode){
+	setStart(st);
+	setEnd(nd);
 	this.mode = mode;
     }
     public Coordinate getStart(){
@@ -18,20 +19,26 @@ public class Frontier{
     public void setStart(Coordinate st){
 	start = st;
     }
+    public Coordinate getEnd(){
+	return end;
+    }
+    public void setEnd(Coordinate nd){
+	end = nd;
+    }
+    public int distance(Coordinate cor){
+	return Math.abs(cor.getR()-end.getR()) + Math.abs(cor.getC()-end.getC());
+    }
     public void add(Coordinate cor){
-	if(moves.size()==0){
-	    setStart(cor);
-	}
 	if(mode==0){
 	    moves.addLast(cor);
 	}else if(mode==1){
 	    moves.addLast(cor);
 	}else if(mode==2){
-	    int priority = 0;//distance to the end
+	    int priority = distance(cor);//distance to the end
 	    moves.addLast(cor);
 	    moves.add(cor,priority);
 	}else if(mode==3){
-	    int priority = 1;//distance to the end + steps taken so far
+	    int priority = distance(cor)+cor.getSteps();//distance to the end + steps taken so far
 	    moves.addLast(cor);
 	    moves.add(cor,priority);
 	}

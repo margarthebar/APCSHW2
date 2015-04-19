@@ -87,9 +87,22 @@ public class Maze{
     public boolean solveDFS(){
 	return solveDFS(false);
     }
+    public boolean solveBest(boolean animate){
+	return solve(animate,1);
+    }
+    public boolean solveBest(){
+	return solveBest(false);
+    }
+    public boolean solveAStar(boolean animate){
+	return solve(animate,1);
+    }
+    public boolean solveAStar(){
+	return solveAStar(false);
+    }
     private boolean solve(boolean animate, int mode){
-	Frontier rest = new Frontier(mode);
 	Coordinate start = new Coordinate(startx,starty,null);//startx and starty are instance variables in my maze class
+	Coordinate end = new Coordinate(endx,endy,null);
+	Frontier rest = new Frontier(start, end, mode);
 	rest.add(start);//put the start into the Frontier
 	boolean solved = false;
 	while(!solved && rest.hasNext()){

@@ -11,14 +11,7 @@ public class MyDeque<T>{
     public String toString(){
 	String ans = "[ ";
 	for(int i=0; i<storage.length; i++){
-	    ans+="<"+storage[i]+" "+priorities[i]+"> ";
-	}
-	return ans+"]";
-    }
-    public String toStringP(){
-	String ans = "[ ";
-	for(int i=0; i<priorities.length; i++){
-	    ans+=priorities[i]+" ";
+	    ans+=storage[i]+" ";
 	}
 	return ans+"]";
     }
@@ -96,7 +89,7 @@ public class MyDeque<T>{
 	}else{
 	    int location = head;
 	    int priority = priorities[head];
-	    System.out.println(storage[location]+" "+priority);
+	    //System.out.println(storage[location]+" "+priority);
 	    int i=head;
 	    int end;
 	    if(head<tail){
@@ -132,26 +125,49 @@ public class MyDeque<T>{
     public T removeLargest(){
 	if(size==0){
 	    throw new NoSuchElementException();
-	}
-	size--;
-	int lgIndex = priorities[0];
-	for(int i=0; i<priorities.length; i++){
-	    if(priorities[i]>lgIndex){
-		lgIndex=priorities[i];
-	    }
-	}
-	T removed = (T)storage[lgIndex];
-	storage[lgIndex]=storage[tail];
-	storage[tail]=null;
-	tail--;
-	if(storage.length>10 && size<=storage.length/4){
-	    shrink();
-	}
-	if(size==0){
+	}else if(size==1){
+	    size--;
+	    T removed = (T)storage[head];
+	    storage[head] = null;
+	    priorities[head] = -1;
 	    head = -1;
 	    tail = -1;
+	    return removed;
+	}else{
+	    int location = head;
+	    int priority = priorities[head];
+	    //System.out.println(storage[location]+" "+priority);
+	    int i=head;
+	    int end;
+	    if(head<tail){
+		end = tail;
+	    }else{
+		end = priorities.length+tail;
+	    }
+	    while(i<=end){
+		int index = i%priorities.length;
+		if(storage[index]!=null && priorities[index]>=0 && priorities[index]>priority){
+		    priority = priorities[index];
+		    location = index;
+		}
+		i++;
+	    }
+	    T removed = (T)storage[location];
+	    storage[location] = storage[head];
+	    priorities[location]=priorities[head];
+	    storage[head]=null;
+	    priorities[head]=-1;
+	    head=(head+1)%storage.length;
+	    size--;
+	    if(storage.length>10 && size<=storage.length/4){
+		shrink();
+	    }
+	    if(size==0){
+		head = -1;
+		tail = -1;
+	    }
+	    return removed;
 	}
-	return removed;
     }
     public T removeFirst(){
 	if(size==0){

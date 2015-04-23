@@ -1,0 +1,13 @@
+public class MyDequeDriver.java{
+    MyDeque<int> dq = new MyDeque<int>();
+    dq.add(0,7);
+    dq.add(1,1);
+    dq.add(2,5);
+    dq.add(3,6);
+    dq.add(4,0);
+    dq.add(5,3);
+    dq.add(6,8);
+    dq.add(7,2);
+    dq.add(8,4);
+    System.out.println(dq.toString());
+}

@@ -158,6 +158,10 @@ public class BTree<E> {
       
       ====================*/
     public int getHeight( TreeNode<E> curr ) {
+	int levels = 0;
+	if(curr!=null){
+	    levels++;
+	}
 	return -1;
     }
 

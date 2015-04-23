@@ -59,6 +59,19 @@ public class BTree<E> {
       added to randomly.
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
+	if(curr.getLeft()==null){
+	    curr.setLeft(bn);
+	}else if(curr.getRight()==null){
+	    curr.setRight(bn);
+	}else{
+	    Random rand = new Random();
+	    int n = rand.nextInt(2);
+	    if(n==0){
+		add(curr.getLeft(),bn);
+	    }else if(n==1){
+		add(curr.getRight(),bn);
+	    }
+	}
     }
     
     public void traverse( int mode) {

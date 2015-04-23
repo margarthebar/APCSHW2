@@ -1,21 +1,14 @@
 public class TreeNode<T>{
     private T data;
     private TreeNode<T> LChild, RChild;
-    
-    public TreeNode(){
-	TreeNode(null);
-    }
-    public TreeNode(T d){
-	setData(d);
-    }
 
     public T getData(){
 	return data;
     }
-    public TreeNode<T> getLeft(){
+    public T getLeft(){
 	return LChild;
     }
-    public TreeNode<T> getRight(){
+    public T getRight(){
 	return RChild;
     }
     public void setData(T d){

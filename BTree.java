@@ -158,11 +158,17 @@ public class BTree<E> {
       
       ====================*/
     public int getHeight( TreeNode<E> curr ) {
-	int levels = 0;
-	if(curr!=null){
-	    levels++;
+	if(curr==null){
+	    return 0;
+	}else if(curr.getLeft()==null && curr.getRight()==null){
+	    return 1;
+	}else{
+	    if(curr.getLeft()!=null){
+		return 1+getHeight(curr.getLeft());
+	    }else{
+		return 1+getHeight(curr.getRight());
+	    }
 	}
-	return -1;
     }
 
     /*======== public String getLevel() ==========

@@ -3,7 +3,6 @@ public class TreeNode<T>{
     private TreeNode<T> LChild, RChild;
     
     public TreeNode(){
-	TreeNode(null);
     }
     public TreeNode(T d){
 	setData(d);
@@ -25,6 +24,6 @@ public class TreeNode<T>{
 	LChild = n;
     }
     public void setRight(TreeNode<T> n){
-	RChild = n
+	RChild = n;
     }
 }

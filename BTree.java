@@ -196,8 +196,11 @@ public class BTree<E> {
 	    return " ";
 	}else if(level==currLevel){
 	    String ans = "";
+	    for(int i=0; i<Math.pow(2,level-1);i++){
+		ans+=" ";
+	    }
 	    ans+=curr.getData();
-	    for(int i=0; i>Math.pow(2,level); i--){
+	    for(int i=0; i<Math.pow(2,level); i++){
 		ans+=" ";
 	    }
 	    return ans;

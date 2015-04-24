@@ -195,7 +195,12 @@ public class BTree<E> {
 	if(curr==null){
 	    return " ";
 	}else if(level==currLevel){
-	    return ""+curr.getData();
+	    String ans = "";
+	    ans+=curr.getData();
+	    for(int i=0; i>Math.pow(2,level); i--){
+		ans+=" ";
+	    }
+	    return ans;
 	}else{
 	    return getLevel(curr.getLeft(),level,currLevel+1)+getLevel(curr.getRight(),level,currLevel+1);
 	}

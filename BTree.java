@@ -47,9 +47,9 @@ public class BTree<E> {
       ====================*/     
     public void add( E d ) { 
 	if(root==null){
-	    root = d;
+	    root = new TreeNode<E>(d);
 	}else{
-	    add(root,d);
+	    add(root,new TreeNode<E>(d));
 	}
     }
 
@@ -180,7 +180,7 @@ public class BTree<E> {
       
       ====================*/
     private String getLevel(int level){
-	if(level>=tree.getHeight()){
+	if(level>=getHeight()){
 	    return "";
 	}else{
 	    return getLevel(root,level,0);
@@ -190,7 +190,7 @@ public class BTree<E> {
 	if(curr==null){
 	    return "";
 	}else if(level==currLevel){
-	    return curr.getData();
+	    return ""+curr.getData();
 	}else{
 	    return getLevel(curr.getLeft(),level,currLevel+1)+getLevel(curr.getRight(),level,currLevel+1);
 	}
@@ -219,7 +219,7 @@ public class BTree<E> {
       ====================*/
     public String toString() {
 	String ans = "";
-	for(i=0;i<getHeight();i++){
+	for(int i=0;i<getHeight();i++){
 	    ans+=getLevel(i)+"\n";
 	}
 	return ans;

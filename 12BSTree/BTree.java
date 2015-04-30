@@ -32,11 +32,18 @@ public class BTree<E> {
     public static final int IN_ORDER = 1;
     public static final int POST_ORDER = 2;
     
+    public boolean constant;
+    public int cons=0;
 
     private TreeNode<E> root;
 
     public BTree() {
 	root = null;
+	constant = false;
+    }
+    public BTree(boolean cons){
+	root = null;
+	constant = cons;
     }
 
     /*======== public void add() ==========
@@ -74,6 +81,14 @@ public class BTree<E> {
 	}else{
 	    Random rand = new Random();
 	    int n = rand.nextInt(2);
+	    if(constant){
+		n=cons;
+		if(cons==0){
+		    cons=1;
+		}else{
+		    cons=0;
+		}
+	    }
 	    if(n==0){
 		System.out.println("bnLRand "+bn.getData());
 		add(curr.getLeft(),bn);
@@ -196,11 +211,11 @@ public class BTree<E> {
 	    return " ";
 	}else if(level==currLevel){
 	    String ans = "";
-	    for(int i=0; i<Math.pow(2,level-1);i++){
+	    for(int i=1; i<Math.pow(2,getHeight()-level);i++){
 		ans+=" ";
 	    }
 	    ans+=curr.getData();
-	    for(int i=0; i<Math.pow(2,level); i++){
+	    for(int i=1; i<Math.pow(2,getHeight()-level); i++){
 		ans+=" ";
 	    }
 	    return ans;
@@ -241,7 +256,7 @@ public class BTree<E> {
 
     public static void main( String[] args ) {
 
-	BTree<Integer> t = new BTree<Integer>();
+	BTree<Integer> t = new BTree<Integer>(true);
 
 	for ( int i=0; i < 8; i++ ) 
 	    t.add( i );

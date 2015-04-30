@@ -42,4 +42,9 @@ public class BSTreeNode<T extends Comparable> {
     public void addTally(){
 	tally++;
     }
+
+    //compareTo
+    public int compareTo(BSTreeNode<T> t){
+
+    }
 }

@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.lang.Math;
 
 public class BSTree <T extends Comparable> {
 
@@ -41,6 +42,7 @@ public class BSTree <T extends Comparable> {
 		curr.setRight(add(curr.getRight(),t));
 	    }
 	}
+	//handle if root
 	return t;
     }
 
@@ -219,7 +221,9 @@ public class BSTree <T extends Comparable> {
 
    
     public static void main( String[] args ) {
-
+	BSTree<Integer> tree = new BSTree<Integer>();
+	tree.add(new Integer(50));
+	System.out.println(tree.toString());
     }
 
 }

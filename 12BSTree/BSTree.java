@@ -35,15 +35,27 @@ public class BSTree <T extends Comparable> {
       Add t to the correct place in the tree rooted at curr.
       ====================*/
     private BSTreeNode<T> add(BSTreeNode<T> curr, BSTreeNode<T> t) {
-	if(curr!=null){
+	if(root==null){
+	    root = t;
+	    //System.out.println("here0");
+	    return t;
+	}
+	if(curr==null){
+	    //System.out.println("here1");
+	    return t;
+	}else if(curr!=null){
 	    if(t.compareTo(curr)<0){//if value to add is less than current
+		//System.out.println("here2");
 		curr.setLeft(add(curr.getLeft(),t));
 	    }else{//if value to add is greater than current
+		//System.out.println("here3");
 		curr.setRight(add(curr.getRight(),t));
 	    }
+	    //System.out.println("here4");
+	    return curr;
 	}
-	//handle if root
-	return t;
+	//System.out.println("here5");
+	return root;
     }
 
     /*======== public void remove() ==========
@@ -224,6 +236,21 @@ public class BSTree <T extends Comparable> {
 	BSTree<Integer> tree = new BSTree<Integer>();
 	tree.add(new Integer(50));
 	System.out.println(tree.toString());
+	tree.add(new Integer(20));
+	System.out.println(tree.toString());
+	tree.add(new Integer(70));
+	System.out.println(tree.toString());
+	tree.add(new Integer(10));
+	System.out.println(tree.toString());
+	tree.add(new Integer(33));
+	System.out.println(tree.toString());
+	tree.add(new Integer(93));
+	System.out.println(tree.toString());
+	tree.add(new Integer(60));
+	System.out.println(tree.toString());
+	tree.add(new Integer(71));
+	System.out.println(tree.toString());
+
     }
 
 }

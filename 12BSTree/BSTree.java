@@ -340,15 +340,33 @@ public class BSTree <T extends Comparable> {
 	tree.add(new Integer(71));
 	System.out.println(tree.toString());
 
+	BSTree<Integer> tree50 = tree;
+	BSTree<Integer> tree20 = tree;
+	BSTree<Integer> tree10 = tree;
+	BSTree<Integer> tree33 = tree;
+	BSTree<Integer> tree70 = tree;
+	BSTree<Integer> tree60 = tree;
+	BSTree<Integer> tree93 = tree;
+	BSTree<Integer> tree71 = tree;
+
 	System.out.println("removing...");
-	tree.remove(new Integer(60));
-	System.out.println(tree.toString());
-	//tree.remove(new Integer(70));
-	//System.out.println(tree.toString());
-	//tree.remove(new Integer(70));
-	//System.out.println(tree.toString());
-	//tree.remove(new Integer(70));
-	//System.out.println(tree.toString());
+	//tree50.remove(new Integer(50));
+	//System.out.println(tree50.toString());
+	//tree20.remove(new Integer(20));
+	//System.out.println(tree20.toString());
+	//tree10.remove(new Integer(10));
+	//System.out.println(tree10.toString());
+	//tree33.remove(new Integer(33));
+	//System.out.println(tree33.toString());
+	//tree70.remove(new Integer(70));
+	//System.out.println(tree70.toString());
+	//tree60.remove(new Integer(60));
+	//System.out.println(tree60.toString());
+	//tree93.remove(new Integer(93));
+	//System.out.println(tree93.toString());
+	tree71.remove(new Integer(71));
+	System.out.println(tree71.toString());
+
     }
 
 }

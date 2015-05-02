@@ -35,7 +35,7 @@ public class BSTree <T extends Comparable> {
       Add t to the correct place in the tree rooted at curr.
       ====================*/
     private BSTreeNode<T> add(BSTreeNode<T> curr, BSTreeNode<T> t) {
-	if(root==null){
+	if(isEmpty()){
 	    root = t;
 	    //System.out.println("here0");
 	    return t;
@@ -77,6 +77,48 @@ public class BSTree <T extends Comparable> {
       curr, if it exists.
       ====================*/
     private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ) {
+	BSTreeNode<T> replacement;
+	boolean wentLeft=false;
+	//if has no children
+	if(curr.getData()==c){
+	    if(isLeaf(curr)){
+		curr.setData(null);
+	    }else if(curr.getRight()==null){
+		curr.setLeft(curr.getLeft());
+	    }else if(curr.getLeft()==null){
+		curr.setRight(curr.getRight());
+	    }else{
+		Random rand = new Random();
+		if(rand.nextInt(2)==0){
+		    wentLeft=true;
+		    curr=remove(curr.getLeft(),c);
+	        }else{
+		    wentLeft=false;
+		    curr=remove(curr.getRight(),c);
+		}
+	    }
+	}else{
+	    if(isLeaf(curr)){
+		replacement=curr;
+		curr=null;
+		return curr;
+	    }else{
+		if(curr==root){
+		    Random rand = new Random();
+		    if(rand.nextInt(2)==0){
+			wentLeft=true;
+			remove(curr.getLeft(),c);
+		    }else{
+			wentLeft=false;
+			remove(curr.getRight(),c);
+		    }
+		}else if(wentLeft){
+		    remove(curr.getRight(),c);
+		}else{
+		    remove(curr.getLeft(),c);
+		}
+	    }
+	}
 	return null;
     }
 
@@ -250,6 +292,16 @@ public class BSTree <T extends Comparable> {
 	System.out.println(tree.toString());
 	tree.add(new Integer(71));
 	System.out.println(tree.toString());
+
+	System.out.println("removing...");
+	tree.remove(new Integer(60));
+	System.out.println(tree.toString());
+	//tree.remove(new Integer(70));
+	//System.out.println(tree.toString());
+	//tree.remove(new Integer(70));
+	//System.out.println(tree.toString());
+	//tree.remove(new Integer(70));
+	//System.out.println(tree.toString());
 
     }
 

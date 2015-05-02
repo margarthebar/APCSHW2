@@ -58,6 +58,51 @@ public class BSTree <T extends Comparable> {
 	return root;
     }
 
+    private int determineDirection(BSTreeNode<T> curr){
+	//An attempt to balance the tree.
+	//It'll look for an appropriate replacement on the side with
+	//the greatest height
+	int direction = -1;
+	if(getHeight(curr.getLeft())>getHeight(curr.getRight())){
+	    //this means go right first
+	    if(curr.getLeft()!=null){
+		direction = 0;
+	    }
+	}else{
+	    //this means go left first
+	    direction = 1;
+	}
+	return direction;
+    }
+
+    private BSTreeNode<T> findReplacement(int direction, BSTreeNode<T> curr){
+	if(direction==-1){
+	    if(determineDirection(curr)==0){
+		return findReplacement(0,curr.getLeft());
+	    }else{
+		return findReplacement(1,curr.getRight());
+	    }  
+	}
+	if(!isLeaf(curr)){
+	    if(direction==0){
+		return findReplacement(direction,curr.getRight());
+	    }else{
+		return findReplacement(direction,curr.getLeft());
+	    }
+	}else{
+	    return curr;
+	}
+    }
+    private BSTreeNode<T> findReplaced(BSTreeNode<T> curr, T c){
+	if(curr.getData().compareTo(c)==0){
+	    return curr;
+	}else if(c.compareTo(curr.getData())<0){
+	    return findReplaced(curr.getLeft(),c);
+	}else{
+	    return findReplaced(curr.getRight(),c);
+	}
+    }
+
     /*======== public void remove() ==========
       Inputs:   T c  
       Returns: 
@@ -77,49 +122,17 @@ public class BSTree <T extends Comparable> {
       curr, if it exists.
       ====================*/
     private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ) {
-	BSTreeNode<T> replacement;
-	boolean wentLeft=false;
-	//if has no children
-	if(curr.getData()==c){
-	    if(isLeaf(curr)){
-		curr.setData(null);
-	    }else if(curr.getRight()==null){
-		curr.setLeft(curr.getLeft());
-	    }else if(curr.getLeft()==null){
-		curr.setRight(curr.getRight());
-	    }else{
-		Random rand = new Random();
-		if(rand.nextInt(2)==0){
-		    wentLeft=true;
-		    curr=remove(curr.getLeft(),c);
-	        }else{
-		    wentLeft=false;
-		    curr=remove(curr.getRight(),c);
-		}
-	    }
-	}else{
-	    if(isLeaf(curr)){
-		replacement=curr;
-		curr=null;
-		return curr;
-	    }else{
-		if(curr==root){
-		    Random rand = new Random();
-		    if(rand.nextInt(2)==0){
-			wentLeft=true;
-			remove(curr.getLeft(),c);
-		    }else{
-			wentLeft=false;
-			remove(curr.getRight(),c);
-		    }
-		}else if(wentLeft){
-		    remove(curr.getRight(),c);
-		}else{
-		    remove(curr.getLeft(),c);
-		}
-	    }
-	}
-	return null;
+	//System.out.println(c);
+	//System.out.println("calling findReplaced while assigning toReplace");
+	BSTreeNode<T> toReplace=findReplaced(curr,c);
+	//System.out.println("toReplace: "+toReplace.getData());
+	//System.out.println("calling findReplacement");
+	BSTreeNode<T> replacement = findReplacement(-1,toReplace);
+	System.out.println("replacement: "+replacement);
+	findReplaced(curr,c).setData(replacement.getData());
+	findReplacement(-1,toReplace).setData(null);
+	//System.out.println("returning root");
+	return root;
     }
 
 
@@ -160,6 +173,10 @@ public class BSTree <T extends Comparable> {
 
     public int getHeight(){
 	return getHeight(root);
+    }
+
+    public int getHeightTest(){
+	return getHeight(root.getLeft());
     }
 
     private int getHeight(BSTreeNode<T> r ){
@@ -294,15 +311,14 @@ public class BSTree <T extends Comparable> {
 	System.out.println(tree.toString());
 
 	System.out.println("removing...");
-	tree.remove(new Integer(60));
+	//tree.remove(new Integer(60));
+	//System.out.println(tree.toString());
+	tree.remove(new Integer(70));
 	System.out.println(tree.toString());
 	//tree.remove(new Integer(70));
 	//System.out.println(tree.toString());
 	//tree.remove(new Integer(70));
 	//System.out.println(tree.toString());
-	//tree.remove(new Integer(70));
-	//System.out.println(tree.toString());
-
     }
 
 }

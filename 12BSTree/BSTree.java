@@ -362,10 +362,10 @@ public class BSTree <T extends Comparable> {
 	//System.out.println(tree70.toString());
 	//tree60.remove(new Integer(60));
 	//System.out.println(tree60.toString());
-	//tree93.remove(new Integer(93));
-	//System.out.println(tree93.toString());
-	tree71.remove(new Integer(71));
-	System.out.println(tree71.toString());
+	tree93.remove(new Integer(93));
+	System.out.println(tree93.toString());
+	//tree71.remove(new Integer(71));
+	//System.out.println(tree71.toString());
 
     }
 

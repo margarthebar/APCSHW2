@@ -107,6 +107,9 @@ public class BSTree <T extends Comparable> {
     }
 
     private BSTreeNode<T> findReplacedPredecessor(BSTreeNode<T> curr, T c){
+	if(c==root){
+	    return null;
+	}
 	if(curr.getLeft().getData().compareTo(c)==0 || curr.getRight().getData().compareTo(c)==0){
 	    return curr;
 	}else if(c.compareTo(curr.getData())<0){
@@ -139,27 +142,46 @@ public class BSTree <T extends Comparable> {
 	BSTreeNode<T> toReplace=findReplaced(curr,c);
 	//The node meant to replace c
 	BSTreeNode<T> replacement = findReplacement(-1,toReplace);
+	System.out.println("replacement: "+replacement);
 	if(c==root){
 	    root=null;
 	}
 	//c's parent
-	BSTreeNode<T> predecessor = findReplacedPredecessor(curr,c);
-	//replaces c with its replacement
-	if(predecessor.getLeft().getData().compareTo(c)==0){
-	    predecessor.setLeft(replacement);
-	}else{
-	    predecessor.setRight(replacement);
+	BSTreeNode<T> predecessor = null;
+	if(c.compareTo(root.getData())!=0){
+	    predecessor = findReplacedPredecessor(curr,c);
 	}
+	System.out.println("predecessor1: "+predecessor);
 	//removes the node used to replace c
 	if(replacement!=null){
 	    //the replacement's parent
-	    predecessor = findReplacedPredecessor(curr,replacement.getData());
+	    BSTreeNode<T> predecessor2 = findReplacedPredecessor(curr,replacement.getData());
+	    System.out.println("predecessor2: "+predecessor2);
 	    //replaces the replacement with its replacement (null)
-	    if(predecessor.getLeft().getData().compareTo(c)==0){
-		predecessor.setLeft(replacement);
+	    if(predecessor2.getLeft().getData().compareTo(c)==0){
+		if(predecessor2.getRight()!=null){
+		    replacement.setRight(predecessor2.getRight());
+		}
+		predecessor2.setLeft(null);
 	    }else{
-		predecessor.setRight(replacement);
+		if(predecessor2.getLeft()!=null){
+		    replacement.setLeft(predecessor2.getLeft());
+		}
+		predecessor2.setRight(null);
 	    }
+	}
+	System.out.println(toString());
+	//replaces c with its replacement
+	if(c.compareTo(root.getData())==0){
+	    System.out.println("here");
+	    root.setData(replacement.getData());
+	    System.out.println("done");
+	    System.out.println("tree: \n"+toString());
+	    return root;
+	}else if(predecessor.getLeft().getData().compareTo(c)==0){
+	    predecessor.setLeft(replacement);
+	}else{
+	    predecessor.setRight(replacement);
 	}
 	//System.out.println("returning root");
 	return root;
@@ -350,8 +372,8 @@ public class BSTree <T extends Comparable> {
 	BSTree<Integer> tree71 = tree;
 
 	System.out.println("removing...");
-	//tree50.remove(new Integer(50));
-	//System.out.println(tree50.toString());
+	tree50.remove(new Integer(50));
+	System.out.println(tree50.toString());
 	//tree20.remove(new Integer(20));
 	//System.out.println(tree20.toString());
 	//tree10.remove(new Integer(10));
@@ -362,8 +384,8 @@ public class BSTree <T extends Comparable> {
 	//System.out.println(tree70.toString());
 	//tree60.remove(new Integer(60));
 	//System.out.println(tree60.toString());
-	tree93.remove(new Integer(93));
-	System.out.println(tree93.toString());
+	//tree93.remove(new Integer(93));
+	//System.out.println(tree93.toString());
 	//tree71.remove(new Integer(71));
 	//System.out.println(tree71.toString());
 

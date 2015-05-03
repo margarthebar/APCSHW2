@@ -83,14 +83,22 @@ public class BSTree <T extends Comparable> {
 	BSTreeNode<T> current = curr;
 	while(!found){
 	    if(current.getLeft()!=null){
-		if(c.equals(current.getLeft().getData()) && isLeaf(current.getLeft())){
+		if(c.equals(current.getLeft().getData())){
+		    if(isLeaf(current.getLeft())){
 		    current.setLeft(null);
+		    }else{
+			current.setLeft(replaceRoot(current.getLeft()));
+		    }
 		    found = true;
 		}
 	    }
 	    if(current.getRight()!=null){
-		if(c.equals(current.getRight().getData()) && isLeaf(current.getLeft())){
+		if(c.equals(current.getRight().getData())){
+		    if(isLeaf(current.getRight())){
 		    current.setRight(null);
+		    }else{
+			current.setRight(replaceRoot(current.getRight()));
+		    }
 		    found = true;
 		}
 	    }
@@ -107,7 +115,6 @@ public class BSTree <T extends Comparable> {
     }
     private BSTreeNode<T> replaceRoot(BSTreeNode<T> rt){
 	if(isLeaf(rt)){
-	    System.out.println("here");
 	    return null;
 	}else if(rt.getRight()==null){
 	    return rt.getLeft();

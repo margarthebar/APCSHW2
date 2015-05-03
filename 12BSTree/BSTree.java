@@ -58,66 +58,6 @@ public class BSTree <T extends Comparable> {
 	return root;
     }
 
-    private int determineDirection(BSTreeNode<T> curr){
-	//An attempt to balance the tree.
-	//It'll look for an appropriate replacement on the side with
-	//the greatest height
-	int direction = -1;
-	if(getHeight(curr.getLeft())>getHeight(curr.getRight())){
-	    //this means go right first
-	    if(curr.getLeft()!=null){
-		direction = 0;
-	    }
-	}else{
-	    //this means go left first
-	    direction = 1;
-	}
-	return direction;
-    }
-
-    private BSTreeNode<T> findReplacement(int direction, BSTreeNode<T> curr){
-	if(direction==-1){
-	    if(isLeaf(curr)){
-		return null;
-	    }
-	    if(determineDirection(curr)==0){
-		return findReplacement(0,curr.getLeft());
-	    }else{
-		return findReplacement(1,curr.getRight());
-	    }  
-	}
-	if(!isLeaf(curr)){
-	    if(direction==0){
-		return findReplacement(direction,curr.getRight());
-	    }else{
-		return findReplacement(direction,curr.getLeft());
-	    }
-	}else{
-	    return curr;
-	}
-    }
-    private BSTreeNode<T> findReplaced(BSTreeNode<T> curr, T c){
-	if(curr.getData().compareTo(c)==0){
-	    return curr;
-	}else if(c.compareTo(curr.getData())<0){
-	    return findReplaced(curr.getLeft(),c);
-	}else{
-	    return findReplaced(curr.getRight(),c);
-	}
-    }
-
-    private BSTreeNode<T> findReplacedPredecessor(BSTreeNode<T> curr, T c){
-	if(c==root){
-	    return null;
-	}
-	if(curr.getLeft().getData().compareTo(c)==0 || curr.getRight().getData().compareTo(c)==0){
-	    return curr;
-	}else if(c.compareTo(curr.getData())<0){
-	    return findReplacedPredecessor(curr.getLeft(),c);
-	}else{
-	    return findReplacedPredecessor(curr.getRight(),c);
-	}
-    }
 
     /*======== public void remove() ==========
       Inputs:   T c  
@@ -142,13 +82,13 @@ public class BSTree <T extends Comparable> {
 	boolean found = false;
 	BSTreeNode<T> current = curr;
 	while(!found){
-	    if(c.compareTo(curr.getData())<0){
-		current = current.getLeft();
-	    }else if(c.compareTo(curr.getData())>0){
-		current = current.getRight();
-	    }else{
+	    if(c.equals(current.getData())){
 		current = replaceRoot(current);
 		found = true;
+	    }else if(c.compareTo(current.getData())<0){
+		current = current.getLeft();
+	    }else{
+		current = current.getRight();
 	    }
 	}
 	return root;
@@ -162,7 +102,6 @@ public class BSTree <T extends Comparable> {
 	    return rt.getRight();
 	}else{
 	    boolean goLeft = getHeight(rt.getLeft())>getHeight(rt.getRight());
-	    boolean found = false;
 	    BSTreeNode<T> replacement = null;
 	    BSTreeNode<T> current = rt;
 	    int index = 0;
@@ -203,57 +142,6 @@ public class BSTree <T extends Comparable> {
 	    return rt;
 	}
     }
-
-    private BSTreeNode<T> remove2( BSTreeNode<T> curr, T c ) {
-	//The node where c is found
-	BSTreeNode<T> toReplace=findReplaced(curr,c);
-	//The node meant to replace c
-	BSTreeNode<T> replacement = findReplacement(-1,toReplace);
-	System.out.println("replacement: "+replacement);
-	if(c==root){
-	    root=null;
-	}
-	//c's parent
-	BSTreeNode<T> predecessor = null;
-	if(c.compareTo(root.getData())!=0){
-	    predecessor = findReplacedPredecessor(curr,c);
-	}
-	System.out.println("predecessor1: "+predecessor);
-	//removes the node used to replace c
-	if(replacement!=null){
-	    //the replacement's parent
-	    BSTreeNode<T> predecessor2 = findReplacedPredecessor(curr,replacement.getData());
-	    System.out.println("predecessor2: "+predecessor2);
-	    //replaces the replacement with its replacement (null)
-	    if(predecessor2.getLeft().getData().compareTo(c)==0){
-		if(predecessor2.getRight()!=null){
-		    replacement.setRight(predecessor2.getRight());
-		}
-		predecessor2.setLeft(null);
-	    }else{
-		if(predecessor2.getLeft()!=null){
-		    replacement.setLeft(predecessor2.getLeft());
-		}
-		predecessor2.setRight(null);
-	    }
-	}
-	System.out.println(toString());
-	//replaces c with its replacement
-	if(c.compareTo(root.getData())==0){
-	    System.out.println("here");
-	    root.setData(replacement.getData());
-	    System.out.println("done");
-	    System.out.println("tree: \n"+toString());
-	    return root;
-	}else if(predecessor.getLeft().getData().compareTo(c)==0){
-	    predecessor.setLeft(replacement);
-	}else{
-	    predecessor.setRight(replacement);
-	}
-	//System.out.println("returning root");
-	return root;
-    }
-
 
     /*======== public void inOrder()) ==========
       Inputs:   
@@ -408,53 +296,61 @@ public class BSTree <T extends Comparable> {
 				
 	return result;
     }
-
    
-    public static void main( String[] args ) {
+    public static BSTree<Integer> testTree(){
 	BSTree<Integer> tree = new BSTree<Integer>();
 	tree.add(new Integer(50));
-	System.out.println(tree.toString());
 	tree.add(new Integer(20));
-	System.out.println(tree.toString());
 	tree.add(new Integer(70));
-	System.out.println(tree.toString());
 	tree.add(new Integer(10));
-	System.out.println(tree.toString());
 	tree.add(new Integer(33));
-	System.out.println(tree.toString());
 	tree.add(new Integer(93));
-	System.out.println(tree.toString());
 	tree.add(new Integer(60));
-	System.out.println(tree.toString());
 	tree.add(new Integer(71));
-	System.out.println(tree.toString());
+	return tree;
+    }
 
-	BSTree<Integer> tree50 = tree;
-	BSTree<Integer> tree20 = tree;
-	BSTree<Integer> tree10 = tree;
-	BSTree<Integer> tree33 = tree;
-	BSTree<Integer> tree70 = tree;
-	BSTree<Integer> tree60 = tree;
-	BSTree<Integer> tree93 = tree;
-	BSTree<Integer> tree71 = tree;
+    public static void main( String[] args ) {
+	BSTree<Integer> tree50 = testTree();
+	BSTree<Integer> tree20 = testTree();
+	BSTree<Integer> tree10 = testTree();
+	BSTree<Integer> tree33 = testTree();
+	BSTree<Integer> tree70 = testTree();
+	BSTree<Integer> tree60 = testTree();
+	BSTree<Integer> tree93 = testTree();
+	BSTree<Integer> tree71 = testTree();
 
-	System.out.println("removing...");
+	System.out.println("removing 50");
 	tree50.remove(new Integer(50));
 	System.out.println(tree50.toString());
-	//tree20.remove(new Integer(20));
-	//System.out.println(tree20.toString());
-	//tree10.remove(new Integer(10));
-	//System.out.println(tree10.toString());
-	//tree33.remove(new Integer(33));
-	//System.out.println(tree33.toString());
-	//tree70.remove(new Integer(70));
-	//System.out.println(tree70.toString());
-	//tree60.remove(new Integer(60));
-	//System.out.println(tree60.toString());
-	//tree93.remove(new Integer(93));
-	//System.out.println(tree93.toString());
-	//tree71.remove(new Integer(71));
-	//System.out.println(tree71.toString());
+
+	System.out.println("removing 20");
+	tree20.remove(new Integer(20));
+	System.out.println(tree20.toString());
+
+	System.out.println("removing 10");
+	tree10.remove(new Integer(10));
+	System.out.println(tree10.toString());
+
+	System.out.println("removing 33");
+	tree33.remove(new Integer(33));
+	System.out.println(tree33.toString());
+
+	System.out.println("removing 70");
+	tree70.remove(new Integer(70));
+	System.out.println(tree70.toString());
+
+	System.out.println("removing 60");
+	tree60.remove(new Integer(60));
+	System.out.println(tree60.toString());
+
+	System.out.println("removing 93");
+	tree93.remove(new Integer(93));
+	System.out.println(tree93.toString());
+
+	System.out.println("removing 71");
+	tree71.remove(new Integer(71));
+	System.out.println(tree71.toString());
 
     }
 

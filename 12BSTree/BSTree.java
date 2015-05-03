@@ -148,6 +148,7 @@ public class BSTree <T extends Comparable> {
 		current = current.getRight();
 	    }else{
 		current = replaceRoot(current);
+		found = true;
 	    }
 	}
 	return root;
@@ -171,15 +172,18 @@ public class BSTree <T extends Comparable> {
 		index = getHeight(rt.getRight());
 	    }
 	    for(int i=0; i<index; i++){
-		if(isLeaf(current)){
+		if(current==null){
+		    rt.setData(replacement.getData());
+		    return rt;
+		}else if(isLeaf(current)){
 		    replacement = current; 
 		}else if(current.getRight()==null){
 		    current = current.getLeft();
 		}else if(current.getLeft()==null){
 		    current = current.getRight();
 		}else{
-		    int leftDist = current.getLeft().getData().compareTo(rt)*-1;
-		    int rightDist = current.getRight().getData().compareTo(rt);
+		    int leftDist = current.getLeft().getData().compareTo(rt.getData())*-1;
+		    int rightDist = current.getRight().getData().compareTo(rt.getData());
 		    if(leftDist<rightDist || (i==0 && goLeft)){
 			if(isLeaf(current.getLeft())){
 			    replacement = current.getLeft();

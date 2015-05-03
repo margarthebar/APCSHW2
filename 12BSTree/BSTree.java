@@ -137,7 +137,70 @@ public class BSTree <T extends Comparable> {
       Should remove the value c from the tree rooted at
       curr, if it exists.
       ====================*/
-    private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ) {
+    private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ){
+        //find c
+	boolean found = false;
+	BSTreeNode<T> current = curr;
+	while(!found){
+	    if(c.compareTo(curr.getData())<0){
+		current = current.getLeft();
+	    }else if(c.compareTo(curr.getData())>0){
+		current = current.getRight();
+	    }else{
+		current = replaceRoot(current);
+	    }
+	}
+	return root;
+    }
+    private BSTreeNode<T> replaceRoot(BSTreeNode<T> rt){
+	if(isLeaf(rt)){
+	    return null;
+	}else if(rt.getRight()==null){
+	    return rt.getLeft();
+	}else if(rt.getLeft()==null){
+	    return rt.getRight();
+	}else{
+	    boolean goLeft = getHeight(rt.getLeft())>getHeight(rt.getRight());
+	    boolean found = false;
+	    BSTreeNode<T> replacement = null;
+	    BSTreeNode<T> current = rt;
+	    int index = 0;
+	    if(goLeft){
+		index = getHeight(rt.getLeft());
+	    }else{
+		index = getHeight(rt.getRight());
+	    }
+	    for(int i=0; i<index; i++){
+		if(isLeaf(current)){
+		    replacement = current; 
+		}else if(current.getRight()==null){
+		    current = current.getLeft();
+		}else if(current.getLeft()==null){
+		    current = current.getRight();
+		}else{
+		    int leftDist = current.getLeft().getData().compareTo(rt)*-1;
+		    int rightDist = current.getRight().getData().compareTo(rt);
+		    if(leftDist<rightDist || (i==0 && goLeft)){
+			if(isLeaf(current.getLeft())){
+			    replacement = current.getLeft();
+			    current.setLeft(null);
+			}
+			current = current.getLeft();
+		    }else{
+			if(isLeaf(current.getRight())){
+			    replacement = current.getRight();
+			    current.setRight(null);
+			}
+			current = current.getRight();
+		    }
+		}
+	    }
+	    rt.setData(replacement.getData());
+	    return rt;
+	}
+    }
+
+    private BSTreeNode<T> remove2( BSTreeNode<T> curr, T c ) {
 	//The node where c is found
 	BSTreeNode<T> toReplace=findReplaced(curr,c);
 	//The node meant to replace c

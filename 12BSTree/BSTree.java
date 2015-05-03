@@ -82,6 +82,18 @@ public class BSTree <T extends Comparable> {
 	boolean found = false;
 	BSTreeNode<T> current = curr;
 	while(!found){
+	    if(current.getLeft()!=null){
+		if(c.equals(current.getLeft().getData()) && isLeaf(current.getLeft())){
+		    current.setLeft(null);
+		    found = true;
+		}
+	    }
+	    if(current.getRight()!=null){
+		if(c.equals(current.getRight().getData()) && isLeaf(current.getLeft())){
+		    current.setRight(null);
+		    found = true;
+		}
+	    }
 	    if(c.equals(current.getData())){
 		current = replaceRoot(current);
 		found = true;
@@ -95,6 +107,7 @@ public class BSTree <T extends Comparable> {
     }
     private BSTreeNode<T> replaceRoot(BSTreeNode<T> rt){
 	if(isLeaf(rt)){
+	    System.out.println("here");
 	    return null;
 	}else if(rt.getRight()==null){
 	    return rt.getLeft();
@@ -115,14 +128,20 @@ public class BSTree <T extends Comparable> {
 		    rt.setData(replacement.getData());
 		    return rt;
 		}else if(isLeaf(current)){
-		    replacement = current; 
-		}else if(current.getRight()==null){
-		    current = current.getLeft();
-		}else if(current.getLeft()==null){
-		    current = current.getRight();
+		    replacement = current;
 		}else{
-		    int leftDist = current.getLeft().getData().compareTo(rt.getData())*-1;
-		    int rightDist = current.getRight().getData().compareTo(rt.getData());
+		    int leftDist = 0;
+		    int rightDist = 0;
+		    if(current.getRight()==null){
+			leftDist = current.getLeft().getData().compareTo(rt.getData())*-1;
+			rightDist = leftDist+1;
+		    }else if(current.getLeft()==null){
+			rightDist = current.getRight().getData().compareTo(rt.getData());
+			leftDist = rightDist+1;
+		    }else{
+			leftDist = current.getLeft().getData().compareTo(rt.getData())*-1;
+			rightDist = current.getRight().getData().compareTo(rt.getData());
+		    }
 		    if(leftDist<rightDist || (i==0 && goLeft)){
 			if(isLeaf(current.getLeft())){
 			    replacement = current.getLeft();
@@ -319,6 +338,8 @@ public class BSTree <T extends Comparable> {
 	BSTree<Integer> tree60 = testTree();
 	BSTree<Integer> tree93 = testTree();
 	BSTree<Integer> tree71 = testTree();
+
+	System.out.println(tree50);
 
 	System.out.println("removing 50");
 	tree50.remove(new Integer(50));

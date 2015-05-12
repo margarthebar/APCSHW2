@@ -15,9 +15,9 @@ public class MyHeap{
 		ans+=data[i];
 		levelCounter++;
 	    }else{
-		ans+=""+data[i];
-		levelCounter=0;
-		level++;
+		ans+="\n"+data[i];
+		levelCounter=1;
+		level*=2;
 	    }
 	}
 	return ans;
@@ -25,7 +25,8 @@ public class MyHeap{
     //public int remove(){}// -> remove the root and return it
     public void add(int n){// -> add the int to the heap
         int spotIndex = data[0]+1;
-	data[spotIndex]=n;	
+	data[spotIndex]=n;
+	data[0]+=1;
     }
     /*
     public int findNextOpenSpot(){

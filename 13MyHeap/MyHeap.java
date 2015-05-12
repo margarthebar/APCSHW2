@@ -43,7 +43,19 @@ public class MyHeap{
 
     }*/
     public void push(int i){
-	
+	int diff = data[i]-data[i/2];
+	boolean swap=false;
+	if(max){
+	    swap = diff>0;
+	}else{
+	    swap = diff<0;
+	}
+	if(swap){
+	    int temp = data[i];
+	    data[i]=data[i/2];
+	    data[i/2]=temp;
+	    push(i/2);
+	}
     }
     
 }

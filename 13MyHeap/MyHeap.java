@@ -1,9 +1,14 @@
 public class MyHeap{
     public int[] data;
+    public boolean max;
 
     public MyHeap(){// -> creates a max heap
+	this(true);
+    }
+    public MyHeap(boolean isMax){
 	data = new int[10];
 	data[0]=0;
+	max=isMax;
     }
     
     public String toString(){
@@ -27,6 +32,7 @@ public class MyHeap{
         int spotIndex = data[0]+1;
 	data[spotIndex]=n;
 	data[0]+=1;
+	push(spotIndex);
     }
     /*
     public int findNextOpenSpot(){
@@ -35,9 +41,9 @@ public class MyHeap{
     }
     public void resize(){
 
-    }
+    }*/
     public void push(int i){
-
+	
     }
-    */
+    
 }

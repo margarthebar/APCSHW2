@@ -37,19 +37,22 @@ public class MyHeap{
 	}*/
     //public int remove(){}// -> remove the root and return it
     public void add(int n){// -> add the int to the heap
+	grow();
         int spotIndex = data[0]+1;
 	data[spotIndex]=n;
 	data[0]+=1;
 	push(spotIndex);
     }
-    /*
-    public int findNextOpenSpot(){
-	
-	return 0;
+    public void grow(){
+	int numElements = data[0]+1;
+	if(numElements*2>=data.length){
+	    int[] dt = new int[data.length*2];
+	    for(int i=0; i<numElements; i++){
+		dt[i]=data[i];
+	    }
+	    data=dt;
+	}
     }
-    public void resize(){
-
-    }*/
     public void push(int i){
 	if(i>1){
 	    int diff = data[i]-data[i/2];

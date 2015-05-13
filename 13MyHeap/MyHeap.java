@@ -70,5 +70,11 @@ public class MyHeap{
 	    }
 	}
     }
+    public int remove(){// -> remove the root and return the value  O(logn)
+    }
+    public int peek(){// -> return the value of the root but do not remove it.  O(1)
+	return data[1];
+    }
+
     
 }

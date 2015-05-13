@@ -41,7 +41,7 @@ public class MyHeap{
         int spotIndex = data[0]+1;
 	data[spotIndex]=n;
 	data[0]+=1;
-	push(spotIndex);
+	pushUp(spotIndex);
     }
     public void grow(){
 	int numElements = data[0]+1;
@@ -53,7 +53,7 @@ public class MyHeap{
 	    data=dt;
 	}
     }
-    public void push(int i){
+    public void pushUp(int i){
 	if(i>1){
 	    int diff = data[i]-data[i/2];
 	    boolean swap=false;
@@ -66,11 +66,19 @@ public class MyHeap{
 		int temp = data[i];
 		data[i]=data[i/2];
 		data[i/2]=temp;
-		push(i/2);
+		pushUp(i/2);
 	    }
 	}
     }
+    public int pushDown(int i){
+	return 0;
+    }
     public int remove(){// -> remove the root and return the value  O(logn)
+	int oldRoot = data[1];
+	data[1]=data[data[0]];
+	int index = 1;
+	pushDown(1);
+	return oldRoot;
     }
     public int peek(){// -> return the value of the root but do not remove it.  O(1)
 	return data[1];

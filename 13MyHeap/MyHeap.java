@@ -71,7 +71,7 @@ public class MyHeap{
 	}
     }
     public int pushDown(int i){
-	if(i<data[0]){
+	if(peek()!=0 && i<data[0]){
 	    int leftChild = i*2;
 	    int rightChild = i*2+1;
 	    int diff = 0;
@@ -108,6 +108,7 @@ public class MyHeap{
 	int oldRoot = data[1];
 	data[1]=data[data[0]];
 	int index = 1;
+	data[data[0]]=0;
 	data[0]=data[0]-1;
 	pushDown(1);
 	return oldRoot;

@@ -13,5 +13,9 @@ public class MyHeapDriver{
 	System.out.println(h.toString());
 	h.add(50);
 	System.out.println(h.toString());
+	h.remove();
+	System.out.println(h.toString());
+	h.remove();
+	System.out.println(h.toString());
     }
 }

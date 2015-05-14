@@ -1,3 +1,4 @@
+import java.util.*;
 public class RunningMedian{
     public MyHeap smaller = new MyHeap(true);
     public MyHeap larger = new MyHeap(false);
@@ -7,16 +8,16 @@ public class RunningMedian{
     }
     public double getMedian(){
 	if(smaller.size()==0 && larger.size()==0){
-	    return null;
+	    throw new NoSuchElementException();
 	}else if(smaller.size()==0){
 	    return (double)larger.peek();
 	}else if(larger.size()==0   ){
 	    return (double)smaller.peek();
 	}else{
 	    if(smaller.size()>larger.size()){
-		return (double)peek();
+		return (double)smaller.peek();
 	    }else if(larger.size()>smaller.size()){
-		return (double)peek();
+		return (double)larger.peek();
 	    }else{
 		return ((double)smaller.peek()+(double)larger.peek())/2;
 	    }

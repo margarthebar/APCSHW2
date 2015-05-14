@@ -71,12 +71,44 @@ public class MyHeap{
 	}
     }
     public int pushDown(int i){
+	if(i<data[0]){
+	    int leftChild = i*2;
+	    int rightChild = i*2+1;
+	    int diff = 0;
+	    int direction = -1;
+	    boolean swap = false;
+	    if(leftChild<=data[0]){
+		diff = data[i]-data[leftChild];
+		direction = 0;
+	    }else if(rightChild<=data[0]){
+		diff = data[i]-data[rightChild];
+		direction = 1;
+	    }
+	    if(max){
+	        swap = diff<0;
+	    }else{
+		swap = diff>0;
+	    }
+	    int temp = data[i];
+	    if(swap){
+		if(direction==0){
+		    data[i]=data[leftChild];
+		    data[leftChild]=temp;
+		    pushDown(leftChild); 
+		}else if(direction==1){
+		    data[i]=data[rightChild];
+		    data[rightChild]=temp;
+		    pushDown(rightChild);
+		}
+	    }
+	}
 	return 0;
     }
     public int remove(){// -> remove the root and return the value  O(logn)
 	int oldRoot = data[1];
 	data[1]=data[data[0]];
 	int index = 1;
+	data[0]=data[0]-1;
 	pushDown(1);
 	return oldRoot;
     }

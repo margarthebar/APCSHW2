@@ -8,6 +8,12 @@ public class RunningMedian{
 	    smaller.add(value);
 	}else{
 	    //add to correct heap
+	    if((double)value<getMedian()){
+		smaller.add(value);
+	    }else{
+		larger.add(value);
+	    }
+	    
 	    //look at sizes; if one=other+2, move root of one to other
 	}
     }

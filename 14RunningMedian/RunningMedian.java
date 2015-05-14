@@ -4,7 +4,12 @@ public class RunningMedian{
     public MyHeap larger = new MyHeap(false);
 
     public void add(int value){
-	
+	if(smaller.size()==0 && larger.size()==0){
+	    smaller.add(value);
+	}else{
+	    //add to correct heap
+	    //look at sizes; if one=other+2, move root of one to other
+	}
     }
     public double getMedian(){
 	if(smaller.size()==0 && larger.size()==0){

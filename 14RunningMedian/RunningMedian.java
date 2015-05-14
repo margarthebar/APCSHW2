@@ -6,16 +6,20 @@ public class RunningMedian{
 	
     }
     public double getMedian(){
-	if(smaller.peek()==null && larger.peek()==null){
+	if(smaller.size()==0 && larger.size()==0){
 	    return null;
-	}else if(smaller.peek()==null){
+	}else if(smaller.size()==0){
 	    return (double)larger.peek();
-	}else if(larger.peek()==null){
+	}else if(larger.size()==0   ){
 	    return (double)smaller.peek();
 	}else{
-	    //if more in smaller
-	    //if more in larger
-	    //if same size
+	    if(smaller.size()>larger.size()){
+		return (double)peek();
+	    }else if(larger.size()>smaller.size()){
+		return (double)peek();
+	    }else{
+		return ((double)smaller.peek()+(double)larger.peek())/2;
+	    }
 	}
     }
 }

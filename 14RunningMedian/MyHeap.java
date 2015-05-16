@@ -61,6 +61,11 @@ public class MyHeap{
 	    data=dt;
 	}
     }
+    private void swap(int i1, int i2){
+	int temp = data[i1];
+	data[i1]=data[i2];
+	data[i2]=temp;
+    }
     public void pushUp(int i){
 	if(i>1){
 	    int diff = data[i]-data[i/2];
@@ -71,47 +76,79 @@ public class MyHeap{
 		swap = diff<0;
 	    }
 	    if(swap){
-		int temp = data[i];
-		data[i]=data[i/2];
-		data[i/2]=temp;
+		swap(i,i/2);
 		pushUp(i/2);
 	    }
 	}
     }
-    public int pushDown(int i){
-	if(peek()!=0 && i<data[0]){
-	    int leftChild = i*2;
-	    int rightChild = i*2+1;
-	    int diff = 0;
-	    int direction = -1;
-	    boolean swap = false;
-	    if(leftChild<=data[0]){
-		diff = data[i]-data[leftChild];
+    public void pushDownMax(int i){
+	int leftChild = i*2;
+	int rightChild = i*2+1;
+	int direction = -1;//-1 is none, 0 is left, 1 is right
+	boolean swap = false;
+	if(leftChild>data[0]){//if no children, don't swap
+	    swap = false;
+	}
+	if(rightChild>data[0]){//if no right child, check to swap with left child
+	    swap = data[leftChild]>data[i];
+	    direction = 0;
+	}else{
+	    if(data[leftChild]>data[rightChild]){//if left child greater than right child
+		swap = data[leftChild]>data[i];//if left child max, swap
 		direction = 0;
-	    }else if(rightChild<=data[0]){
-		diff = data[i]-data[rightChild];
+	    }else{//right child greater than or equal to left child
+		swap = data[rightChild]>data[i];//if right child max, swap
 		direction = 1;
 	    }
-	    if(max){
-	        swap = diff<0;
+	}
+	if(swap){
+	    if(direction==0){
+		swap(i,leftChild);
+		pushDownMax(leftChild);
 	    }else{
-		swap = diff>0;
-	    }
-	    int temp = data[i];
-	    if(swap){
-		if(direction==0){
-		    data[i]=data[leftChild];
-		    data[leftChild]=temp;
-		    pushDown(leftChild); 
-		}else if(direction==1){
-		    data[i]=data[rightChild];
-		    data[rightChild]=temp;
-		    pushDown(rightChild);
-		}
+		swap(i,rightChild);
+		pushDownMax(rightChild);
 	    }
 	}
-	return 0;
     }
+    public void pushDownMin(int i){
+        int leftChild = i*2;
+	int rightChild = i*2+1;
+	int direction = -1;//-1 is none, 0 is left, 1 is right
+	boolean swap = false;
+	if(leftChild>data[0]){//if no children, don't swap
+	    swap = false;
+	}
+	if(rightChild>data[0]){//if no right child, check to swap with left child
+		swap = data[leftChild]<data[i];
+		direction = 0;
+	    }else{
+		if(data[leftChild]<data[rightChild]){//if left child less than right child
+		    swap = data[leftChild]<data[i];//if left child min, swap
+		    direction = 0;
+		}else{//right child less than or equal to left child
+		    swap = data[rightChild]<data[i];//if right child max, swap
+		    direction = 1;
+		}
+	}
+	if(swap){
+	    if(direction==0){
+		swap(i,leftChild);
+		pushDownMin(leftChild);
+	    }else{
+		swap(i,rightChild);
+		pushDownMin(rightChild);
+	    }
+	}
+    }
+    public void pushDown(int i){
+	if(max){
+	    pushDownMax(i);
+	}else{
+	    pushDownMin(i);
+	}
+    }
+  
     public int remove(){// -> remove the root and return the value  O(logn)
 	int oldRoot = data[1];
 	data[1]=data[data[0]];

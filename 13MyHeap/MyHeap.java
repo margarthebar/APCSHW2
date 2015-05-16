@@ -148,41 +148,7 @@ public class MyHeap{
 	    pushDownMin(i);
 	}
     }
-    /*
-    public int pushDown2(int i){
-	if(peek()!=0 && i<data[0]){
-	    int leftChild = i*2;
-	    int rightChild = i*2+1;
-	    int diff = 0;
-	    int direction = -1;
-	    boolean swap = false;
-	    if(leftChild<=data[1]){
-		diff = data[i]-data[leftChild];
-		direction = 0;
-	    }else if(rightChild<=data[1]){
-		diff = data[i]-data[rightChild];
-		direction = 1;
-	    }
-	    if(max){
-	        swap = diff<0;
-	    }else{
-		swap = diff>0;
-	    }
-	    int temp = data[i];
-	    if(swap){
-		if(direction==0){
-		    data[i]=data[leftChild];
-		    data[leftChild]=temp;
-		    pushDown(leftChild); 
-		}else if(direction==1){
-		    data[i]=data[rightChild];
-		    data[rightChild]=temp;
-		    pushDown(rightChild);
-		}
-	    }
-	}
-	return 0;
-	}*/
+   
     public int remove(){// -> remove the root and return the value  O(logn)
 	int oldRoot = data[1];
 	data[1]=data[data[0]];

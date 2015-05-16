@@ -12,6 +12,9 @@ public class MyHeap{
 	data[0]=0;
 	max=isMax;
     }
+    public int size(){
+	return data[0];
+    }
 
     public String toString(){
 	String ans = "";

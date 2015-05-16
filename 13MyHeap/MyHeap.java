@@ -26,9 +26,7 @@ public class MyHeap{
 		numsOnLevel*=2;
 		levels--;
 		numTabs = (int)Math.pow(2.0,(double)levels-1);
-		System.out.println();
 	    }
-	    System.out.println(numTabs);
 	    for(int j=0; j<numTabs; j++){
 		ans+="\t";
 	    }

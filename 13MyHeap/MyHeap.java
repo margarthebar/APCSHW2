@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 public class MyHeap{
     public int[] data;
     public boolean max;
@@ -10,6 +12,7 @@ public class MyHeap{
 	data[0]=0;
 	max=isMax;
     }
+    /*
     public String toString(){
 	String ans = "[";
 	for(int i=0; i<data.length; i++){
@@ -18,7 +21,36 @@ public class MyHeap{
 	ans+="]";
 	return ans;
     }
+    */
 
+    public String toString(){
+	String ans = "";
+	int levels = 1+(int)(Math.log((double)data[0])/Math.log(2.0));
+	int numsOnLevel = 1;
+	int counter = 0;
+	for(int i=1; i<=data[0]; i++){
+	    if(counter<numsOnLevel){
+		int numTabs = 0;
+		if(counter==0){
+		    numTabs = (int)Math.pow(2.0,(double)levels-1);
+		}else{
+		    numTabs = (int)Math.pow(2.0,(double)levels);
+		}
+		for(int j=0; j<numTabs; j++){
+			ans+="\t";
+		}
+		ans+=data[i];
+		counter++;
+	    }else{
+		ans+="\n"+data[i];
+		counter=1;
+		numsOnLevel*=2;
+		levels--;
+	    }
+	}
+
+	return ans;
+    }
     /*public String toString(){
 	String ans = "";
 	int level = 1;

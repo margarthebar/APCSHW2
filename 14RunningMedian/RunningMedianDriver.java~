@@ -1,0 +1,5 @@
+public class RunningMedianDriver{
+    public static void main(String[]args){
+	RunningMedian m = new RunningMedian();
+    }
+}

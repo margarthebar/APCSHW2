@@ -12,62 +12,34 @@ public class MyHeap{
 	data[0]=0;
 	max=isMax;
     }
-    /*
-    public String toString(){
-	String ans = "[";
-	for(int i=0; i<data.length; i++){
-	    ans+=data[i]+",";
-	}
-	ans+="]";
-	return ans;
-    }
-    */
 
     public String toString(){
 	String ans = "";
 	int levels = 1+(int)(Math.log((double)data[0])/Math.log(2.0));
 	int numsOnLevel = 1;
-	int counter = 0;
+	int counter = 1;
+	int numTabs = (int)Math.pow(2.0,(double)levels-1);;
 	for(int i=1; i<=data[0]; i++){
-	    if(counter<numsOnLevel){
-		int numTabs = 0;
-		if(counter==0){
-		    numTabs = (int)Math.pow(2.0,(double)levels-1);
-		}else{
-		    numTabs = (int)Math.pow(2.0,(double)levels);
-		}
-		for(int j=0; j<numTabs; j++){
-			ans+="\t";
-		}
-		ans+=data[i];
-		counter++;
-	    }else{
-		ans+="\n"+data[i];
+	    if(counter>numsOnLevel){
+		ans+="\n";
 		counter=1;
 		numsOnLevel*=2;
 		levels--;
+		numTabs = (int)Math.pow(2.0,(double)levels-1);
+		System.out.println();
 	    }
+	    System.out.println(numTabs);
+	    for(int j=0; j<numTabs; j++){
+		ans+="\t";
+	    }
+	    ans+=data[i];
+	    numTabs = (int)Math.pow(2.0,(double)levels);
+	    counter++;
 	}
 
 	return ans;
     }
-    /*public String toString(){
-	String ans = "";
-	int level = 1;
-	int levelCounter = 0;
-	for(int i=1; i<=data[0]; i++){
-	    if(levelCounter<level){
-		ans+=data[i];
-		levelCounter++;
-	    }else{
-		ans+="\n"+data[i];
-		levelCounter=1;
-		level*=2;
-	    }
-	}
-	return ans;
-	}*/
-    //public int remove(){}// -> remove the root and return it
+ 
     public void add(int n){// -> add the int to the heap
 	grow();
         int spotIndex = data[0]+1;

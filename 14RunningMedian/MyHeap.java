@@ -4,6 +4,9 @@ public class MyHeap{
     public int[] data;
     public boolean max;
 
+    public String name(){
+	return "Burkart,Margaret";
+    }
     public MyHeap(){// -> creates a max heap
 	this(true);
     }

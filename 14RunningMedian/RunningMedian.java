@@ -3,6 +3,10 @@ public class RunningMedian{
     public MyHeap smaller = new MyHeap(true);//where the numbers smaller than the median go
     public MyHeap larger = new MyHeap(false);//where the numbers larger than the median go
 
+
+    public String name(){
+	return "Burkart,Margaret";
+    }
     public void add(int value){
 	if(smaller.size()==0 && larger.size()==0){//if both are empty, put one in smaller (doesn't matter which)
 	    smaller.add(value);

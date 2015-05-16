@@ -7,6 +7,14 @@ public class RunningMedian{
     public String name(){
 	return "Burkart,Margaret";
     }
+    public String toString(){
+	String ans = "";
+	ans+="Smaller\n";
+	ans+=smaller.toString()+"\n";
+	ans+="Larger\n";
+	ans+=larger.toString();
+	return ans;
+    }
     public void add(int value){
 	if(smaller.size()==0 && larger.size()==0){//if both are empty, put one in smaller (doesn't matter which)
 	    smaller.add(value);

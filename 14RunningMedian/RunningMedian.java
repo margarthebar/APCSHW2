@@ -13,8 +13,14 @@ public class RunningMedian{
 	    }else{
 		larger.add(value);
 	    }
-	    
 	    //look at sizes; if one=other+2, move root of one to other
+	    if(smaller.size()==larger.size()+2){
+		int root = smaller.remove();
+		larger.add(root);
+	    }else if(larger.size()==smaller.size()+2){
+		int root = larger.remove();
+		smaller.add(root);
+	    }
 	}
     }
     public double getMedian(){

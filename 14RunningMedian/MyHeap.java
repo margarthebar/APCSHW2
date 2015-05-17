@@ -112,14 +112,16 @@ public class MyHeap{
 	}
     }
     public void pushDownMin(int i){
+	//System.out.println(i);
         int leftChild = i*2;
 	int rightChild = i*2+1;
 	int direction = -1;//-1 is none, 0 is left, 1 is right
 	boolean swap = false;
-	if(leftChild>data[0]){//if no children, don't swap
+	if(i>size()){
 	    swap = false;
-	}
-	if(rightChild>data[0]){//if no right child, check to swap with left child
+	}else if(leftChild>data[0]){//if no children, don't swap
+	    swap = false;
+	}else if(rightChild>data[0]){//if no right child, check to swap with left child
 		swap = data[leftChild]<data[i];
 		direction = 0;
 	    }else{
@@ -148,7 +150,7 @@ public class MyHeap{
 	    pushDownMin(i);
 	}
     }
-  
+   
     public int remove(){// -> remove the root and return the value  O(logn)
 	int oldRoot = data[1];
 	data[1]=data[data[0]];
@@ -164,3 +166,4 @@ public class MyHeap{
 
     
 }
+

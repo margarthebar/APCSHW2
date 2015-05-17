@@ -1,6 +1,6 @@
 public class MyHeapDriver{
     public static void main(String[]args){
-	MyHeap h = new MyHeap();
+	MyHeap h = new MyHeap(false);
         h.add(16);
 	System.out.println(h.toString());
 	System.out.println();
@@ -17,6 +17,24 @@ public class MyHeapDriver{
 	System.out.println(h.toString());
 	System.out.println();
 	h.add(50);
+	System.out.println(h.toString());
+	System.out.println();
+	h.add(22);
+	System.out.println(h.toString());
+	System.out.println();
+	h.add(33);
+	System.out.println(h.toString());
+	System.out.println();
+	h.remove();
+	System.out.println(h.toString());
+	System.out.println();
+	h.remove();
+	System.out.println(h.toString());
+	System.out.println();
+	h.remove();
+	System.out.println(h.toString());
+	System.out.println();
+	h.remove();
 	System.out.println(h.toString());
 	System.out.println();
 	h.remove();

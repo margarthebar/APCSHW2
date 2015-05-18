@@ -9,8 +9,24 @@ public class Sorts{
     public static int period(){
 	return 7;
     }
+
+    public static int[] heapify(int[] c){
+	boolean done = false;
+	while(!done){
+	    done = true;
+	    for(int i=c.length; i<=0; i--){
+		if(c[i]>c[i/2]){
+		    int temp = c[i];
+		    c[i] = c[i/2];
+		    c[i/2] = temp;
+		    done = false;
+		}
+	    }
+	}
+	return c;
+    }
     public static void heapSort(int[] c){
-	heapify(c);
+	c = heapify(c);
 	//loop
 	////remove and
 	////place at n

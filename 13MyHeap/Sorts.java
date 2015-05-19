@@ -10,26 +10,31 @@ public class Sorts{
 	return 7;
     }
 
-    public static int[] heapify(int[] c){
-	boolean done = false;
-	while(!done){
-	    done = true;
-	    for(int i=c.length; i<=0; i--){
-		if(c[i]>c[i/2]){
-		    int temp = c[i];
-		    c[i] = c[i/2];
-		    c[i/2] = temp;
-		    done = false;
-		}
-	    }
+    public static void heapify(int[] c){
+	MyHeap heap = new MyHeap();
+	for(int n:c){
+	    heap.add(n);
 	}
-	return c;
+        for(int i=0; i<c.length; i++){
+	    c[i] = heap.remove();
+	}
     }
     public static void heapSort(int[] c){
-	c = heapify(c);
-	//loop
-	////remove and
-	////place at n
+	int end = c.length-1;
+	for(int i=0; i<c.length; i++){
+	    int[] leftover = new int[end+1];
+	    for(int j=0; j<leftover.length; j++){
+		leftover[j] = c[j];
+	    }
+	    heapify(leftover);
+	    for(int k=0; k<leftover.length; k++){
+		c[k] = leftover[k];
+	    }
+	    int temp = c[0];
+	    c[0] = c[end];
+	    c[end] = temp;
+	    end--;
+	}
     }
 
     public static void insertionSort(int[]c){
@@ -255,7 +260,13 @@ public class Sorts{
 
     public static void main(String[]args){
 	long startTime,endTime;
+	
+	int[] testHeap = {0,9,3,1,6,4,2,7};
 
+	heapSort(testHeap);
+	System.out.println(Arrays.toString(testHeap));
+
+	/*
 	int[] test = {11,7,8,9,6,1,8,2,5,8,52};
 	int[] test0 = {0,0,0,0,0,0,0,0,0,0,0};
 	int[] test01 = {0,0,0,0,0,0,0,0,0,0};
@@ -279,7 +290,7 @@ public class Sorts{
 	quickSort(testBiggest);
 
 	
-	/*int[] a = randomArray();
+	int[] a = randomArray();
 	startTime = System.currentTimeMillis();
 	bubbleSort(a);
 	endTime = System.currentTimeMillis();
